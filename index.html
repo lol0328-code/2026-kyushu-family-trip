@@ -3,39 +3,41 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>九州六天五夜・秋日家族慢旅手冊｜Kyushu Slow Travel Journal</title>
+  <title>KYUSHU TRAVEL JOURNAL｜九州六天五夜・秋日家族慢旅手冊</title>
 
-  <!-- Google Fonts: Cormorant Garamond, Noto Serif TC, Noto Sans TC -->
+  <!-- Google Fonts：Playfair Display + Noto Serif TC（標題）與 Noto Sans TC（內文） -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Serif+TC:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Serif+TC:wght@400;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet" />
 
-  <!-- Tailwind CSS CDN -->
+  <!-- Tailwind CSS CDN（在 tailwind.config 之前載入） -->
   <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Tailwind 自訂設計系統（加上 typeof 防護避免離線或延遲報錯） -->
   <script>
     if (typeof tailwind !== 'undefined') {
       tailwind.config = {
         theme: {
           extend: {
             colors: {
-              paper: '#FAF6F0',
-              paperDeep: '#F4EFE6',
+              paper: '#FAF6EF',
+              paperDeep: '#F5EFE6',
               ivory: '#FFFDF9',
               borderWarm: '#DFD4C3',
-              ink: '#2C3531',
-              sepia: '#7A6450',
-              maple: '#B8543B',
-              gold: '#C49A5C',
-              moss: '#5D6E58',
+              navy: '#2C3E50',
+              sepia: '#7C654C',
+              gold: '#C59B5F',
+              sage: '#6B7D65',
+              terracotta: '#B85D43',
             },
             fontFamily: {
               serifTC: ['"Noto Serif TC"', 'serif'],
-              editorial: ['"Cormorant Garamond"', '"Noto Serif TC"', 'serif'],
+              editorial: ['"Playfair Display"', '"Noto Serif TC"', 'serif'],
               sansTC: ['"Noto Sans TC"', 'sans-serif'],
             },
             boxShadow: {
-              journal: '0 10px 30px -10px rgba(44, 53, 49, 0.08), 0 2px 6px rgba(122, 100, 80, 0.06)',
-              soft: '0 4px 16px -4px rgba(122, 100, 80, 0.08)',
+              journal: '0 8px 28px -8px rgba(44, 62, 80, 0.08), 0 2px 6px rgba(124, 101, 76, 0.06)',
+              soft: '0 4px 16px -4px rgba(124, 101, 76, 0.08)',
             }
           }
         }
@@ -44,627 +46,1065 @@
   </script>
 
   <style>
-    /* Vintage watercolor paper texture */
     body {
-      background-color: #FAF6F0;
-      color: #2C3531;
+      background-color: #FAF6EF;
+      color: #2C3E50;
       font-family: 'Noto Sans TC', sans-serif;
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
       background-image:
-        radial-gradient(rgba(196, 154, 92, 0.14) 1px, transparent 0),
-        radial-gradient(rgba(122, 100, 80, 0.06) 1px, transparent 0);
-      background-size: 28px 28px;
-      background-position: 0 0, 14px 14px;
+        radial-gradient(rgba(197, 155, 95, 0.14) 1px, transparent 0),
+        radial-gradient(rgba(124, 101, 76, 0.07) 1px, transparent 0);
+      background-size: 26px 26px;
+      background-position: 0 0, 13px 13px;
     }
 
-    .journal-card {
-      background: linear-gradient(180deg, #FFFDF9 0%, #FAF6F0 100%);
+    .editorial-card {
+      background: linear-gradient(180deg, #FFFDF9 0%, #FAF6EF 100%);
       border: 1px solid #DFD4C3;
+    }
+
+    .editorial-frame {
+      position: relative;
+    }
+
+    .editorial-frame::before {
+      content: '';
+      position: absolute;
+      inset: 8px;
+      border: 1px solid rgba(197, 155, 95, 0.42);
+      border-radius: 18px;
+      pointer-events: none;
     }
 
     .watercolor-fallback {
       background:
-        radial-gradient(circle at 20% 20%, rgba(196, 154, 92, 0.25), transparent 55%),
-        radial-gradient(circle at 80% 80%, rgba(184, 84, 59, 0.18), transparent 55%),
-        linear-gradient(135deg, #F4EFE6 0%, #FAF6F0 100%);
+        radial-gradient(circle at 20% 25%, rgba(197, 155, 95, 0.25), transparent 55%),
+        radial-gradient(circle at 80% 75%, rgba(184, 93, 67, 0.18), transparent 55%),
+        linear-gradient(135deg, #F5EFE6 0%, #FAF6EF 100%);
     }
 
-    .fade-in {
-      animation: fadeIn 0.28s ease-out;
+    .view-animate {
+      animation: fadeSlideIn 0.3s ease-out;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(6px); }
-      to { opacity: 1; transform: translateY(0); }
+    @keyframes fadeSlideIn {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
-    .no-scrollbar::-webkit-scrollbar { display: none; }
-    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
   </style>
 </head>
 <body class="min-h-screen pb-24 md:pb-12">
 
-  <!-- Top Sticky Header -->
+  <!-- 頂部固定導覽列 -->
   <header class="sticky top-0 z-40 bg-paper/95 backdrop-blur-md border-b border-borderWarm/80">
     <div class="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between gap-3">
-      <button onclick="switchTab('itinerary')" class="flex items-center gap-2.5 text-left group">
-        <span class="w-9 h-9 rounded-full bg-ink/5 border border-gold/70 flex items-center justify-center font-editorial font-bold text-lg text-ink group-hover:bg-ink group-hover:text-ivory transition">
-          秋
+      <button onclick="navigateTo('home')" class="flex items-center gap-2.5 text-left group">
+        <span class="w-9 h-9 rounded-full bg-navy/5 border border-gold/60 flex items-center justify-center text-navy font-editorial font-bold text-base group-hover:bg-navy group-hover:text-ivory transition">
+          九
         </span>
         <div>
-          <p class="font-editorial text-base sm:text-lg font-bold tracking-[0.12em] text-ink leading-none">
+          <p class="font-editorial text-sm sm:text-base font-bold tracking-[0.12em] text-navy leading-tight">
             KYUSHU JOURNAL
           </p>
-          <p class="text-[11px] text-sepia tracking-wider mt-0.5">2026.11.23 — 11.28｜家族慢旅</p>
+          <p class="text-[11px] text-sepia tracking-wider">2026.11.23 — 11.28</p>
         </div>
       </button>
 
-      <!-- Desktop Navigation -->
+      <!-- 桌機版導覽選單 -->
       <nav class="hidden md:flex items-center gap-1.5 text-sm">
-        <button data-tab="itinerary" onclick="switchTab('itinerary')" class="desktop-tab px-4 py-1.5 rounded-full transition">每日行程</button>
-        <button data-tab="restaurants" onclick="switchTab('restaurants')" class="desktop-tab px-4 py-1.5 rounded-full transition">精選餐廳</button>
-        <button data-tab="budget" onclick="switchTab('budget')" class="desktop-tab px-4 py-1.5 rounded-full transition">旅費記帳</button>
-        <button data-tab="weather" onclick="switchTab('weather')" class="desktop-tab px-4 py-1.5 rounded-full transition">即時天氣</button>
+        <button data-nav="home" onclick="navigateTo('home')" class="nav-pill px-3.5 py-1.5 rounded-full transition">首頁</button>
+        <button data-nav="day" onclick="navigateTo('day', currentDay)" class="nav-pill px-3.5 py-1.5 rounded-full transition">每日行程</button>
+        <button data-nav="restaurants" onclick="navigateTo('restaurants')" class="nav-pill px-3.5 py-1.5 rounded-full transition">餐廳專區</button>
+        <button data-nav="budget" onclick="navigateTo('budget')" class="nav-pill px-3.5 py-1.5 rounded-full transition">旅行預算</button>
+        <button data-nav="weather" onclick="navigateTo('weather')" class="nav-pill px-3.5 py-1.5 rounded-full transition">即時天氣</button>
       </nav>
 
-      <span class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-paperDeep border border-borderWarm text-[11px] text-sepia">
-        🚐 熊本進出・三人包車
-      </span>
+      <!-- 備份/還原按鈕 -->
+      <button onclick="openBackupModal()" class="px-3 py-1.5 rounded-full border border-borderWarm bg-ivory text-xs text-sepia hover:border-gold hover:text-navy transition shadow-sm">
+        備份 / 還原
+      </button>
+    </div>
+
+    <!-- 每日快速切換列（僅在「每日行程」視圖顯示） -->
+    <div id="daySubNav" class="hidden border-t border-borderWarm/60 bg-ivory/90">
+      <div class="max-w-5xl mx-auto px-4 py-2 flex items-center gap-2 overflow-x-auto no-scrollbar" id="daySubNavButtons"></div>
     </div>
   </header>
 
-  <!-- Main Content Container -->
-  <main id="app" class="max-w-5xl mx-auto px-4 pt-5 sm:pt-7"></main>
+  <!-- 主要內容區 -->
+  <main id="appMain" class="max-w-5xl mx-auto px-4 pt-5 sm:pt-7"></main>
 
-  <!-- Mobile Bottom Navigation -->
+  <!-- 手機版底部固定導覽列 -->
   <nav class="md:hidden fixed bottom-0 inset-x-0 z-40 bg-ivory/95 backdrop-blur-md border-t border-borderWarm shadow-journal">
-    <div class="grid grid-cols-4 text-[11px] py-1.5 px-2">
-      <button data-mtab="itinerary" onclick="switchTab('itinerary')" class="mobile-tab flex flex-col items-center gap-0.5 py-1.5 rounded-xl transition">
+    <div class="grid grid-cols-5 text-[11px] py-1.5 px-1">
+      <button data-mnav="home" onclick="navigateTo('home')" class="mnav-btn flex flex-col items-center gap-0.5 py-1 rounded-xl">
+        <span class="text-base">🏡</span><span>首頁</span>
+      </button>
+      <button data-mnav="day" onclick="navigateTo('day', currentDay)" class="mnav-btn flex flex-col items-center gap-0.5 py-1 rounded-xl">
         <span class="text-base">🗓️</span><span>每日行程</span>
       </button>
-      <button data-mtab="restaurants" onclick="switchTab('restaurants')" class="mobile-tab flex flex-col items-center gap-0.5 py-1.5 rounded-xl transition">
-        <span class="text-base">🍽️</span><span>精選餐廳</span>
+      <button data-mnav="restaurants" onclick="navigateTo('restaurants')" class="mnav-btn flex flex-col items-center gap-0.5 py-1 rounded-xl">
+        <span class="text-base">🍽️</span><span>餐廳專區</span>
       </button>
-      <button data-mtab="budget" onclick="switchTab('budget')" class="mobile-tab flex flex-col items-center gap-0.5 py-1.5 rounded-xl transition">
-        <span class="text-base">💴</span><span>旅費記帳</span>
+      <button data-mnav="budget" onclick="navigateTo('budget')" class="mnav-btn flex flex-col items-center gap-0.5 py-1 rounded-xl">
+        <span class="text-base">💴</span><span>旅行預算</span>
       </button>
-      <button data-mtab="weather" onclick="switchTab('weather')" class="mobile-tab flex flex-col items-center gap-0.5 py-1.5 rounded-xl transition">
+      <button data-mnav="weather" onclick="navigateTo('weather')" class="mnav-btn flex flex-col items-center gap-0.5 py-1 rounded-xl">
         <span class="text-base">⛅</span><span>即時天氣</span>
       </button>
     </div>
   </nav>
 
-  <!-- Lightbox Modal for Photo Zoom -->
-  <div id="lightboxModal" onclick="closeLightbox()" class="hidden fixed inset-0 z-50 bg-ink/85 backdrop-blur-sm flex items-center justify-center p-4">
-    <div onclick="event.stopPropagation()" class="relative max-w-4xl w-full flex flex-col items-center">
-      <button onclick="closeLightbox()" class="self-end mb-2 px-3 py-1 rounded-full bg-ivory/90 text-ink text-xs font-medium hover:bg-ivory transition">
-        ✕ 關閉預覽
-      </button>
-      <img id="lightboxImg" src="" alt="" class="max-h-[80vh] w-auto max-w-full rounded-2xl shadow-2xl border border-gold/40 object-contain bg-paperDeep" />
-      <p id="lightboxCaption" class="mt-3 text-xs sm:text-sm text-ivory/90 font-serifTC tracking-wide text-center"></p>
+  <!-- 餐廳新增 / 編輯彈窗 -->
+  <div id="restaurantModal" class="hidden fixed inset-0 z-50 bg-navy/40 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="editorial-card rounded-3xl max-w-lg w-full p-5 sm:p-6 shadow-journal max-h-[90vh] overflow-y-auto">
+      <div class="flex items-center justify-between mb-4">
+        <h3 id="restModalTitle" class="font-serifTC text-lg font-bold text-navy">新增私房餐廳</h3>
+        <button onclick="closeRestaurantModal()" class="w-8 h-8 rounded-full border border-borderWarm text-sepia hover:text-navy">✕</button>
+      </div>
+      <form id="restaurantForm" onsubmit="saveRestaurantForm(event)" class="space-y-3 text-sm">
+        <input type="hidden" id="restId" />
+        <div>
+          <label class="block text-xs text-sepia mb-1">餐廳名稱 *</label>
+          <input id="restName" required type="text" placeholder="例如：博多一雙、勝烈亭" class="w-full px-3 py-2 rounded-xl bg-paper border border-borderWarm focus:outline-none focus:border-navy" />
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs text-sepia mb-1">所屬區域 *</label>
+            <select id="restRegion" class="w-full px-3 py-2 rounded-xl bg-paper border border-borderWarm focus:outline-none focus:border-navy">
+              <option value="福岡">福岡</option>
+              <option value="由布院・阿蘇">由布院・阿蘇</option>
+              <option value="熊本・高千穗">熊本・高千穗</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-xs text-sepia mb-1">料理分類 *</label>
+            <select id="restCuisine" class="w-full px-3 py-2 rounded-xl bg-paper border border-borderWarm focus:outline-none focus:border-navy">
+              <option value="水炊鍋・壽喜燒">水炊鍋・壽喜燒</option>
+              <option value="天婦羅">天婦羅</option>
+              <option value="燒鳥・居酒屋">燒鳥・居酒屋</option>
+              <option value="拉麵">拉麵</option>
+              <option value="鐵板燒・和食・海鮮">鐵板燒・和食・海鮮</option>
+              <option value="甜點・咖啡・伴手禮">甜點・咖啡・伴手禮</option>
+              <option value="超市・百貨採買">超市・百貨採買</option>
+            </select>
+          </div>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs text-sepia mb-1">價格區間</label>
+            <input id="restPrice" type="text" placeholder="例如：¥2,000 – ¥4,000" class="w-full px-3 py-2 rounded-xl bg-paper border border-borderWarm focus:outline-none focus:border-navy" />
+          </div>
+          <div>
+            <label class="block text-xs text-sepia mb-1">Google 評分（選填）</label>
+            <input id="restRating" type="text" placeholder="例如：★4.6 (356)" class="w-full px-3 py-2 rounded-xl bg-paper border border-borderWarm focus:outline-none focus:border-navy" />
+          </div>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs text-sepia mb-1">營業時間</label>
+            <input id="restHours" type="text" placeholder="待確認" class="w-full px-3 py-2 rounded-xl bg-paper border border-borderWarm focus:outline-none focus:border-navy" />
+          </div>
+          <div>
+            <label class="block text-xs text-sepia mb-1">公休日</label>
+            <input id="restClosed" type="text" placeholder="待確認" class="w-full px-3 py-2 rounded-xl bg-paper border border-borderWarm focus:outline-none focus:border-navy" />
+          </div>
+        </div>
+        <div>
+          <label class="block text-xs text-sepia mb-1">推薦餐點 / 筆記</label>
+          <input id="restDishes" type="text" placeholder="例如：特選里肌豬排、招牌拉麵" class="w-full px-3 py-2 rounded-xl bg-paper border border-borderWarm focus:outline-none focus:border-navy" />
+        </div>
+        <div>
+          <label class="block text-xs text-sepia mb-1">距景點或住宿交通時間</label>
+          <input id="restTravel" type="text" placeholder="例如：距 OMO5 熊本步行約 5 分鐘" class="w-full px-3 py-2 rounded-xl bg-paper border border-borderWarm focus:outline-none focus:border-navy" />
+        </div>
+        <div>
+          <label class="block text-xs text-sepia mb-1">Google Maps 連結</label>
+          <input id="restMapUrl" type="url" placeholder="https://maps.app.goo.gl/..." class="w-full px-3 py-2 rounded-xl bg-paper border border-borderWarm focus:outline-none focus:border-navy" />
+        </div>
+        <div class="pt-2 flex justify-end gap-2">
+          <button type="button" onclick="closeRestaurantModal()" class="px-4 py-2 rounded-xl border border-borderWarm text-sepia">取消</button>
+          <button type="submit" class="px-5 py-2 rounded-xl bg-navy text-ivory font-medium hover:bg-navy/90 transition">儲存餐廳</button>
+        </div>
+      </form>
     </div>
   </div>
 
-  <!-- Custom Confirm Modal (Replaces window.confirm) -->
-  <div id="confirmModal" class="hidden fixed inset-0 z-50 bg-ink/45 backdrop-blur-sm flex items-center justify-center p-4">
-    <div class="journal-card rounded-2xl max-w-sm w-full p-5 shadow-journal">
-      <h4 id="confirmTitle" class="font-serifTC text-base font-bold text-ink mb-2">確認操作</h4>
-      <p id="confirmMsg" class="text-xs sm:text-sm text-sepia leading-relaxed mb-5"></p>
-      <div class="flex justify-end gap-2">
-        <button onclick="resolveConfirm(false)" class="px-4 py-2 rounded-xl border border-borderWarm text-xs text-sepia hover:text-ink">取消</button>
-        <button onclick="resolveConfirm(true)" class="px-4 py-2 rounded-xl bg-maple text-ivory text-xs font-medium hover:bg-maple/90">確認</button>
+  <!-- 備份 / 還原資料彈窗 -->
+  <div id="backupModal" class="hidden fixed inset-0 z-50 bg-navy/40 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="editorial-card rounded-3xl max-w-md w-full p-5 sm:p-6 shadow-journal">
+      <div class="flex items-center justify-between mb-3">
+        <h3 class="font-serifTC text-lg font-bold text-navy">資料備份與還原</h3>
+        <button onclick="closeBackupModal()" class="w-8 h-8 rounded-full border border-borderWarm text-sepia hover:text-navy">✕</button>
+      </div>
+      <p class="text-xs text-sepia leading-relaxed mb-4">
+        您的記帳支出、待確認勾選、自訂餐廳與每日備忘錄皆儲存在這台裝置的瀏覽器中。您可以匯出成 JSON 備份檔，傳到另一支手機還原同步。
+      </p>
+      <div class="space-y-2.5">
+        <button onclick="exportBackupJSON()" class="w-full py-2.5 px-4 rounded-xl bg-navy text-ivory text-sm font-medium hover:bg-navy/90 transition">
+          ⬇️ 匯出備份檔 (.json)
+        </button>
+        <label class="block w-full py-2.5 px-4 rounded-xl border border-gold bg-paper text-navy text-sm font-medium text-center cursor-pointer hover:bg-gold/10 transition">
+          ⬆️ 選擇備份檔還原 (.json)
+          <input type="file" accept=".json" onchange="importBackupJSON(event)" class="hidden" />
+        </label>
+        <button onclick="confirmResetAll()" class="w-full py-2 px-4 rounded-xl border border-terracotta/40 text-terracotta text-xs hover:bg-terracotta/10 transition">
+          重置為初始預設資料
+        </button>
       </div>
     </div>
   </div>
 
-  <!-- Toast Notification -->
-  <div id="toast" class="fixed bottom-20 md:bottom-6 left-1/2 -translate-x-1/2 z-50 pointer-events-none opacity-0 transition-all duration-300">
-    <div id="toastText" class="px-4 py-2.5 rounded-full bg-ink text-ivory text-xs sm:text-sm shadow-journal whitespace-nowrap"></div>
+  <!-- 自訂確認視窗 -->
+  <div id="confirmModal" class="hidden fixed inset-0 z-50 bg-navy/45 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="editorial-card rounded-2xl max-w-sm w-full p-5 shadow-journal">
+      <h4 id="confirmTitle" class="font-serifTC text-base font-bold text-navy mb-2">確認操作</h4>
+      <p id="confirmMessage" class="text-xs sm:text-sm text-sepia leading-relaxed mb-5"></p>
+      <div class="flex justify-end gap-2">
+        <button onclick="closeConfirmModal(false)" class="px-4 py-2 rounded-xl border border-borderWarm text-xs text-sepia">取消</button>
+        <button onclick="closeConfirmModal(true)" class="px-4 py-2 rounded-xl bg-terracotta text-ivory text-xs font-medium">確認</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 底部浮動提示 Toast -->
+  <div id="toastBox" class="fixed bottom-20 md:bottom-6 left-1/2 -translate-x-1/2 z-50 pointer-events-none opacity-0 transition-all duration-300">
+    <div id="toastText" class="px-4 py-2.5 rounded-full bg-navy text-ivory text-xs sm:text-sm shadow-journal whitespace-nowrap"></div>
   </div>
 
   <script>
     /* =========================================================================
-       1. DATA: 6-DAY ITINERARY WITH EXACT 21 IMAGE MAPPINGS
+       1. 核心行程、23 張實景照片路徑與餐廳資料庫
        ========================================================================= */
-    const HERO_DATA = {
-      image: './cover.jpg',
-      caption: '熊本城秋夜點燈與金黃銀杏',
-      title: '九州六天五夜・秋日家族慢旅手冊',
-      enTitle: 'Autumn Family Slow Travel Journal',
-      dates: '2026/11/23 (週一) — 2026/11/28 (週六)',
-      summary: '專為三人家族量身打造的深秋慢旅。熊本進出、全程專屬包車搭配多晚連住，免去搬運行李與長途步行的辛勞，細品柳川鰻香、福岡藝術微醺、秋月楓紅、由布院名宿與阿蘇高千穗絕景。'
+    const DEFAULT_TRIP_DATA = {
+      meta: {
+        title: "KYUSHU TRAVEL JOURNAL",
+        subtitle: "九州六天五夜・秋日家族慢旅手冊",
+        datesText: "2026.11.23 (一) — 2026.11.28 (六)",
+        departureISO: "2026-11-23T07:30:00+08:00",
+        tripEndISO: "2026-11-28T13:45:00+08:00",
+        heroImage: "./cover.jpg",
+        heroCaption: "熊本城秋夜點燈・金黃銀杏",
+        intro: "從熊本出發，沿著柳川水鄉的百年鰻魚香氣、福岡大濠公園的秋日晨光，走入秋月楓紅與山莊無量塔的靜謐溫泉；再越過阿蘇火山壯闊草原與高千穗神話峽谷。這是一場專為三人家族量身打造的深秋慢旅。",
+        flights: {
+          outbound: "11/23 (一) CI 0198｜高雄 (KHH) 07:30 → 熊本 (KMJ) 10:45",
+          inbound: "11/28 (六) CI 0199｜熊本 (KMJ) 11:55 → 高雄 (KHH) 13:45"
+        },
+        staysSummary: [
+          { nights: "11/23–25 (2晚)", name: "福岡君悅酒店 Grand Hyatt Fukuoka", city: "福岡" },
+          { nights: "11/25–26 (1晚)", name: "山莊無量塔 Sansou Murata", city: "由布院" },
+          { nights: "11/26–28 (2晚)", name: "星野 OMO5 熊本", city: "熊本" }
+        ],
+        transportSummary: "九州 / 包車＋大眾運輸（包車專車 Alphard：Day 1、3、4、5；福岡地鐵/計程車：Day 2；機場利木津巴士：Day 6）",
+        travelersDefault: ["我", "爸爸", "媽媽"]
+      },
+
+      conflicts: [
+        {
+          id: "c-day1-order",
+          tag: "Day 1 動線待確認",
+          title: "熊本機場出發到柳川：先搭遊船還是先吃元祖本吉屋？",
+          detail: "11/23 (一) 適逢日本國定假日「勤勞感謝日」，元祖本吉屋本店照常營業（公休順延週二）但預期排隊人潮較多，請確認抵達柳川後先搭整點遊船，還是先吃蒸籠鰻魚飯。"
+        },
+        {
+          id: "c-day1-afternoon",
+          tag: "Day 1 下午二選一",
+          title: "太原銀杏森林 vs. 寶滿宮 竈門神社",
+          detail: "太原銀杏森林僅開放至 11/23（最後一天）；寶滿宮 竈門神社則有 1,350 年歷史與 11 月限定「紅葉夜間點燈」，請視當天體力與車況擇一前往。"
+        }
+      ],
+
+      days: [
+        {
+          day: 1,
+          chapter: "CHAPTER 1",
+          date: "11/23 (一)",
+          shortRoute: "熊本機場 → 柳川 → 福岡",
+          title: "水鄉鰻香與秋楓序曲",
+          enSubtitle: "From Yanagawa Canals to Fukuoka Lights",
+          transport: "Alphard 專屬包車",
+          routeWaypoints: ["Kumamoto Airport", "Ganso Motoyoshiya Yanagawa", "Hakusyu Kanko Yanagawa", "Grand Hyatt Fukuoka"],
+          accommodation: {
+            name: "福岡君悅酒店 Grand Hyatt Fukuoka",
+            address: "福岡縣福岡市博多區住吉 1-2-82（博多運河城內）",
+            note: "連住兩晚（11/23–11/25）；晚餐可視體力於飯店使用 USD 100 客房服務，或散步前往附近的すき焼き山翔／橙水炊鍋分店。",
+            mapUrl: "https://www.google.com/maps/search/?api=1&query=Grand+Hyatt+Fukuoka"
+          },
+          notes: [
+            "11/23 (一) 適逢日本國定假日「勤勞感謝日」，觀光景點與餐廳人潮較多。",
+            "待確認：抵達柳川後先遊船還是先去元祖本吉屋用餐？以及太原銀杏森林 vs. 寶滿宮竈門神社取捨。",
+            "採買重點：AEON MALL 無 mont-bell 專櫃，務必於今晚天神商圈「mont-bell 福岡天神店」採買！",
+            "水果補給清單：福岡甘王草莓（あまおう）、福岡在地甜柿（富有柿/秋王）、九州蜜柑（みかん）、頂級青森蘋果。"
+          ],
+          stops: [
+            {
+              id: "d1-s1",
+              time: "07:30 – 10:45",
+              icon: "plane",
+              hidePhoto: true,
+              driveFromPrev: "",
+              name: "中華航空 CI 0198｜高雄 → 熊本機場",
+              stay: "飛行約 2 小時 15 分",
+              address: "熊本機場（KMJ）國際線航廈",
+              desc: "07:30 自高雄小港機場起飛，預計 10:45 抵達熊本機場。辦理入境與領取行李後，於 11:00 與包車司機會合出發前往柳川。",
+              tags: ["已確認", "航班"],
+              mapUrl: "https://www.google.com/maps/search/?api=1&query=Aso+Kumamoto+Airport"
+            },
+            {
+              id: "d1-s2",
+              time: "11:00 – 12:15",
+              icon: "food",
+              photo: "./day1-motoyoshiya.jpg",
+              driveFromPrev: "🚗 包車約 60–75 分鐘（熊本機場 → 柳川）",
+              name: "元祖本吉屋 本店（百年蒸籠鰻魚飯）",
+              stay: "預計停留 1 – 1.5 小時（含候位）",
+              address: "福岡縣柳川市旭町 69",
+              desc: "營運超過 300 年的老字號！點餐指南：\n• 南風定食（最高規格：肉量升級蒸籠飯＋白燒鰻魚佐蘿蔔泥＋鰻肝湯＋醋拌小菜＋水果）\n• 特せいろ蒸し定食（五塊鰻魚肉量升級版）\n• せいろ蒸し定食（經典三塊鰻魚版）\n• 蒲焼定食（若怕白飯沾附醬汁過鹹，可選此清淡版）\n※ 待確認：與柳川遊船之先後順序。",
+              tags: ["美食", "待確認順序"],
+              extraLink: { label: "官方菜單", url: "https://www.motoyoshiya.jp/menu/" },
+              mapUrl: "https://www.google.com/maps/search/?api=1&query=Ganso+Motoyoshiya+Main+Store+Yanagawa"
+            },
+            {
+              id: "d1-s3",
+              time: "午後整點",
+              icon: "boat",
+              photo: "./day1-yanagawa.jpg",
+              driveFromPrev: "🚗 車程約 5–10 分鐘",
+              name: "柳川遊船：伯舟觀光",
+              stay: "約 60 分鐘（整點發船）",
+              address: "福岡縣柳川市三橋町下百町 1-6",
+              desc: "搭乘傳統搖櫓船悠遊柳川護城河，聆聽船夫吟唱民謠，感受九州水鄉的秋日慢步調。（待確認：先遊船或先吃飯）",
+              tags: ["待確認順序", "整點發船"],
+              extraLink: { label: "伯舟觀光官網", url: "https://hakusyukankou.com/zh-tw/top_zh_tw/" },
+              mapUrl: "https://www.google.com/maps/search/?api=1&query=Hakusyu+Kanko+Yanagawa"
+            },
+            {
+              id: "d1-s4",
+              time: "傍晚二選一",
+              icon: "leaf",
+              dualPhotos: [
+                { src: "./day1-ginkgo.jpg", label: "選項 A｜太原銀杏森林" },
+                { src: "./day1-kamado.jpg", label: "選項 B｜寶滿宮 竈門神社" }
+              ],
+              driveFromPrev: "🚗 車程約 45–60 分鐘",
+              name: "待確認二選一：太原銀杏森林 vs. 寶滿宮 竈門神社",
+              stay: "約 45–60 分鐘",
+              address: "福岡縣廣川町太原 / 福岡縣太宰府市內山 883",
+              desc: "• 選項 A【太原銀杏森林】：僅開放至 11/23，今天是最後一天！大片金黃銀杏地毯。\n• 選項 B【寶滿宮 竈門神社】：擁有 1,350 年歷史的古老聖地，11 月限定「紅葉夜間點燈」，氣氛極為夢幻。",
+              tags: ["待確認", "二選一"],
+              mapUrl: "https://www.google.com/maps/search/?api=1&query=Kamado+Shrine+Dazaifu"
+            },
+            {
+              id: "d1-s5",
+              time: "晚上",
+              icon: "hotel",
+              hidePhoto: true,
+              driveFromPrev: "🚗 車程約 40–50 分鐘進福岡市區",
+              name: "入住福岡君悅酒店 ＆ 晚餐三選一＋天神夜逛",
+              stay: "自由彈性",
+              address: "福岡市博多區住吉 1-2-82 / 祇園町 / 天神商圈",
+              desc: "• 晚餐三選一：\n  1. 飯店直接使用 USD 100 額度點客房服務（最輕鬆）\n  2. 博多水炊鍋專門 橙（中洲川端新分店）\n  3. 【すき焼き山翔 (Sukiyaki Yamasho)】肉舖直營壽喜燒專門店（博多區祇園町 6-24 1F，11:00–15:00 / 17:00–22:00，¥8,000–9,000，近君悅酒店）\n• 天神商圈夜逛：搭 1 站地鐵至天神，逛 mont-bell 福岡天神店、Bic Camera、Danny Churros；視需要至 MaxValu Express 博多祇園或 LOPIA 補水果。",
+              highlightBox: {
+                title: "🎒 mont-bell 採買必看提醒",
+                text: "Day 2 前往的永旺夢樂城福岡（AEON MALL）館內「無 mont-bell 專櫃」，若有採買需求務必在今晚天神商圈的「mont-bell 福岡天神店」一次買齊！"
+              },
+              tags: ["晚餐三選一", "購物"],
+              extraLink: { label: "すき焼き山翔地圖", url: "https://www.google.com/maps/search/?api=1&query=Sukiyaki+Yamasho+Hakata+Gionmachi" },
+              mapUrl: "https://www.google.com/maps/search/?api=1&query=Grand+Hyatt+Fukuoka"
+            }
+          ]
+        },
+        {
+          day: 2,
+          chapter: "CHAPTER 2",
+          date: "11/24 (二)",
+          shortRoute: "大濠公園 → 海木豆皮壽司 → AEON 採購 → 聖誕市集",
+          title: "湖畔晨光與福岡採購",
+          enSubtitle: "Lakeside Morning, Dashi Inari & Fukuoka Shopping",
+          transport: "福岡地鐵 / 計程車",
+          routeWaypoints: ["Grand Hyatt Fukuoka", "Ohori Park", "Hakata Mizutaki Daidai Ohori", "Dashi Inari Kaiboku Fukuoka", "AEON MALL Fukuoka", "Tenjin Central Park"],
+          accommodation: {
+            name: "福岡君悅酒店 Grand Hyatt Fukuoka（續住）",
+            address: "福岡縣福岡市博多區住吉 1-2-82",
+            note: "飯店附近即有「友添本店 Tomozoe Honten」，傍晚回程可輕鬆散步去試飲九州美酒，並順訪茅乃舍福岡。",
+            mapUrl: "https://www.google.com/maps/search/?api=1&query=Grand+Hyatt+Fukuoka"
+          },
+          notes: [
+            "14:00 已預訂好「だしいなり 海木」四入取貨，請留意營業時間僅至 15:00（渡邊通 1-9-3）。",
+            "永旺夢樂城福岡正值 2026/11/20–11/30 感謝祭＆AEON Black Friday 黑色星期五特惠檔期！",
+            "AEON 館內無 mont-bell 專櫃；機能跑鞋可直奔 2F MEGA SPORTS（On / HOKA）與 2F Murasaki Sports（On）。"
+          ],
+          stops: [
+            {
+              id: "d2-s1",
+              time: "09:00 – 11:50",
+              icon: "walk",
+              photo: "./day2-ohori.jpg",
+              driveFromPrev: "🚕 計程車約 15 分鐘（或地鐵空港線 3 站）",
+              name: "大濠公園・日本庭園・&locals 湖景咖啡",
+              stay: "約 2.5 – 3 小時",
+              address: "福岡縣福岡市中央區大濠公園 1-2",
+              desc: "• 2 公里平緩環湖步道，適合家族晨間散步。\n• 福岡市美術館（欣賞草間彌生經典大南瓜）與相鄰的舞鶴公園。\n• 大濠公園日本庭園（大人門票 ¥250）。\n• &locals 湖景第一排咖啡廳歇腳賞景。",
+              tags: ["慢旅散步", "咖啡"],
+              mapUrl: "https://www.google.com/maps/search/?api=1&query=Ohori+Park+Fukuoka"
+            },
+            {
+              id: "d2-s2",
+              time: "12:00 – 13:30",
+              icon: "food",
+              photo: "./day2-daidai.jpg",
+              driveFromPrev: "🚶 步行約 2–5 分鐘（大濠公園旁）",
+              name: "午餐：博多水炊鍋專門 橙（Daidai）",
+              stay: "約 1.5 小時",
+              address: "福岡縣福岡市中央區大手門 1-8-14",
+              desc: "就在大濠公園旁的人氣名店（12:00 開門），提供溫潤濃郁的雞湯水炊鍋與酥脆炸雞，非常適合微涼的十一月午後。",
+              tags: ["美食", "12:00開門"],
+              mapUrl: "https://www.google.com/maps/search/?api=1&query=Hakata+Mizutaki+Daidai+Ohori"
+            },
+            {
+              id: "d2-s-kaiboku",
+              time: "14:00",
+              icon: "sparkle",
+              photo: "./day2-kaiboku.jpg",
+              driveFromPrev: "🚕 計程車約 10 分鐘（往渡邊通方向）",
+              name: "【已預訂】だしいなり 海木 福岡本店（取貨四入）",
+              stay: "取貨約 15 分鐘",
+              address: "福岡縣福岡市中央區渡邊通 1-9-3（營業 11:00–15:00，週日及國定假日公休）",
+              desc: "準時前往福岡本店領取已預訂的招牌四入盒裝，建議當天品嚐最能感受飽滿高湯風味。",
+              highlightBox: {
+                title: "✨ 為什麼專程預訂？",
+                text: "海木是日本超人氣「出汁稻荷（高湯豆皮壽司）」專賣店，嚴選熊本南關豆皮吸飽秘製柴魚昆布高湯，一口咬下清甜爆汁，無現貨須提前預訂，是日本美食家搶買的頂級伴手禮！"
+              },
+              tags: ["已預訂 14:00", "必吃名物"],
+              mapUrl: "https://www.google.com/maps/search/?api=1&query=Dashi+Inari+Kaiboku+Fukuoka"
+            },
+            {
+              id: "d2-s3",
+              time: "14:30 – 18:00",
+              icon: "bag",
+              hidePhoto: true,
+              driveFromPrev: "🚕 計程車約 20–25 分鐘",
+              name: "永旺夢樂城福岡（AEON MALL Fukuoka）大採購",
+              stay: "約 3 – 3.5 小時",
+              address: "福岡縣糟屋郡粕屋町大字酒殿字老ノ木 192-1",
+              desc: "• 大人目標：Uniqlo、GU、Workman Girl、配單焦點老花眼鏡、AEON STYLE 頂級超市（草莓與伴手禮）、Pansy 拖鞋（Greenbox / AEON STYLE 鞋區）。\n• 小孩目標：GLOBAL WORK (2F)、BREEZE、petit main (2F [2091]，備註：男童尺碼多至 110cm、部分 120/130cm，女童至 130cm)。\n• 機能跑鞋目標：MEGA SPORTS 福岡店 (2F，引進 On 與 HOKA 鞋款) ＆ Murasaki Sports (2F，On 經銷)。\n• 備註：館內無 mont-bell 專櫃。",
+              highlightBox: {
+                title: "🎉 限時特惠檔期提醒",
+                text: "正值 2026/11/20–11/30「感謝祭」＆「AEON Black Friday 黑色星期五」超值優惠期間，全家大小衣物、跑鞋與伴手禮一次逛足！"
+              },
+              tags: ["感謝祭＆黑五", "On / HOKA", "購物"],
+              mapUrl: "https://www.google.com/maps/search/?api=1&query=AEON+MALL+Fukuoka"
+            },
+            {
+              id: "d2-s4",
+              time: "18:30 – 21:00",
+              icon: "sparkle",
+              dualPhotos: [
+                { src: "./day2-tomozoe.jpg", label: "友添本店試飲" },
+                { src: "./day2-kayanoya.jpg", label: "茅乃舍 福岡" },
+                { src: "./day2-christmas.jpg", label: "聖誕市集・光之森林" }
+              ],
+              driveFromPrev: "🚕 計程車返回市區約 25 分鐘",
+              name: "友添本店試飲 ＆ 茅乃舍 ＆ 聖誕市集光之森林",
+              stay: "約 2 – 2.5 小時",
+              address: "福岡市中央區春吉（友添本店）／天神中央公園",
+              desc: "• 飯店附近「友添本店（Tomozoe Honten）」有多種九州清酒/燒酎可現場試飲。\n• 順訪茅乃舍福岡採購經典高湯包。\n• 晚上漫步「中央公園・光之森林」聖誕市集，感受濃厚冬日節慶燈火。",
+              tags: ["夜景", "微醺試飲"],
+              extraLink: { label: "茅乃舍攻略參考", url: "https://feitravel.tw/p-5071443375/#google_vignette" },
+              mapUrl: "https://www.google.com/maps/search/?api=1&query=Tenjin+Central+Park+Fukuoka"
+            }
+          ]
+        },
+        {
+          day: 3,
+          chapter: "CHAPTER 3",
+          date: "11/25 (三)",
+          shortRoute: "福岡 → 秋月城跡 → 天瀨櫻滝 → 由布院山莊無量塔",
+          title: "秋月楓紅與神級溫泉名宿",
+          enSubtitle: "Akizuki Maple Leaves & Sansou Murata Retreat",
+          transport: "Alphard 專屬包車",
+          routeWaypoints: ["Grand Hyatt Fukuoka", "Akizuki Castle Ruins", "Sakuradaki Waterfall Amagase", "Yunotsubo Street Yufuin", "Sansou Murata"],
+          accommodation: {
+            name: "山莊無量塔 Sansou Murata（昭和房型）",
+            address: "大分縣由布市湯布院町川上 1264-2",
+            note: "房內獨享源泉掛流私人湯；可至 Tan's Bar 品嚐 B-Speak 瑞士捲。18:00 或 18:30 享用主廚客製「全熟、無生魚、避海藻」懷石晚餐。",
+            mapUrl: "https://www.google.com/maps/search/?api=1&query=Sansou+Murata+Yufuin"
+          },
+          notes: [
+            "入住山莊無量塔時，記得與管家預約隔日清晨 06:00 專車下山前往金鱗湖欣賞晨霧。",
+            "山區午後溫差大，建議隨身備妥保暖外套與圍巾。"
+          ],
+          stops: [
+            {
+              id: "d3-s1",
+              time: "09:30 – 11:30",
+              icon: "leaf",
+              photo: "./day3-akizuki.jpg",
+              driveFromPrev: "🚗 福岡市區出發（包車約 60 分鐘）",
+              name: "秋月城跡（筑前小京都賞楓）",
+              stay: "約 2 小時",
+              address: "福岡縣朝倉市秋月野鳥",
+              desc: "漫步黑門與杉之馬場通，十一月下旬正是秋月城跡紅葉最盛的季節，步調悠哉平緩，非常適合家族賞楓拍照。",
+              tags: ["賞楓秘境", "慢步調"],
+              mapUrl: "https://www.google.com/maps/search/?api=1&query=Akizuki+Castle+Ruins"
+            },
+            {
+              id: "d3-s2",
+              time: "12:30 – 13:30",
+              icon: "food",
+              hidePhoto: true,
+              driveFromPrev: "🚗 車程約 45–50 分鐘",
+              name: "午餐：日田 / 天瀨地區 在地特色料理",
+              stay: "約 1 小時",
+              address: "大分縣日田市 / 天瀨町",
+              desc: "沿途於日田或天瀨地區享用熱騰騰的在地特色午餐（如日田炒麵或鄉土料理），補充午後能量。",
+              tags: ["在地午餐"],
+              mapUrl: "https://www.google.com/maps/search/?api=1&query=Hita+Oita+Japan"
+            },
+            {
+              id: "d3-s3",
+              time: "14:00 – 14:40",
+              icon: "water",
+              photo: "./day3-sakuradaki.jpg",
+              driveFromPrev: "🚗 車程約 20 分鐘",
+              name: "天瀨櫻滝秘境（Sakuradaki）",
+              stay: "約 40 分鐘",
+              address: "大分縣日田市天瀨町櫻竹",
+              desc: "從停車場步行僅需 5 分鐘即可抵達的隱藏版瀑布秘境，近距離感受飛瀑負離子與深秋溪谷氣息。",
+              tags: ["輕鬆步行 5 分", "秘境瀑布"],
+              mapUrl: "https://www.google.com/maps/search/?api=1&query=Sakuradaki+Waterfall+Amagase"
+            },
+            {
+              id: "d3-s4",
+              time: "14:30 – 15:30",
+              icon: "bag",
+              photo: "./day3-yunotsubo.jpg",
+              driveFromPrev: "🚗 車程約 35–40 分鐘抵達由布院",
+              name: "由布院・湯之坪街道熱鬧逛街",
+              stay: "約 1 小時",
+              address: "大分縣由布市湯布院町川上",
+              desc: "抵達由布院先直接逛湯之坪街道，此時店家全開、氣氛最熱絡，逛完再搭車上山前往山莊無量塔。",
+              tags: ["溫泉街", "逛街"],
+              mapUrl: "https://www.google.com/maps/search/?api=1&query=Yunotsubo+Street+Yufuin"
+            },
+            {
+              id: "d3-s5",
+              time: "15:30 – 18:30",
+              icon: "hotel",
+              photo: "./day3-murata.jpg",
+              driveFromPrev: "🚗 搭車上山約 10 分鐘",
+              name: "山莊無量塔 Check-in ＆ 客製懷石晚宴",
+              stay: "一泊二食奢華慢享",
+              address: "大分縣由布市湯布院町川上 1264-2",
+              desc: "• 入住經典【昭和房型】，在房內靜享源泉掛流私人湯。\n• 午後可前往館內名所 Tan's Bar 享用 B-Speak 瑞士捲與音樂時光。\n• 18:00 或 18:30 享用主廚客製化「全熟、無生魚、避海藻」頂級懷石晚餐。",
+              tags: ["御三家名宿", "客製懷石"],
+              mapUrl: "https://www.google.com/maps/search/?api=1&query=Sansou+Murata+Yufuin"
+            }
+          ]
+        },
+        {
+          day: 4,
+          chapter: "CHAPTER 4",
+          date: "11/26 (四)",
+          shortRoute: "金鱗湖晨霧 → 九重夢大吊橋 → 阿蘇 → 熊本",
+          title: "金鱗晨霧與阿蘇火山壯闊",
+          enSubtitle: "Lake Kinrin Mist, Aso Volcano & Kumamoto Night",
+          transport: "無量塔專車 ＋ Alphard 專屬包車",
+          routeWaypoints: ["Sansou Murata", "Lake Kinrin", "Kokonoe Yume Otsurihashi", "Daikanbo Lookout", "Kusasenrigahama", "OMO5 Kumamoto"],
+          accommodation: {
+            name: "星野 OMO5 熊本",
+            address: "熊本縣熊本市中央區手取本町 5-1",
+            note: "連住兩晚（11/26–11/28），位於下通商店街入口核心地段，生活機能極佳。",
+            mapUrl: "https://www.google.com/maps/search/?api=1&query=OMO5+Kumamoto"
+          },
+          notes: [
+            "清晨金鱗湖氣溫低，務必穿著羽絨外套與保暖毛帽。",
+            "大觀峰與草千里皆規劃為平地輕鬆步行／展望所快閃，零體力負擔也能收穫百萬火山口絕景。"
+          ],
+          stops: [
+            {
+              id: "d4-s1",
+              time: "06:00 – 07:00",
+              icon: "camera",
+              photo: "./day4-kinrin-torii.jpg",
+              driveFromPrev: "🚐 預約無量塔專車下山（約 10 分鐘）",
+              name: "金鱗湖晨霧黃金時刻",
+              stay: "約 1 小時",
+              address: "大分縣由布市湯布院町川上 1561-1",
+              desc: "搭乘無量塔管家專車下山，在朝陽升起與湖面溫差交織的黃金時刻，捕捉夢幻晨霧與水上鳥居倒影。",
+              tags: ["預約專車", "攝影必拍"],
+              mapUrl: "https://www.google.com/maps/search/?api=1&query=Lake+Kinrin+Yufuin"
+            },
+            {
+              id: "d4-s2",
+              time: "07:30 – 10:30",
+              icon: "walk",
+              hidePhoto: true,
+              driveFromPrev: "🚐 返回飯店早餐 ＆ 09:30 退房漫步",
+              name: "山莊無量塔早餐 ＆ 清晨靜謐版湯之坪街道",
+              stay: "早餐 2 小時 ＋ 散步 1 小時",
+              address: "大分縣由布市湯布院町川上",
+              desc: "07:30–09:30 返回山莊無量塔享用豐盛早餐並辦理退房。09:30–10:30 順著湯之坪街道散步，此時觀光客極少，獨享最純粹的溫泉鄉早晨與乾淨拍照背景。",
+              tags: ["慢旅晨光"],
+              mapUrl: "https://www.google.com/maps/search/?api=1&query=Yunotsubo+Street+Yufuin"
+            },
+            {
+              id: "d4-s3",
+              time: "11:00 – 12:00",
+              icon: "mountain",
+              photo: "./day4-kokonoe.jpg",
+              driveFromPrev: "🚗 包車約 30–35 分鐘",
+              name: "九重夢大吊橋",
+              stay: "約 1 小時",
+              address: "大分縣玖珠郡九重町大字田野 1208",
+              desc: "日本第一高步行吊橋，站在橋面俯瞰震動瀑布與九醉溪谷的深秋壯麗絕景。",
+              tags: ["溪谷絕景"],
+              mapUrl: "https://www.google.com/maps/search/?api=1&query=Kokonoe+Yume+Otsurihashi"
+            },
+            {
+              id: "d4-s4",
+              time: "12:00 – 14:00",
+              icon: "food",
+              hidePhoto: true,
+              driveFromPrev: "🚗 沿「山波快速道路」景觀公路前往阿蘇",
+              name: "山波快速道路 ＆ 阿蘇赤牛熟食午餐",
+              stay: "含車程與用餐約 2 小時",
+              address: "熊本縣阿蘇市周邊",
+              desc: "馳騁日本百名道「山波快速道路（Yamanami Highway）」，沿途欣賞秋日芒草與群山，並於阿蘇享用全熟赤牛等在地美味午餐。",
+              tags: ["景觀公路", "赤牛午餐"],
+              mapUrl: "https://www.google.com/maps/search/?api=1&query=Aso+Akaushi+Kumamoto"
+            },
+            {
+              id: "d4-s5",
+              time: "14:30 – 15:15",
+              icon: "camera",
+              photo: "./day4-daikanbo.png",
+              driveFromPrev: "🚗 車程約 15–20 分鐘",
+              name: "阿蘇大觀峰",
+              stay: "約 45 分鐘",
+              address: "熊本縣阿蘇市山田 2090-8",
+              desc: "零體力消耗！平地步行即可直達百萬火山口與阿蘇五岳全景觀景台，視野遼闊壯觀。",
+              tags: ["零體力絕景"],
+              mapUrl: "https://www.google.com/maps/search/?api=1&query=Daikanbo+Lookout+Aso"
+            },
+            {
+              id: "d4-s6",
+              time: "15:15 – 16:15",
+              icon: "mountain",
+              photo: "./day4-kusasenri.jpg",
+              driveFromPrev: "🚗 車程約 30 分鐘（大觀峰 → 草千里）",
+              name: "草千里（草千里ヶ浜）展望快閃",
+              stay: "展望所快閃拍照約 15–20 分鐘",
+              address: "熊本縣阿蘇市草千里ヶ浜",
+              desc: "專車前往阿蘇標誌性的火山草原與水池景觀，於展望所下車快閃拍照留念，輕鬆不累腳。",
+              tags: ["快閃拍照"],
+              mapUrl: "https://www.google.com/maps/search/?api=1&query=Kusasenrigahama+Aso"
+            },
+            {
+              id: "d4-s7",
+              time: "16:15 – 晚上",
+              icon: "hotel",
+              hidePhoto: true,
+              driveFromPrev: "🚗 下山前往熊本市區（約 60 分鐘）",
+              name: "入住星野 OMO5 熊本 ＆ 熊本城夜遊二選一",
+              stay: "自由漫步",
+              address: "熊本市中央區手取本町 5-1",
+              desc: "抵達星野 OMO5 熊本 Check-in 後，晚上夜遊二選一：\n• 選項 A【熊本市役所 14F 免費觀景台】：飯店步行 3–4 分鐘，搭電梯直達 14 樓俯瞰整座熊本城夜景（開放至 22:00）。\n• 選項 B【櫻之馬場 城彩苑】：步行約 10 多分鐘，在江戶風情街道仰望夜間點燈的熊本城，氣氛浪漫。",
+              tags: ["二選一", "免費夜景"],
+              mapUrl: "https://www.google.com/maps/search/?api=1&query=Kumamoto+City+Hall"
+            }
+          ]
+        },
+        {
+          day: 5,
+          chapter: "CHAPTER 5",
+          date: "11/27 (五)",
+          shortRoute: "熊本 → 高千穗峽 → 南阿蘇 → 熊本",
+          title: "神話峽谷划船與秘境神社",
+          enSubtitle: "Takachiho Gorge, Wagyu Feast & Sacred Torii",
+          transport: "Alphard 專屬包車",
+          routeWaypoints: ["OMO5 Kumamoto", "Takachiho Gorge", "Takachiho Beef Restaurant Nagomi", "Kamishikimi Kumanoimasu Shrine", "OMO5 Kumamoto"],
+          accommodation: {
+            name: "星野 OMO5 熊本（續住第二晚）",
+            address: "熊本縣熊本市中央區手取本町 5-1",
+            note: "傍晚返抵熊本市區後可於下通周邊悠閒用餐與整理行李，養精蓄銳準備明日搭機返台。",
+            mapUrl: "https://www.google.com/maps/search/?api=1&query=OMO5+Kumamoto"
+          },
+          notes: [
+            "10:00 高千穗峽谷遊船已預約完成，建議 08:00 準時從熊本出發（車程約 1.5 小時）。",
+            "⚠️ 候位提醒：高千穗牛餐廳「和（Nagomi）」不能事前預約，請視現場排隊狀況彈性調整下午天空小火車班次。",
+            "上色見熊野座神社規劃於「第一鳥居入口處」快閃拍照 15 分鐘，免爬 260 階陡坡、輕鬆零負擔。"
+          ],
+          stops: [
+            {
+              id: "d5-s1",
+              time: "08:00 – 11:30",
+              icon: "boat",
+              photo: "./day5-takachiho.jpg",
+              driveFromPrev: "🚗 08:00 熊本出發（包車約 1.5 小時）",
+              name: "高千穗峽谷漫步 ＆ 10:00【已預約】峽谷遊船",
+              stay: "約 2 小時",
+              address: "宮崎縣西臼杵郡高千穗町向山",
+              desc: "漫步柱狀節理玄武岩峽谷步道，並於 10:00 搭乘已預約的高千穗峽谷遊船，仰望真名井瀑布與深秋紅葉交織的絕佳光影。",
+              tags: ["已預約 10:00", "必訪絕景"],
+              mapUrl: "https://www.google.com/maps/search/?api=1&query=Takachiho+Gorge"
+            },
+            {
+              id: "d5-s2",
+              time: "11:45 – 13:15",
+              icon: "food",
+              photo: "./day5-nagomi.jpg",
+              driveFromPrev: "🚗 車程約 5–8 分鐘",
+              name: "午餐：高千穗牛餐廳 和（Nagomi）",
+              stay: "約 1 – 1.5 小時（視現場排隊）",
+              address: "宮崎縣西臼杵郡高千穗町三田井 1099-1",
+              desc: "JA 直營人氣名店（不可預約）。牛排部位對照：\n• 赤肉牛排 Lean（高千穂牛ステーキ）：瘦肉為主\n• 牛腰肉牛排 Loin（ロースステーキ）：軟嫩油脂偏少\n• 沙朗 Sirloin（サーロイン）\n• 菲力 Fillet（ヒレ）：最柔嫩部位",
+              tags: ["不可預約", "美食"],
+              mapUrl: "https://www.google.com/maps/search/?api=1&query=Takachiho+Beef+Restaurant+Nagomi"
+            },
+            {
+              id: "d5-s3",
+              time: "13:30 – 14:30",
+              icon: "train",
+              photo: "./day5-train.jpg",
+              driveFromPrev: "🚗 車程約 5 分鐘",
+              name: "高千穗天空小火車（Amaterasu Railway）",
+              stay: "約 45–60 分鐘",
+              address: "宮崎縣西臼杵郡高千穗町三田井 1425-1",
+              desc: "搭乘敞篷觀光小火車穿梭隧道與高千穗鐵橋，從離地 105 公尺高空俯瞰峽谷溪流與山林秋色。",
+              tags: ["彈性搭配", "鐵道體驗"],
+              mapUrl: "https://www.google.com/maps/search/?api=1&query=Takachiho+Amaterasu+Railway"
+            },
+            {
+              id: "d5-s4",
+              time: "15:15 – 16:30",
+              icon: "torii",
+              photo: "./day5-shrine.jpg",
+              driveFromPrev: "🚗 回程順遊（車程約 35–40 分鐘）",
+              name: "上色見熊野座神社 ＆【備案】南阿蘇白川水源",
+              stay: "神社快閃 15 分鐘（備案另加 30 分）",
+              address: "熊本縣阿蘇郡高森町上色見 2619",
+              desc: "• 上色見熊野座神社：於第一鳥居入口處快閃拍照 15 分鐘，免爬 260 階陡坡、零宗教禁忌。\n• 彈性備案【南阿蘇白川水源】：若時間充裕可順道品嚐日本名水百選與深秋楓葉，隨後返回星野 OMO5 熊本。",
+              tags: ["快閃拍照", "彈性備案"],
+              mapUrl: "https://www.google.com/maps/search/?api=1&query=Kamishikimi+Kumanoimasu+Shrine"
+            }
+          ]
+        },
+        {
+          day: 6,
+          chapter: "CHAPTER 6",
+          date: "11/28 (六)",
+          shortRoute: "熊本通町筋 → 熊本機場 → 高雄",
+          title: "優雅賦歸・滿載秋日回憶",
+          enSubtitle: "Graceful Departure, Memories that Stay",
+          transport: "機場利木津巴士（通町筋站）",
+          routeWaypoints: ["OMO5 Kumamoto", "Torichosuji Bus Stop", "Aso Kumamoto Airport"],
+          accommodation: {
+            name: "溫暖的家（高雄）",
+            address: "CI 0199｜預計 13:45 返抵高雄小港機場",
+            note: "感謝一路上的好風景與家人的陪伴，期待下一次的慢旅！",
+            mapUrl: "https://www.google.com/maps/search/?api=1&query=Kaohsiung+International+Airport"
+          },
+          notes: [
+            "出發前請再次確認產交巴士 2026/11 月最新時刻表是否微調。",
+            "通町筋機場巴士票價 ¥1,200，可直接使用感應式信用卡（Visa/Mastercard/JCB 等）上下車感應付款，超方便！"
+          ],
+          stops: [
+            {
+              id: "d6-s1",
+              time: "08:36 – 09:16",
+              icon: "bus",
+              hidePhoto: true,
+              driveFromPrev: "🚶 OMO5 過馬路對面即達「通町筋」巴士站",
+              name: "搭乘機場利木津巴士前往熊本機場",
+              stay: "車程約 40 分鐘",
+              address: "熊本市中央區通町筋巴士站",
+              desc: "飯店過馬路對面即為通町筋站，搭乘 08:36 班次利木津巴士直達機場（單程 ¥1,200，支援感應式信用卡），預計 09:16 抵達。",
+              tags: ["¥1,200", "可刷感應卡"],
+              extraLink: { label: "產交巴士時刻表 PDF", url: "https://www.sankobus.jp/busportal/wp-content/uploads/tt-limousine_airport-20261101-tw.pdf" },
+              mapUrl: "https://www.google.com/maps/search/?api=1&query=Torichosuji+Bus+Stop+Kumamoto"
+            },
+            {
+              id: "d6-s2",
+              time: "09:20 – 11:25",
+              icon: "bag",
+              hidePhoto: true,
+              driveFromPrev: "✈️ 辦理報到與托運行李",
+              name: "熊本機場報到 ＆ 國內線／免稅店最後巡禮",
+              stay: "約 2 小時",
+              address: "阿蘇熊本機場（KMJ）",
+              desc: "辦理 CI 0199 登機報到後，留足時間逛全新改裝超好逛的熊本機場商店與免稅店，補齊熊本伴手禮。",
+              tags: ["伴手禮採買"],
+              extraLink: { label: "機場逛街影片參考", url: "https://www.youtube.com/watch?v=G7AVYehx141" },
+              mapUrl: "https://www.google.com/maps/search/?api=1&query=Aso+Kumamoto+Airport"
+            },
+            {
+              id: "d6-s3",
+              time: "11:55 – 13:45",
+              icon: "plane",
+              hidePhoto: true,
+              driveFromPrev: "✈️ 登機返台",
+              name: "中華航空 CI 0199｜熊本 → 高雄",
+              stay: "飛行約 2 小時 50 分",
+              address: "高雄國際機場（KHH）",
+              desc: "帶著滿滿的九州紅葉、溫泉與美食回憶，優雅賦歸。",
+              tags: ["已確認", "回程航班"],
+              mapUrl: "https://www.google.com/maps/search/?api=1&query=Kaohsiung+International+Airport"
+            }
+          ]
+        }
+      ],
+
+      // 餐廳專區預設名單（已完成去重、分類整理，純文字清爽卡片）
+      restaurants: [
+        /* --- 福岡：水炊鍋・壽喜燒 --- */
+        { id: "r-yamasho", name: "すき焼き山翔 (Sukiyaki Yamasho)", region: "福岡", cuisine: "水炊鍋・壽喜燒", rating: "★4.8 (278)", hours: "11:00–15:00 / 17:00–22:00", closed: "待確認", price: "¥8,000 – ¥9,000", dishes: "飯店附近很厲害的肉舖直營和牛壽喜燒", travelTime: "近福岡君悅酒店（祇園町 6-24 1F）", mapUrl: "https://www.google.com/maps/search/?api=1&query=Sukiyaki+Yamasho+Fukuoka", isDefault: true },
+        { id: "r-hohoho", name: "Sukiyaki Hohoho", region: "福岡", cuisine: "水炊鍋・壽喜燒", rating: "★4.8 (120)", hours: "待確認", closed: "待確認", price: "¥10,000+", dishes: "高評價頂級和牛壽喜燒專門店", travelTime: "福岡市區（點地圖看導航）", mapUrl: "https://www.google.com/maps/search/?api=1&query=Sukiyaki+Hohoho+Fukuoka", isDefault: true },
+        { id: "r2", name: "博多水炊鍋專門 橙（Daidai 大濠店）", region: "福岡", cuisine: "水炊鍋・壽喜燒", rating: "★4.2 (1,257)", hours: "12:00–22:00 (L.O. 21:30)", closed: "無公休", price: "¥4,000 – ¥5,000", dishes: "大濠公園旁人氣水炊鍋、酥脆炸雞", travelTime: "大濠公園步行約 2 分鐘", mapUrl: "https://www.google.com/maps/search/?api=1&query=Hakata+Mizutaki+Daidai+Ohori", isDefault: true },
+        { id: "r-daidai-nakasu", name: "博多水炊き専門 橙 中洲川端店", region: "福岡", cuisine: "水炊鍋・壽喜燒", rating: "新分店", hours: "待確認", closed: "待確認", price: "¥4,000 – ¥5,000", dishes: "橙水炊鍋新開的分店，Day 1 晚餐備選", travelTime: "中洲川端區域（近君悅酒店）", mapUrl: "https://www.google.com/maps/search/?api=1&query=博多水炊き専門+橙+中洲川端店", isDefault: true },
+        { id: "r-hamadaya", name: "Mizutaki Hamadaya Honten（水たき 濱田屋 本店）", region: "福岡", cuisine: "水炊鍋・壽喜燒", rating: "★4.4 (654)", hours: "待確認", closed: "待確認", price: "¥4,000 – ¥7,000", dishes: "博多老字號精緻水炊鍋名店", travelTime: "博多店屋町區域", mapUrl: "https://www.google.com/maps/search/?api=1&query=Mizutaki+Hamadaya+Honten+Fukuoka", isDefault: true },
+        { id: "r-nagano", name: "Mizutaki Nagano（水炊き 長野）", region: "福岡", cuisine: "水炊鍋・壽喜燒", rating: "★4.3 (1,884)", hours: "待確認", closed: "待確認", price: "¥3,000 – ¥5,000", dishes: "博多百年水炊鍋名店（需提前預約）", travelTime: "博多區對馬小路", mapUrl: "https://www.google.com/maps/search/?api=1&query=Mizutaki+Nagano+Fukuoka", isDefault: true },
+        { id: "r-hanamidori", name: "Hakata Hanamidori（博多華味鳥 博多站周邊）", region: "福岡", cuisine: "水炊鍋・壽喜燒", rating: "★4.2 (1,586)", hours: "待確認", closed: "待確認", price: "¥2,000 – ¥7,000", dishes: "使用自家養殖華味鳥的經典水炊鍋", travelTime: "博多車站周邊", mapUrl: "https://www.google.com/maps/search/?api=1&query=Hakata+Hanamidori+Hakata+Station", isDefault: true },
+
+        /* --- 福岡：天婦羅 --- */
+        { id: "r-tempura-nagaoka", name: "Hakata Tempura NAGAOKA", region: "福岡", cuisine: "天婦羅", rating: "★4.5 (611)", hours: "待確認", closed: "待確認", price: "¥4,000 – ¥8,000", dishes: "很厲害的天婦羅與板前料理", travelTime: "今泉／天神周邊", mapUrl: "https://www.google.com/maps/search/?api=1&query=Hakata+Tempura+NAGAOKA+Fukuoka", isDefault: true },
+        { id: "r-hirao", name: "Tempura Hirao（天婦羅平尾 天神 ACROS 店）", region: "福岡", cuisine: "天婦羅", rating: "★4.4 (2,833)", hours: "待確認", closed: "待確認", price: "¥1,000 – ¥2,000", dishes: "天神超人氣現炸平價天婦羅，要排隊但超值得", travelTime: "天神 ACROS 福岡 B2", mapUrl: "https://www.google.com/maps/search/?api=1&query=Tempura+Hirao+Tenjin+ACROS+Fukuoka", isDefault: true },
+        { id: "r-tenyasu", name: "Tenyasu（天安）", region: "福岡", cuisine: "天婦羅", rating: "★4.6 (336)", hours: "待確認", closed: "待確認", price: "¥1,000 – ¥2,000", dishes: "高評價在地天婦羅定食小店", travelTime: "福岡市區（點地圖看導航）", mapUrl: "https://www.google.com/maps/search/?api=1&query=Tenyasu+Tempura+Fukuoka", isDefault: true },
+        { id: "r-imaizumi-tempura", name: "今泉 天ぷら屋（1 Chome-12-23 Imaizumi）", region: "福岡", cuisine: "天婦羅", rating: "私房標記", hours: "待確認", closed: "待確認", price: "待確認", dishes: "清單筆記：這裡有天ぷら屋 天婦羅", travelTime: "中央區今泉 1-12-23（近天神）", mapUrl: "https://www.google.com/maps/search/?api=1&query=1+Chome-12-23+Imaizumi+Chuo+Ward+Fukuoka", isDefault: true },
+        { id: "r-kisuimaru", name: "Kisuimaru Tenjin（喜水丸 天神）", region: "福岡", cuisine: "天婦羅", rating: "★4.0 (998)", hours: "待確認", closed: "待確認", price: "¥1,000 – ¥2,000", dishes: "天婦羅、海鮮定食與居酒屋料理", travelTime: "天神商圈內", mapUrl: "https://www.google.com/maps/search/?api=1&query=Kisuimaru+Tenjin+Fukuoka", isDefault: true },
+        { id: "r-nagi", name: "Sakana To Gohan Nagi", region: "福岡", cuisine: "天婦羅", rating: "★4.2 (282)", hours: "待確認", closed: "待確認", price: "¥1,000 – ¥2,000", dishes: "大濠公園附近、唐人町的海鮮與天婦羅店", travelTime: "大濠公園／唐人町周邊", mapUrl: "https://www.google.com/maps/search/?api=1&query=Sakana+To+Gohan+Nagi+Fukuoka", isDefault: true },
+
+        /* --- 福岡：燒鳥・居酒屋 --- */
+        { id: "r-yakitori-koto", name: "Yakitori Koto", region: "福岡", cuisine: "燒鳥・居酒屋", rating: "★4.7 (118)", hours: "待確認", closed: "待確認", price: "¥10,000+", dishes: "質感極佳的高級炭火串燒店", travelTime: "福岡市區（點地圖看導航）", mapUrl: "https://www.google.com/maps/search/?api=1&query=Yakitori+Koto+Fukuoka", isDefault: true },
+        { id: "r-teruko", name: "Yakitori Hakata Teruko", region: "福岡", cuisine: "燒鳥・居酒屋", rating: "★4.6 (356)", hours: "待確認", closed: "待確認", price: "¥2,000 – ¥6,000", dishes: "高人氣博多燒鳥名店", travelTime: "福岡市區（點地圖看導航）", mapUrl: "https://www.google.com/maps/search/?api=1&query=Yakitori+Hakata+Teruko+Fukuoka", isDefault: true },
+        { id: "r-torian", name: "地鶏炭火焼 とりあん", region: "福岡", cuisine: "燒鳥・居酒屋", rating: "★4.5 (108)", hours: "待確認", closed: "待確認", price: "¥3,000 – ¥5,000", dishes: "炭火地雞料理、居酒屋", travelTime: "福岡市區（點地圖看導航）", mapUrl: "https://www.google.com/maps/search/?api=1&query=地鶏炭火焼+とりあん+福岡", isDefault: true },
+        { id: "r-yakitori-634", name: "Yakitori 634 (Musashi)", region: "福岡", cuisine: "燒鳥・居酒屋", rating: "★4.2 (1,071)", hours: "待確認", closed: "待確認", price: "¥3,000 – ¥6,000", dishes: "人氣排隊串燒名店", travelTime: "博多／天神周邊", mapUrl: "https://www.google.com/maps/search/?api=1&query=Yakitori+634+Musashi+Fukuoka", isDefault: true },
+        { id: "r-nobuhide", name: "Tenka No Yakitori Nobuhidehonten（天下の焼鳥 信秀本店）", region: "福岡", cuisine: "燒鳥・居酒屋", rating: "★4.0 (775)", hours: "待確認", closed: "待確認", price: "¥2,000 – ¥5,000", dishes: "中洲川端經典老字號燒鳥店", travelTime: "中洲川端區域（近君悅酒店）", mapUrl: "https://www.google.com/maps/search/?api=1&query=Tenka+No+Yakitori+Nobuhidehonten+Fukuoka", isDefault: true },
+        { id: "r-fishman", name: "Hakata Robata Fishman（博多炉端 魚男）", region: "福岡", cuisine: "燒鳥・居酒屋", rating: "★4.9 (11,602)", hours: "待確認", closed: "待確認", price: "待確認", dishes: "超萬則好評的人氣爐端燒與海鮮居酒屋", travelTime: "今泉／天神周邊", mapUrl: "https://www.google.com/maps/search/?api=1&query=Hakata+Robata+Fishman+Fukuoka", isDefault: true },
+        { id: "r-imaizumi-ikkon", name: "Imaizumi Ikkon", region: "福岡", cuisine: "燒鳥・居酒屋", rating: "★4.8 (1,529)", hours: "待確認", closed: "待確認", price: "¥4,000 – ¥9,000", dishes: "會把當季新鮮食材端出來介紹的高分居酒屋", travelTime: "今泉／天神周邊", mapUrl: "https://www.google.com/maps/search/?api=1&query=Imaizumi+Ikkon+Fukuoka", isDefault: true },
+        { id: "r-tachibana", name: "出汁と鮨 橘 天神", region: "福岡", cuisine: "燒鳥・居酒屋", rating: "★4.7 (126)", hours: "待確認", closed: "待確認", price: "¥4,000 – ¥9,000", dishes: "特色用蛤蠣熬製高湯、高湯料理與壽司居酒屋", travelTime: "天神周邊", mapUrl: "https://www.google.com/maps/search/?api=1&query=出汁と鮨+橘+天神", isDefault: true },
+        { id: "r-isogiyoshi", name: "Isogiyoshi（磯ぎよし）", region: "福岡", cuisine: "燒鳥・居酒屋", rating: "★4.3 (473)", hours: "待確認", closed: "待確認", price: "¥4,000 – ¥9,000", dishes: "九州鮮魚海鮮居酒屋", travelTime: "福岡市區（點地圖看導航）", mapUrl: "https://www.google.com/maps/search/?api=1&query=Isogiyoshi+Fukuoka", isDefault: true },
+        { id: "r-musashiza", name: "Musashiza（武藏座）", region: "福岡", cuisine: "燒鳥・居酒屋", rating: "★4.2 (1,546)", hours: "待確認", closed: "待確認", price: "待確認", dishes: "人氣炭火串燒居酒屋", travelTime: "大名／天神周邊", mapUrl: "https://www.google.com/maps/search/?api=1&query=Musashiza+Fukuoka", isDefault: true },
+
+        /* --- 福岡：鐵板燒・和食・海鮮 --- */
+        { id: "r1", name: "元祖本吉屋 本店", region: "福岡", cuisine: "鐵板燒・和食・海鮮", rating: "百年名店", hours: "10:30–20:00 (L.O. 19:30)", closed: "週一公休（11/23 國定假日照常營業，順延週二休）", price: "¥4,800 – ¥8,600", dishes: "南風定食（含白燒鰻魚）、特せいろ蒸し定食、蒲燒定食", travelTime: "柳川（距柳川遊船約 5–10 分鐘車程）", mapUrl: "https://www.google.com/maps/search/?api=1&query=Ganso+Motoyoshiya+Main+Store+Yanagawa", isDefault: true },
+        { id: "r-kaiboku", name: "だしいなり 海木 福岡本店", region: "福岡", cuisine: "鐵板燒・和食・海鮮", rating: "★4.4 (264)", hours: "11:00–15:00（需提前預訂）", closed: "週日及國定假日公休", price: "¥1,000 – ¥2,000", dishes: "Day 2 已預訂！熊本南關豆皮吸飽柴魚昆布高湯的爆汁稻荷壽司", travelTime: "渡邊通 1-9-3（大濠公園搭車約 10 分鐘）", mapUrl: "https://www.google.com/maps/search/?api=1&query=Dashi+Inari+Kaiboku+Fukuoka", isDefault: true },
+        { id: "r-teppan-matsu", name: "Private kitchen Teppanyaki Matsu", region: "福岡", cuisine: "鐵板燒・和食・海鮮", rating: "★4.9 (25)", hours: "待確認", closed: "待確認", price: "¥10,000+", dishes: "在大濠公園附近的私房鐵板燒料理", travelTime: "大濠公園周邊", mapUrl: "https://www.google.com/maps/search/?api=1&query=Private+kitchen+Teppanyaki+Matsu+Fukuoka", isDefault: true },
+        { id: "r-mitaki", name: "TEPPANYAKI MITAKI SAKURAZAKA", region: "福岡", cuisine: "鐵板燒・和食・海鮮", rating: "★4.6 (161)", hours: "待確認", closed: "待確認", price: "¥10,000+", dishes: "櫻坂庭園景觀高級鐵板燒", travelTime: "櫻坂區域", mapUrl: "https://www.google.com/maps/search/?api=1&query=TEPPANYAKI+MITAKI+SAKURAZAKA+Fukuoka", isDefault: true },
+        { id: "r-kaiseki-nagaoka", name: "Nagaoka（懐石 ながおか）", region: "福岡", cuisine: "鐵板燒・和食・海鮮", rating: "★4.8 (159)", hours: "待確認", closed: "待確認", price: "¥10,000+", dishes: "高分精緻日本懷石料理", travelTime: "福岡市區（點地圖看導航）", mapUrl: "https://www.google.com/maps/search/?api=1&query=Nagaoka+Kaiseki+Fukuoka", isDefault: true },
+        { id: "r-shirogane", name: "Shirogane Nishida（白金 にし田）", region: "福岡", cuisine: "鐵板燒・和食・海鮮", rating: "★4.6 (98)", hours: "待確認", closed: "待確認", price: "¥10,000+", dishes: "白金地區質感高級日本料理", travelTime: "中央區白金", mapUrl: "https://www.google.com/maps/search/?api=1&query=Shirogane+Nishida+Fukuoka", isDefault: true },
+        { id: "r-musashi-wagyu", name: "Musashi（黑毛和牛 博多牛排丼）", region: "福岡", cuisine: "鐵板燒・和食・海鮮", rating: "★4.6 (838)", hours: "待確認", closed: "待確認", price: "¥2,000 – ¥3,000", dishes: "博多車站旁的人氣黑毛和牛牛肉丼飯", travelTime: "博多車站旁", mapUrl: "https://www.google.com/maps/search/?api=1&query=Musashi+Kuroge+Wagyu+Hakata", isDefault: true },
+        { id: "r-kuromatsu", name: "Kuromatsu Daimyo（くろまつ 大名）", region: "福岡", cuisine: "鐵板燒・和食・海鮮", rating: "★4.5 (876)", hours: "待確認", closed: "待確認", price: "¥2,000 – ¥3,000", dishes: "高分人氣炸豬排專門店", travelTime: "天神大名區域", mapUrl: "https://www.google.com/maps/search/?api=1&query=Kuromatsu+Daimyo+Fukuoka", isDefault: true },
+        { id: "r-itookashi", name: "Itookashi（いとおかし）", region: "福岡", cuisine: "鐵板燒・和食・海鮮", rating: "★4.4 (1,604)", hours: "待確認", closed: "待確認", price: "¥2,000 – ¥3,000", dishes: "主打當日新鮮漁獲的海鮮蓋飯與和食", travelTime: "春吉／近君悅酒店", mapUrl: "https://www.google.com/maps/search/?api=1&query=Itookashi+Fukuoka", isDefault: true },
+        { id: "r-kakinoki", name: "Kakinoki（牡蠣吧）", region: "福岡", cuisine: "鐵板燒・和食・海鮮", rating: "★4.3 (100)", hours: "待確認", closed: "待確認", price: "¥4,000 – ¥8,000", dishes: "專程吃新鮮牡蠣的 Oyster Bar", travelTime: "福岡市區（點地圖看導航）", mapUrl: "https://www.google.com/maps/search/?api=1&query=Kakinoki+Oyster+Bar+Fukuoka", isDefault: true },
+        { id: "r-uokura", name: "Uokura（博多魚蔵）", region: "福岡", cuisine: "鐵板燒・和食・海鮮", rating: "★4.2 (779)", hours: "待確認", closed: "待確認", price: "待確認", dishes: "博多車站周邊精緻活魚和食", travelTime: "博多車站周邊", mapUrl: "https://www.google.com/maps/search/?api=1&query=Uokura+Hakata+Fukuoka", isDefault: true },
+        { id: "r-owan", name: "食堂 おわん", region: "福岡", cuisine: "鐵板燒・和食・海鮮", rating: "★4.2 (480)", hours: "待確認", closed: "待確認", price: "¥2,000 – ¥3,000", dishes: "人氣溫潤和食定食、土鍋飯與味噌湯", travelTime: "冷泉町／祇園周邊（近君悅酒店）", mapUrl: "https://www.google.com/maps/search/?api=1&query=食堂+おわん+福岡", isDefault: true },
+        { id: "r-otsu", name: "雑炊之店 お通", region: "福岡", cuisine: "鐵板燒・和食・海鮮", rating: "★4.2 (387)", hours: "待確認", closed: "待確認", price: "¥1,000 – ¥2,000", dishes: "暖胃日式雜炊粥專賣店（宵夜好選擇）", travelTime: "中洲／天神周邊", mapUrl: "https://www.google.com/maps/search/?api=1&query=雑炊之店+お通+福岡", isDefault: true },
+        { id: "r-kawataro", name: "Kawataro Nakasu（河太郎 中洲本店）", region: "福岡", cuisine: "鐵板燒・和食・海鮮", rating: "★4.1 (2,024)", hours: "待確認", closed: "待確認", price: "待確認", dishes: "招牌呼子活魷魚刺身與後炸天婦羅", travelTime: "中洲（距君悅酒店步行可達）", mapUrl: "https://www.google.com/maps/search/?api=1&query=Kawataro+Nakasu+Fukuoka", isDefault: true },
+
+        /* --- 福岡：甜點・咖啡・伴手禮 --- */
+        { id: "r-katsukiya", name: "かつきや 八女本店", region: "福岡", cuisine: "甜點・咖啡・伴手禮", rating: "★4.5 (25)", hours: "待確認", closed: "待確認", price: "¥1,000 – ¥2,000", dishes: "八女抹茶點心專門店", travelTime: "福岡縣八女市", mapUrl: "https://www.google.com/maps/search/?api=1&query=かつきや+八女本店", isDefault: true },
+        { id: "r-hiiragi", name: "Hakata Hiiragi Taiyaki（博多ひいらぎ 鯛魚燒）", region: "福岡", cuisine: "甜點・咖啡・伴手禮", rating: "★4.4 (289)", hours: "待確認", closed: "待確認", price: "¥1 – ¥1,000", dishes: "人氣酥脆薄皮紅豆鯛魚燒", travelTime: "大名／天神周邊", mapUrl: "https://www.google.com/maps/search/?api=1&query=Hakata+Hiiragi+Taiyaki+Fukuoka", isDefault: true },
+        { id: "r-mikadukiya", name: "Mikadukiya（三日月屋 天然酵母可頌）", region: "福岡", cuisine: "甜點・咖啡・伴手禮", rating: "★4.0 (265)", hours: "待確認", closed: "待確認", price: "¥1 – ¥1,000", dishes: "福岡超人氣多種口味天然酵母可頌", travelTime: "博多車站內有分店", mapUrl: "https://www.google.com/maps/search/?api=1&query=Mikadukiya+Hakata+Fukuoka", isDefault: true },
+        { id: "r3", name: "&locals 大濠公園", region: "福岡", cuisine: "甜點・咖啡・伴手禮", rating: "湖景咖啡", hours: "待確認", closed: "待確認", price: "¥800 – ¥1,500", dishes: "湖景第一排抹茶飲品、九州在地小點", travelTime: "大濠公園日本庭園旁（步行 1 分鐘）", mapUrl: "https://www.google.com/maps/search/?api=1&query=and+locals+Ohori+Park+Fukuoka", isDefault: true },
+        { id: "r4", name: "Danny Churros（天神）", region: "福岡", cuisine: "甜點・咖啡・伴手禮", rating: "人氣甜點", hours: "待確認", closed: "待確認", price: "¥500 – ¥1,000", dishes: "現炸米粉文字吉拿棒", travelTime: "天神商圈步行可達", mapUrl: "https://share.google/fRqcCBqB0NZG3Hz6e", isDefault: true },
+        { id: "r5", name: "友添本店 Tomozoe Honten", region: "福岡", cuisine: "甜點・咖啡・伴手禮", rating: "美酒試飲", hours: "11:00–21:00", closed: "週三公休", price: "試飲/選購依酒款計價", dishes: "九州精選清酒、燒酎現場付費試飲", travelTime: "福岡君悅酒店步行約 5–8 分鐘", mapUrl: "https://www.google.com/maps/search/?api=1&query=Tomozoe+Honten+Fukuoka", isDefault: true },
+
+        /* --- 福岡：超市・百貨採買 --- */
+        { id: "r-fuji-fruit", name: "富士食品フルーツ（高級水果專賣）", region: "福岡", cuisine: "超市・百貨採買", rating: "★4.9 (83)", hours: "待確認", closed: "待確認", price: "依時令水果計價", dishes: "超高評價水果店，補甘王草莓、甜柿、蜜柑好去處", travelTime: "福岡市區（點地圖看導航）", mapUrl: "https://www.google.com/maps/search/?api=1&query=富士食品フルーツ+福岡", isDefault: true },
+        { id: "r-lopia", name: "LOPIA Hakata Yodobashi Shop", region: "福岡", cuisine: "超市・百貨採買", rating: "★4.2 (1,923)", hours: "待確認", closed: "待確認", price: "量販平價", dishes: "高品質生鮮、頂級肉品與水果聞名的超人氣量販超市", travelTime: "博多車站筑紫口 Yodobashi 4F", mapUrl: "https://www.google.com/maps/search/?api=1&query=LOPIA+Hakata+Yodobashi+Shop", isDefault: true },
+        { id: "r-maxvalu", name: "MaxValu Express Hakata Gion", region: "福岡", cuisine: "超市・百貨採買", rating: "★4.0 (1,971)", hours: "待確認", closed: "待確認", price: "日常超市", dishes: "離福岡君悅酒店最近的超市，晚上補水果與零食最方便", travelTime: "近福岡君悅酒店", mapUrl: "https://www.google.com/maps/search/?api=1&query=MaxValu+Express+Hakata+Gion", isDefault: true },
+        { id: "r-daimaru", name: "Daimaru（大丸 福岡天神店）", region: "福岡", cuisine: "超市・百貨採買", rating: "★3.9 (8,733)", hours: "待確認", closed: "待確認", price: "百貨公司", dishes: "地下美食街伴手禮、生鮮水果與精品採買", travelTime: "天神商圈核心", mapUrl: "https://www.google.com/maps/search/?api=1&query=Daimaru+Fukuoka+Tenjin", isDefault: true },
+
+        /* --- 由布院・阿蘇 --- */
+        { id: "r6", name: "山莊無量塔 Tan's Bar & 懷石餐廳", region: "由布院・阿蘇", cuisine: "甜點・咖啡・伴手禮", rating: "名宿晚宴", hours: "房客預約制（晚餐 18:00 / 18:30）", closed: "無公休", price: "含於住宿方案（Tan's Bar 另計）", dishes: "主廚客製「全熟、無生魚、避海藻」懷石料理、B-Speak 瑞士捲", travelTime: "山莊無量塔飯店館內", mapUrl: "https://www.google.com/maps/search/?api=1&query=Sansou+Murata+Yufuin", isDefault: true },
+        { id: "r8", name: "阿蘇 赤牛熟食餐廳", region: "由布院・阿蘇", cuisine: "鐵板燒・和食・海鮮", rating: "在地名物", hours: "待確認", closed: "待確認", price: "¥2,200 – ¥4,000", dishes: "全熟阿蘇赤牛排、赤牛定食", travelTime: "沿山波快速道路至大觀峰動線沿途", mapUrl: "https://www.google.com/maps/search/?api=1&query=Aso+Akaushi+Restaurant+Kumamoto", isDefault: true },
+
+        /* --- 熊本・高千穗 --- */
+        { id: "r9", name: "高千穗牛餐廳 和（Nagomi）", region: "熊本・高千穗", cuisine: "鐵板燒・和食・海鮮", rating: "JA 直營名店", hours: "11:00–14:30, 17:00–21:00", closed: "週三公休（不可預約，需現場候位）", price: "¥3,500 – ¥8,500", dishes: "高千穗牛排（赤肉 Lean / 牛腰肉 Loin / 沙朗 Sirloin / 菲力 Fillet）", travelTime: "距高千穗峽谷車程約 5–8 分鐘", mapUrl: "https://www.google.com/maps/search/?api=1&query=Takachiho+Beef+Restaurant+Nagomi", isDefault: true },
+        { id: "r-km-maruichi", name: "Maruichi Dining Room（マルイチ食堂）", region: "熊本・高千穗", cuisine: "拉麵", rating: "★4.2 (613)", hours: "待確認", closed: "待確認", price: "¥1,000 – ¥2,000", dishes: "米其林推薦的拉麵店", travelTime: "熊本市區（點地圖看導航）", mapUrl: "https://www.google.com/maps/search/?api=1&query=Maruichi+Dining+Room+Kumamoto", isDefault: true },
+        { id: "r-km-akagumi", name: "Akagumi Ramen（赤組拉麵 上通店）", region: "熊本・高千穗", cuisine: "拉麵", rating: "★4.2 (2,551)", hours: "待確認", closed: "待確認", price: "¥1 – ¥1,000", dishes: "上通商店街超人氣平價熊本豚骨拉麵", travelTime: "上通商店街（近 OMO5 熊本）", mapUrl: "https://www.google.com/maps/search/?api=1&query=Akagumi+Ramen+Kamitori+Kumamoto", isDefault: true },
+        { id: "r-km-keika", name: "Kumamoto Ramen Keika Honten（桂花拉麵 本店）", region: "熊本・高千穗", cuisine: "拉麵", rating: "★4.0 (2,943)", hours: "待確認", closed: "待確認", price: "¥1,000 – ¥2,000", dishes: "熊本代表性蒜油豚骨拉麵老字號本店（招牌太肉麵）", travelTime: "花畑町／下通周邊（近 OMO5 熊本）", mapUrl: "https://www.google.com/maps/search/?api=1&query=Kumamoto+Ramen+Keika+Honten", isDefault: true },
+        { id: "r-km-tengaiten", name: "Tengaiten（天外天 熊本站店）", region: "熊本・高千穗", cuisine: "拉麵", rating: "★3.9 (1,356)", hours: "待確認", closed: "待確認", price: "¥1,000 – ¥2,000", dishes: "濃厚蒜香熊本拉麵人氣名店", travelTime: "熊本車站內", mapUrl: "https://www.google.com/maps/search/?api=1&query=Tengaiten+Kumamoto+Station", isDefault: true },
+        { id: "r-km-kokutei", name: "Kokutei Kumamoto Ramen Shimotori（黑亭拉麵 下通店）", region: "熊本・高千穗", cuisine: "拉麵", rating: "★3.7 (2,508)", hours: "待確認", closed: "待確認", price: "¥1,000 – ¥2,000", dishes: "經典焦蒜油熊本豚骨拉麵名店", travelTime: "下通商店街（近 OMO5 熊本）", mapUrl: "https://www.google.com/maps/search/?api=1&query=Kokutei+Kumamoto+Ramen+Shimotori", isDefault: true },
+        { id: "r-km-katsuretsu", name: "Katsuretsu Tei Shinshigai（勝烈亭 新市街本店）", region: "熊本・高千穗", cuisine: "鐵板燒・和食・海鮮", rating: "★4.5 (6,411)", hours: "待確認", closed: "待確認", price: "¥2,000 – ¥3,000", dishes: "熊本必吃米其林推薦厚切鹿兒島黑豚炸豬排", travelTime: "新市街（距 OMO5 熊本步行約 8 分鐘）", mapUrl: "https://www.google.com/maps/search/?api=1&query=Katsuretsu+Tei+Shinshigai+Kumamoto", isDefault: true },
+        { id: "r-km-mekkemon", name: "Mekkemon Sushi（めっけもん 迴轉壽司）", region: "熊本・高千穗", cuisine: "鐵板燒・和食・海鮮", rating: "★4.5 (762)", hours: "待確認", closed: "待確認", price: "¥2,000 – ¥3,000", dishes: "很好吃的鹿兒島直送鮮魚迴轉壽司", travelTime: "熊本市區（點地圖看導航）", mapUrl: "https://www.google.com/maps/search/?api=1&query=Mekkemon+Sushi+Kumamoto", isDefault: true },
+        { id: "r-km-suematsu", name: "Grill Suematsu（グリル末松）", region: "熊本・高千穗", cuisine: "鐵板燒・和食・海鮮", rating: "★4.3 (175)", hours: "待確認", closed: "待確認", price: "¥2,000 – ¥7,000", dishes: "熊本高評價質感牛排與洋食料理", travelTime: "熊本市區（點地圖看導航）", mapUrl: "https://www.google.com/maps/search/?api=1&query=Grill+Suematsu+Kumamoto", isDefault: true },
+        { id: "r-km-kamon", name: "Teppanyaki Steak Shabu-shabu Kamon", region: "熊本・高千穗", cuisine: "鐵板燒・和食・海鮮", rating: "★4.3 (164)", hours: "待確認", closed: "待確認", price: "¥3,000 – ¥4,000", dishes: "熊本肥後牛鐵板燒牛排與涮涮鍋", travelTime: "水道町周邊（近 OMO5 熊本）", mapUrl: "https://www.google.com/maps/search/?api=1&query=Teppanyaki+Steak+Shabu-shabu+Kamon+Kumamoto", isDefault: true },
+        { id: "r-km-uokura", name: "魚藏（熊本海鮮居酒屋）", region: "熊本・高千穗", cuisine: "燒鳥・居酒屋", rating: "★4.5 (175)", hours: "待確認", closed: "待確認", price: "¥4,000 – ¥5,000", dishes: "熊本高評價鮮魚海鮮居酒屋", travelTime: "熊本市區（點地圖看導航）", mapUrl: "https://www.google.com/maps/search/?api=1&query=魚藏+居酒屋+熊本", isDefault: true },
+        { id: "r-km-hyogodori", name: "Hyogodori（ひょうごどり）", region: "熊本・高千穗", cuisine: "燒鳥・居酒屋", rating: "★4.2 (285)", hours: "待確認", closed: "待確認", price: "¥6,000 – ¥10,000", dishes: "熊本質感高級炭火燒鳥專門店", travelTime: "熊本市區（點地圖看導航）", mapUrl: "https://www.google.com/maps/search/?api=1&query=Hyogodori+Kumamoto", isDefault: true },
+        { id: "r-km-hanabi", name: "焼鳥 華備", region: "熊本・高千穗", cuisine: "燒鳥・居酒屋", rating: "★4.0 (125)", hours: "待確認", closed: "待確認", price: "¥4,000 – ¥8,000", dishes: "熊本在地人氣炭火燒鳥與和食料理", travelTime: "熊本市區（點地圖看導航）", mapUrl: "https://www.google.com/maps/search/?api=1&query=焼鳥+華備+熊本", isDefault: true },
+        { id: "r-km-tsugumi", name: "炭火・焼き鳥 鶫 熊本店", region: "熊本・高千穗", cuisine: "燒鳥・居酒屋", rating: "★4.0 (234)", hours: "待確認", closed: "待確認", price: "¥4,000 – ¥8,000", dishes: "炭火烤雞串專門店（熊本店）", travelTime: "熊本市區（點地圖看導航）", mapUrl: "https://www.google.com/maps/search/?api=1&query=炭火+焼き鳥+鶫+熊本店", isDefault: true }
+      ],
+
+      sampleExpenses: [
+        {
+          id: "exp-sample-1",
+          day: "Day 2 (11/24)",
+          name: "大濠公園日本庭園門票（3人範例）",
+          category: "景點門票",
+          amount: 750,
+          currency: "JPY",
+          payer: "我",
+          note: "大人 ¥250 × 3 人（範例項目，可修改或刪除）"
+        },
+        {
+          id: "exp-sample-2",
+          day: "Day 6 (11/28)",
+          name: "通町筋→熊本機場利木津巴士（3人範例）",
+          category: "其他支出",
+          amount: 3600,
+          currency: "JPY",
+          payer: "爸爸",
+          note: "¥1,200 × 3 人，可刷感應信用卡（範例項目）"
+        }
+      ],
+
+      weatherCities: [
+        { id: "fukuoka", name: "福岡市", sub: "Day 1–2 住宿", lat: 33.5902, lon: 130.4017 },
+        { id: "yanagawa", name: "柳川市", sub: "Day 1 水鄉遊船", lat: 33.1636, lon: 130.4058 },
+        { id: "yufuin", name: "由布院", sub: "Day 3–4 溫泉名宿", lat: 33.2667, lon: 131.3556 },
+        { id: "aso", name: "阿蘇 / 高千穗", sub: "Day 4–5 火山峽谷", lat: 32.8300, lon: 131.2100 },
+        { id: "kumamoto", name: "熊本市", sub: "Day 4–6 住宿", lat: 32.8031, lon: 130.7079 }
+      ]
     };
 
-    const ITINERARY_DAYS = [
-      {
-        day: 1,
-        date: '11/23 週一',
-        route: '熊本機場 → 柳川 → 太宰府 → 福岡',
-        title: '水鄉鰻香與秋楓序曲',
-        enSubtitle: 'Yanagawa Canals & Autumn Foliage',
-        transport: '專屬包車',
-        stay: {
-          name: '福岡君悅酒店 (Grand Hyatt Fukuoka)',
-          note: '連住兩晚（11/23–11/25），位於博多運河城內，進出市區與用餐皆輕鬆便利。',
-          mapUrl: 'https://www.google.com/maps/search/?api=1&query=Grand+Hyatt+Fukuoka'
-        },
-        tips: '今日適逢日本國定假日「勤勞感謝日」，元祖本吉屋與遊船人潮較多，包車司機可協助彈性調整先吃飯或先搭船。',
-        stops: [
-          {
-            time: '10:45 抵達',
-            icon: '✈️',
-            name: '熊本機場 (KMJ) 抵達・包車會合',
-            desc: '辦理入境與領取行李後，於大廳與包車司機會合，直接乘車出發前往水鄉柳川，免去拉行李轉車奔波。',
-            mapUrl: 'https://www.google.com/maps/search/?api=1&query=Aso+Kumamoto+Airport'
-          },
-          {
-            time: '12:00 午餐',
-            icon: '🍱',
-            name: '元祖本吉屋（百年蒸籠鰻魚飯）',
-            desc: '三百年老字號名店！推薦全熟香烤的蒸籠鰻魚飯（せいろ蒸し定食）或清淡版蒲燒定食，香氣四溢、長輩接受度滿分。',
-            photo: './day1-motoyoshiya.jpg',
-            photoCaption: '元祖本吉屋・百年鰻魚飯老店',
-            mapUrl: 'https://www.google.com/maps/search/?api=1&query=Ganso+Motoyoshiya+Yanagawa'
-          },
-          {
-            time: '13:45 體驗',
-            icon: '🚣',
-            name: '柳川遊船（伯舟觀光）',
-            desc: '坐上傳統搖櫓船悠遊護城河，欣賞兩岸深秋楓紅與船夫歌謠，全程坐姿欣賞風景、零腳力負擔。',
-            photo: './day1-yanagawa.jpg',
-            photoCaption: '柳川遊船・秋日水鄉風情',
-            mapUrl: 'https://www.google.com/maps/search/?api=1&query=Hakusyu+Kanko+Yanagawa'
-          },
-          {
-            time: '15:30 二選一',
-            icon: '🍁',
-            name: '下午景點選項：太原銀杏森林 vs. 寶滿宮 竈門神社',
-            desc: '視當日車況與體力二選一：\n• 選項 A【太原銀杏森林】：大片金黃銀杏地毯，平地好走好拍。\n• 選項 B【寶滿宮 竈門神社】：千年結緣古社與 11 月限定紅葉點燈。',
-            dualPhotos: [
-              { src: './day1-ginkgo.jpg', label: '選項 A｜太原銀杏森林' },
-              { src: './day1-kamado.jpg', label: '選項 B｜寶滿宮 竈門神社' }
-            ],
-            mapUrl: 'https://www.google.com/maps/search/?api=1&query=Kamado+Shrine+Dazaifu'
-          }
-        ]
-      },
-      {
-        day: 2,
-        date: '11/24 週二',
-        route: '福岡市區慢遊・藝術與微醺',
-        title: '湖畔晨光、水炊鍋與微醺夜色',
-        enSubtitle: 'Ohori Park, Mizutaki & Sake Tasting',
-        transport: '市區計程車 / 地鐵',
-        stay: {
-          name: '福岡君悅酒店 (Grand Hyatt Fukuoka)',
-          note: '續住第二晚，免收行李。晚上可散步至附近友添本店試飲九州美酒。',
-          mapUrl: 'https://www.google.com/maps/search/?api=1&query=Grand+Hyatt+Fukuoka'
-        },
-        tips: '市區移動多善用計程車（三人分攤最省力），大濠公園環湖步道平緩寬敞，非常適合長輩晨間散步。',
-        stops: [
-          {
-            time: '09:30 上午',
-            icon: '🌿',
-            name: '大濠公園・日本庭園・&locals 湖景咖啡',
-            desc: '漫步平緩優美的環湖步道與日式庭園，在 &locals 湖景第一排喝杯熱抹茶、吃點心，享受悠閒的福岡早晨。',
-            photo: './day2-ohori.jpg',
-            photoCaption: '大濠公園・湖畔慢旅晨光',
-            mapUrl: 'https://www.google.com/maps/search/?api=1&query=Ohori+Park+Fukuoka'
-          },
-          {
-            time: '12:00 午餐',
-            icon: '🍲',
-            name: '博多水炊鍋專門 橙（Daidai）',
-            desc: '就在大濠公園旁的人氣名店！溫潤濃郁的膠原蛋白雞湯水炊鍋搭配現炸唐揚雞，全熟熱湯暖胃又滿足。',
-            photo: './day2-daidai.jpg',
-            photoCaption: '博多水炊鍋專門 橙 (Daidai)',
-            mapUrl: 'https://www.google.com/maps/search/?api=1&query=Hakata+Mizutaki+Daidai+Ohori'
-          },
-          {
-            time: '14:00 下午',
-            icon: '🛍️',
-            name: '福岡市美術館 / AEON MALL / 天神逛街 ＋ だしいなり 海木',
-            desc: '欣賞草間彌生大南瓜、採買秋冬衣物與伴手禮，並準時領取超人氣「だしいなり 海木」高湯豆皮壽司（熊本南關豆皮吸飽柴魚昆布高湯，一口爆汁）。',
-            photo: './day2-kaiboku.jpg',
-            photoCaption: 'だしいなり 海木・高湯豆皮壽司',
-            mapUrl: 'https://www.google.com/maps/search/?api=1&query=Dashi+Inari+Kaiboku+Fukuoka'
-          },
-          {
-            time: '18:30 傍晚',
-            icon: '🍶',
-            name: '友添本店（清酒／果實酒試飲）',
-            desc: '飯店附近的質感老字號酒舖，提供多款九州地酒、梅酒與果實酒現場試飲，輕鬆挑選喜歡的酒款帶回飯店小酌。',
-            photo: './day2-tomozoe.jpg',
-            photoCaption: '友添本店・九州清酒與果實酒試飲',
-            mapUrl: 'https://www.google.com/maps/search/?api=1&query=Tomozoe+Honten+Fukuoka'
-          }
-        ]
-      },
-      {
-        day: 3,
-        date: '11/25 週三',
-        route: '福岡 → 秋月城跡 → 天瀨櫻滝 → 由布院',
-        title: '秋月楓紅與由布院溫泉慢宿',
-        enSubtitle: 'Akizuki Maples & Yufuin Hot Spring Retreat',
-        transport: '專屬包車',
-        stay: {
-          name: '由布院別邸 樹 (Yufuin Bettei Itsuki)',
-          note: '獨棟設計感溫泉別墅，房內獨享專屬半露天溫泉，讓爸媽在房內就能自在泡湯。',
-          mapUrl: 'https://www.google.com/maps/search/?api=1&query=Yufuin+Bettei+Itsuki'
-        },
-        tips: '山區午後氣溫下降明顯，車上備妥保暖外套與圍巾。天瀨櫻滝由停車場步行約 5 分鐘即達，輕鬆好走。',
-        stops: [
-          {
-            time: '09:30 上午',
-            icon: '🍁',
-            name: '秋月城跡（筑前小京都賞楓）',
-            desc: '漫步黑門與杉之馬場通，十一月下旬正是秋月城跡楓紅最盛的季節，古樸城下町氛圍寧靜迷人。',
-            photo: './day3-akizuki.jpg',
-            photoCaption: '秋月城跡・筑前小京都紅葉',
-            mapUrl: 'https://www.google.com/maps/search/?api=1&query=Akizuki+Castle+Ruins'
-          },
-          {
-            time: '13:30 秘境',
-            icon: '💧',
-            name: '天瀨櫻滝秘境（Sakuradaki）',
-            desc: '從停車場步行僅 5 分鐘的隱藏版瀑布秘境，近距離呼吸清新負離子與深秋溪谷氣息。',
-            photo: './day3-sakuradaki.jpg',
-            photoCaption: '天瀨櫻滝秘境・清幽飛瀑',
-            mapUrl: 'https://www.google.com/maps/search/?api=1&query=Sakuradaki+Waterfall+Amagase'
-          },
-          {
-            time: '14:45 漫步',
-            icon: '🏘️',
-            name: '由布院・湯之坪街道',
-            desc: '遠眺壯麗由布岳，悠閒逛逛特色小店、金賞可樂餅與在地伴手禮，感受由布院溫泉鄉的熱鬧氛圍。',
-            photo: './day3-yunotsubo.jpg',
-            photoCaption: '由布院・湯之坪街道與由布岳',
-            mapUrl: 'https://www.google.com/maps/search/?api=1&query=Yunotsubo+Street+Yufuin'
-          },
-          {
-            time: '16:00 午茶',
-            icon: '🍰',
-            name: '山莊無量塔 (Sansou Murata / B-speak)',
-            desc: '造訪由布院御三家名宿氛圍與著名的 B-speak 瑞士捲，隨後入住「由布院別邸 樹」享受靜謐溫泉之夜。',
-            photo: './day3-murata.jpg',
-            photoCaption: '山莊無量塔・靜謐山林雅致',
-            mapUrl: 'https://www.google.com/maps/search/?api=1&query=Sansou+Murata+Yufuin'
-          }
-        ]
-      },
-      {
-        day: 4,
-        date: '11/26 週四',
-        route: '金鱗湖晨霧 → 九重夢大吊橋 → 阿蘇 → 熊本',
-        title: '金鱗晨霧與阿蘇火山壯闊',
-        enSubtitle: 'Lake Kinrin Mist & Aso Volcanic Panorama',
-        transport: '專屬包車',
-        stay: {
-          name: '星野 OMO5 熊本 (OMO5 Kumamoto)',
-          note: '連住兩晚（11/26–11/28），緊鄰下通商店街入口，逛街、吃拉麵與豬排都超方便。',
-          mapUrl: 'https://www.google.com/maps/search/?api=1&query=OMO5+Kumamoto'
-        },
-        tips: '清晨金鱗湖溫差大，務必穿羽絨外套與毛帽。大觀峰與草千里皆為平地展望台，零體力負擔即可收穫百萬絕景。',
-        stops: [
-          {
-            time: '06:30 清晨',
-            icon: '🌫️',
-            name: '金鱗湖晨霧黃金時刻',
-            desc: '趁著清晨湖面溫泉水氣與冷空氣交會，捕捉如夢似幻的湖面晨霧與水上鳥居倒影。',
-            photo: './day4-kinrin-torii.jpg',
-            photoCaption: '金鱗湖・清晨水上鳥居倒影',
-            mapUrl: 'https://www.google.com/maps/search/?api=1&query=Lake+Kinrin+Yufuin'
-          },
-          {
-            time: '10:30 上午',
-            icon: '🌉',
-            name: '九重夢大吊橋',
-            desc: '日本第一高步行吊橋，漫步橋面俯瞰滿山楓紅與震動瀑布，飽覽九醉溪谷的深秋壯麗景色。',
-            photo: './day4-kokonoe.jpg',
-            photoCaption: '九重夢大吊橋・滿山秋色',
-            mapUrl: 'https://www.google.com/maps/search/?api=1&query=Kokonoe+Yume+Otsurihashi'
-          },
-          {
-            time: '13:30 展望',
-            icon: '⛰️',
-            name: '阿蘇大觀峰',
-            desc: '沿著絕美山波快速道路抵達阿蘇大觀峰，平地步行即可遠眺阿蘇五岳與遼闊火山口盆地全景。',
-            photo: './day4-daikanbo.png',
-            photoCaption: '阿蘇大觀峰・壯闊雲海與群山',
-            mapUrl: 'https://www.google.com/maps/search/?api=1&query=Daikanbo+Lookout+Aso'
-          },
-          {
-            time: '15:00 下午',
-            icon: '🌾',
-            name: '草千里（草千里ヶ浜）',
-            desc: '專車直達阿蘇標誌性的火山大草原與水池景觀，下車於展望處輕鬆拍照留念，隨後下山前往熊本市區賞熊本城夜景點燈並入住 OMO5 熊本。',
-            photo: './day4-kusasenri.jpg',
-            photoCaption: '草千里・火山草原與水池',
-            mapUrl: 'https://www.google.com/maps/search/?api=1&query=Kusasenrigahama+Aso'
-          }
-        ]
-      },
-      {
-        day: 5,
-        date: '11/27 週五',
-        route: '高千穗峽谷 → 天空小火車 → 上色見熊野座神社 → 熊本',
-        title: '神話峽谷划船與秘境鳥居',
-        enSubtitle: 'Takachiho Gorge, Sky Train & Sacred Shrine',
-        transport: '專屬包車',
-        stay: {
-          name: '星野 OMO5 熊本 (OMO5 Kumamoto)',
-          note: '續住第二晚，晚上可於下通或新市街品嚐勝烈亭炸豬排、桂花或赤組拉麵。',
-          mapUrl: 'https://www.google.com/maps/search/?api=1&query=OMO5+Kumamoto'
-        },
-        tips: '高千穗牛餐廳「和」採現場候位制，可視排隊狀況彈性搭配下午小火車班次；上色見熊野座神社在入口第一鳥居拍照即極具神祕感，免爬 260 階陡坡。',
-        stops: [
-          {
-            time: '09:30 上午',
-            icon: '🚣',
-            name: '高千穗峽谷漫步與划船',
-            desc: '仰望真名井瀑布從柱狀節理玄武岩傾瀉而下，在深秋陽光與紅葉映照下體驗夢幻峽谷划船。',
-            photo: './day5-takachiho.jpg',
-            photoCaption: '高千穗峽谷・秋陽瀑布與划船',
-            mapUrl: 'https://www.google.com/maps/search/?api=1&query=Takachiho+Gorge'
-          },
-          {
-            time: '11:45 午餐',
-            icon: '🥩',
-            name: '高千穗牛餐廳 和（Nagomi）',
-            desc: 'JA 直營人氣和牛名店，提供鐵板現煎全熟高千穗牛排（可選柔嫩菲力、沙朗或赤肉部位），肉汁鮮甜。',
-            photo: './day5-nagomi.jpg',
-            photoCaption: '高千穗牛餐廳 和 (Nagomi)',
-            mapUrl: 'https://www.google.com/maps/search/?api=1&query=Takachiho+Beef+Restaurant+Nagomi'
-          },
-          {
-            time: '13:30 體驗',
-            icon: '🚂',
-            name: '高千穗天空小火車（Amaterasu Railway）',
-            desc: '搭乘敞篷觀光小火車穿梭楓紅山林與百公尺高空鐵橋，吹著秋風飽覽峽谷全景，輕鬆又有趣。',
-            photo: './day5-train.jpg',
-            photoCaption: '高千穗天空小火車・楓紅鐵道',
-            mapUrl: 'https://www.google.com/maps/search/?api=1&query=Takachiho+Amaterasu+Railway'
-          },
-          {
-            time: '15:15 秘境',
-            icon: '⛩️',
-            name: '上色見熊野座神社（彈性備案：南阿蘇白川水源）',
-            desc: '杉木參天、苔蘚石燈籠林立的秘境神社，於第一鳥居入口處拍照感受靜謐靈氣；若時間充裕可順遊「南阿蘇白川水源」賞秋楓名水。',
-            photo: './day5-shrine.jpg',
-            photoCaption: '上色見熊野座神社・森林鳥居',
-            mapUrl: 'https://www.google.com/maps/search/?api=1&query=Kamishikimi+Kumanoimasu+Shrine'
-          }
-        ]
-      },
-      {
-        day: 6,
-        date: '11/28 週六',
-        route: 'OMO5 熊本 → 通町筋巴士站 → 阿蘇熊本機場 → 返台',
-        title: '從容賦歸・滿載秋日回憶',
-        enSubtitle: 'Graceful Departure & Sweet Memories',
-        transport: '通町筋機場利木津巴士',
-        stay: {
-          name: '溫暖的家',
-          note: '滿載九州深秋楓紅、溫泉與美食回憶，預計 13:45 平安順利返抵台灣。',
-          mapUrl: 'https://www.google.com/maps/search/?api=1&query=Aso+Kumamoto+Airport'
-        },
-        tips: '飯店對面即為通町筋機場利木津巴士站（支援感應式信用卡上下車感應付款），08:36 準時發車直達航廈，建議 08:20 前抵達站牌候車。',
-        stops: [
-          {
-            time: '07:15 – 08:15',
-            icon: '🏨',
-            name: 'OMO5 熊本 早餐與退房整理',
-            desc: '享用早餐、最後清點護照與隨身行李，從容辦理退房手續。',
-            mapUrl: 'https://www.google.com/maps/search/?api=1&query=OMO5+Kumamoto'
-          },
-          {
-            time: '08:36',
-            icon: '🚌',
-            name: '通町筋站搭乘機場巴士前往阿蘇熊本機場',
-            desc: '步行至通町筋巴士站搭車，車程約 45～50 分鐘直達航廈。',
-            mapUrl: 'https://www.google.com/maps/search/?api=1&query=Torichosuji+Bus+Stop+Kumamoto'
-          },
-          {
-            time: '09:25',
-            icon: '🧳',
-            name: '抵達阿蘇熊本機場（KMJ）',
-            desc: '辦理登機報到與行李托運，隨後輕鬆通過安檢。',
-            mapUrl: 'https://www.google.com/maps/search/?api=1&query=Aso+Kumamoto+Airport'
-          },
-          {
-            time: '10:00 – 11:25',
-            icon: '🛍️',
-            name: '機場候機室伴手禮最後採買',
-            desc: '過安檢後的候機區非常好逛，熊本熊周邊、在地點心與免稅店一次補齊。',
-            mapUrl: 'https://www.google.com/maps/search/?api=1&query=Aso+Kumamoto+Airport'
-          },
-          {
-            time: '11:55',
-            icon: '✈️',
-            name: '搭乘中華航空 CI 0199 平安返台',
-            desc: '11:55 熊本起飛，預計 13:45 抵達台灣，滿載回憶結束六天五夜九州秋日慢旅。',
-            mapUrl: 'https://www.google.com/maps/search/?api=1&query=Aso+Kumamoto+Airport'
-          }
-        ]
-      }
-    ];
-
     /* =========================================================================
-       2. DATA: CATEGORIZED RESTAURANT DIRECTORY
+       2. 狀態管理與 localStorage 持久化
        ========================================================================= */
-    const RESTAURANTS = [
-      // 福岡
-      { name: '元祖本吉屋 本店', region: '福岡', cuisine: '鐵板燒・和食・海鮮', price: '¥4,800–8,600', rating: '百年名店', note: '柳川三百年蒸籠鰻魚飯老字號，推薦南風定食或蒲燒定食。', query: 'Ganso Motoyoshiya Yanagawa' },
-      { name: '博多水炊鍋專門 橙（Daidai）', region: '福岡', cuisine: '水炊鍋・壽喜燒', price: '¥4,000–5,000', rating: '★4.2', note: '大濠公園旁人氣雞湯水炊鍋與酥脆炸雞，Day 2 午餐首選。', query: 'Hakata Mizutaki Daidai Ohori' },
-      { name: 'Sukiyaki Hohoho', region: '福岡', cuisine: '水炊鍋・壽喜燒', price: '¥10,000+', rating: '★4.8', note: '高評價頂級和牛壽喜燒專門店，桌邊專人烹調全熟安心。', query: 'Sukiyaki Hohoho Fukuoka' },
-      { name: 'すき焼き山翔 (Sukiyaki Yamasho)', region: '福岡', cuisine: '水炊鍋・壽喜燒', price: '¥8,000–9,000', rating: '★4.8', note: '肉舖直營和牛壽喜燒，近福岡君悅酒店。', query: 'Sukiyaki Yamasho Fukuoka' },
-      { name: 'Tempura Hirao 天神 ACROS 店', region: '福岡', cuisine: '天婦羅', price: '¥1,000–2,000', rating: '★4.4', note: '天神超人氣現炸天婦羅定食，酥脆平價。', query: 'Tempura Hirao Tenjin ACROS Fukuoka' },
-      { name: 'Hakata Tempura NAGAOKA', region: '福岡', cuisine: '天婦羅', price: '¥4,000–8,000', rating: '★4.5', note: '今泉質感板前天婦羅與和食料理。', query: 'Hakata Tempura NAGAOKA Fukuoka' },
-      { name: '食堂 おわん', region: '福岡', cuisine: '鐵板燒・和食・海鮮', price: '¥2,000–3,000', rating: '★4.2', note: '溫潤土鍋飯、味噌湯與精緻和食定食，近君悅酒店。', query: '食堂 おわん 福岡' },
-      { name: 'だしいなり 海木 福岡本店', region: '福岡', cuisine: '鐵板燒・和食・海鮮', price: '¥1,000–2,000', rating: '★4.4', note: '熊本南關豆皮吸飽秘製柴魚昆布高湯的爆汁稻荷壽司。', query: 'Dashi Inari Kaiboku Fukuoka' },
-      { name: 'Private kitchen Teppanyaki Matsu', region: '福岡', cuisine: '鐵板燒・和食・海鮮', price: '¥10,000+', rating: '★4.9', note: '大濠公園附近私房高分鐵板燒。', query: 'Private kitchen Teppanyaki Matsu Fukuoka' },
-      { name: 'Yakitori Hakata Teruko', region: '福岡', cuisine: '燒鳥・居酒屋', price: '¥3,000–6,000', rating: '★4.6', note: '高人氣博多炭火燒鳥名店。', query: 'Yakitori Hakata Teruko Fukuoka' },
-      { name: 'Hakata Robata Fishman（博多炉端 魚男）', region: '福岡', cuisine: '燒鳥・居酒屋', price: '¥4,000–6,000', rating: '★4.9', note: '破萬則好評的今泉人氣爐端燒居酒屋。', query: 'Hakata Robata Fishman Fukuoka' },
-      { name: '博多ひいらぎ鯛魚燒 (Hakata Hiiragi Taiyaki)', region: '福岡', cuisine: '甜點・咖啡・伴手禮', price: '¥1–1,000', rating: '★4.4', note: '大名區人氣酥脆薄皮紅豆鯛魚燒。', query: 'Hakata Hiiragi Taiyaki Fukuoka' },
-      { name: 'Mikadukiya（三日月屋可頌）', region: '福岡', cuisine: '甜點・咖啡・伴手禮', price: '¥1–1,000', rating: '★4.0', note: '福岡必買多種口味天然酵母可頌，博多站可輕鬆購入。', query: 'Mikadukiya Hakata Fukuoka' },
-      { name: '&locals 大濠公園', region: '福岡', cuisine: '甜點・咖啡・伴手禮', price: '¥800–1,500', rating: '湖景咖啡', note: '大濠公園日本庭園旁湖景第一排抹茶與九州小點。', query: 'and locals Ohori Park Fukuoka' },
-      { name: '友添本店 (Tomozoe Honten)', region: '福岡', cuisine: '甜點・咖啡・伴手禮', price: '依酒款計價', rating: '美酒試飲', note: '君悅酒店附近老字號酒舖，可現場試飲九州清酒與果實酒。', query: 'Tomozoe Honten Fukuoka' },
-
-      // 由布院
-      { name: '山莊無量塔 Tan\'s Bar & B-speak', region: '由布院', cuisine: '甜點・咖啡・伴手禮', price: '¥1,500–3,000', rating: '經典名物', note: '山林雅致咖啡酒吧與超人氣 B-speak 原味瑞士捲。', query: 'Sansou Murata Yufuin' },
-      { name: '由布まぶし 心（金鱗湖本店）', region: '由布院', cuisine: '鐵板燒・和食・海鮮', price: '¥2,500–3,500', rating: '★4.4', note: '炭烤豐後牛、地雞或鰻魚釜飯三吃，全熟熱騰騰。', query: 'Yufu Mabushi Shin Kinrin' },
-
-      // 熊本（含高千穗）
-      { name: '高千穗牛餐廳 和（Nagomi）', region: '熊本', cuisine: '鐵板燒・和食・海鮮', price: '¥3,500–8,500', rating: 'JA 直營', note: 'Day 5 午餐！現場候位，招牌高千穗和牛菲力與沙朗牛排。', query: 'Takachiho Beef Restaurant Nagomi' },
-      { name: '勝烈亭 新市街本店 (Katsuretsu Tei)', region: '熊本', cuisine: '鐵板燒・和食・海鮮', price: '¥2,000–3,000', rating: '★4.5', note: '熊本必吃米其林推薦厚切鹿兒島黑豚炸豬排，近 OMO5。', query: 'Katsuretsu Tei Shinshigai Kumamoto' },
-      { name: 'Mekkemon 迴轉壽司 (めっけもん)', region: '熊本', cuisine: '鐵板燒・和食・海鮮', price: '¥2,000–3,000', rating: '★4.5', note: '鹿兒島直送鮮魚高分迴轉壽司，亦有炙燒與熟食選擇。', query: 'Mekkemon Sushi Kumamoto' },
-      { name: 'Grill Suematsu（グリル末松）', region: '熊本', cuisine: '鐵板燒・和食・海鮮', price: '¥2,000–7,000', rating: '★4.3', note: '熊本高評價質感牛排與洋食料理。', query: 'Grill Suematsu Kumamoto' },
-      { name: 'Teppanyaki Steak Shabu-shabu Kamon', region: '熊本', cuisine: '鐵板燒・和食・海鮮', price: '¥3,000–4,000', rating: '★4.3', note: '熊本肥後牛鐵板燒牛排與涮涮鍋，近水道町與 OMO5。', query: 'Teppanyaki Steak Shabu-shabu Kamon Kumamoto' },
-      { name: 'Maruichi Dining Room（マルイチ食堂）', region: '熊本', cuisine: '拉麵', price: '¥1,000–2,000', rating: '★4.2', note: '米其林推薦的熊本精緻拉麵店。', query: 'Maruichi Dining Room Kumamoto' },
-      { name: '赤組拉麵 上通店 (Akagumi Ramen)', region: '熊本', cuisine: '拉麵', price: '¥1–1,000', rating: '★4.2', note: '上通商店街超人氣平價熊本豚骨拉麵，近 OMO5。', query: 'Akagumi Ramen Kamitori Kumamoto' },
-      { name: '桂花拉麵 本店 (Keika Honten)', region: '熊本', cuisine: '拉麵', price: '¥1,000–2,000', rating: '★4.0', note: '熊本代表性蒜油豚骨拉麵老字號，招牌太肉麵。', query: 'Kumamoto Ramen Keika Honten' },
-      { name: '天外天 熊本站店 (Tengaiten)', region: '熊本', cuisine: '拉麵', price: '¥1,000–2,000', rating: '★3.9', note: '濃厚蒜香熊本拉麵人氣名店。', query: 'Tengaiten Kumamoto Station' },
-      { name: '黑亭拉麵 下通店 (Kokutei)', region: '熊本', cuisine: '拉麵', price: '¥1,000–2,000', rating: '★3.7', note: '經典焦蒜油熊本豚骨拉麵名店，近 OMO5。', query: 'Kokutei Kumamoto Ramen Shimotori' },
-      { name: '魚藏（熊本海鮮居酒屋）', region: '熊本', cuisine: '燒鳥・居酒屋', price: '¥4,000–5,000', rating: '★4.5', note: '熊本高評價鮮魚與在地料理居酒屋。', query: '魚藏 居酒屋 熊本' },
-      { name: 'Hyogodori（ひょうごどり）', region: '熊本', cuisine: '燒鳥・居酒屋', price: '¥6,000–10,000', rating: '★4.2', note: '熊本質感高級炭火燒鳥專門店。', query: 'Hyogodori Kumamoto' },
-      { name: '焼鳥 華備', region: '熊本', cuisine: '燒鳥・居酒屋', price: '¥4,000–8,000', rating: '★4.0', note: '熊本在地人氣炭火燒鳥與和食料理。', query: '焼鳥 華備 熊本' },
-      { name: '炭火・焼き鳥 鶫 熊本店', region: '熊本', cuisine: '燒鳥・居酒屋', price: '¥4,000–8,000', rating: '★4.0', note: '炭火烤雞串專門店（熊本店）。', query: '炭火 焼き鳥 鶫 熊本店' }
-    ];
-
-    const WEATHER_CITIES = [
-      { name: '福岡市', sub: 'Day 1–2 住宿', lat: 33.5902, lon: 130.4017 },
-      { name: '柳川市', sub: 'Day 1 水鄉遊船', lat: 33.1636, lon: 130.4058 },
-      { name: '由布院', sub: 'Day 3–4 溫泉別墅', lat: 33.2667, lon: 131.3556 },
-      { name: '阿蘇大觀峰', sub: 'Day 4 火山草原', lat: 32.9906, lon: 131.0642 },
-      { name: '高千穗 / 熊本', sub: 'Day 4–6 峽谷與市區', lat: 32.8031, lon: 130.7079 }
-    ];
-
-    /* =========================================================================
-       3. APP STATE & PERSISTENCE (localStorage)
-       ========================================================================= */
-    const STORAGE_KEY = 'kyushu_family_journal_2026_v2';
-    let activeTab = 'itinerary';
-    let activeDay = 1;
-    let restRegion = '全部';
-    let restCuisine = '全部';
-    let restSearch = '';
+    const STORAGE_KEY = "kyushu_journal_2026_final_v1";
+    let currentView = "home";
+    let currentDay = 1;
+    let selectedRegion = "全部";
+    let selectedCuisine = "全部";
+    let restaurantSearchQuery = "";
+    let editingExpenseId = null;
+    let confirmCallback = null;
     let weatherCache = null;
-    let confirmHandler = null;
 
-    function getDefaultBudgetState() {
+    function createInitialState() {
       return {
-        rate: 0.215,
-        items: [
-          { id: 'b1', day: 'Day 1', category: '餐飲', name: '元祖本吉屋 蒸籠鰻魚飯（3人預估）', amount: 15000, currency: 'JPY', payer: '我' },
-          { id: 'b2', day: 'Day 5', category: '景點門票', name: '高千穗峽谷划船＋天空小火車（3人預估）', amount: 11000, currency: 'JPY', payer: '爸爸' }
-        ]
+        exchangeRate: 0.215,
+        travelers: [...DEFAULT_TRIP_DATA.meta.travelersDefault],
+        expenses: JSON.parse(JSON.stringify(DEFAULT_TRIP_DATA.sampleExpenses)),
+        resolvedConflicts: {},
+        dailyMemos: {},
+        customRestaurants: [],
+        hiddenDefaultRestaurants: []
       };
     }
 
-    function loadBudgetState() {
+    function loadState() {
       try {
         const raw = localStorage.getItem(STORAGE_KEY);
-        if (!raw) return getDefaultBudgetState();
-        const parsed = JSON.parse(raw);
-        return { ...getDefaultBudgetState(), ...parsed };
-      } catch {
-        return getDefaultBudgetState();
+        if (!raw) return createInitialState();
+        return { ...createInitialState(), ...JSON.parse(raw) };
+      } catch (err) {
+        return createInitialState();
       }
     }
 
-    let budgetState = loadBudgetState();
+    let appState = loadState();
 
-    function saveBudgetState() {
+    function saveState() {
       try {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(budgetState));
-      } catch {
-        showToast('⚠️ 儲存空間不足，請匯出備份檔');
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(appState));
+      } catch (err) {
+        showToast("⚠️ 瀏覽器儲存空間不足，建議匯出備份檔");
       }
     }
 
     /* =========================================================================
-       4. UTILITIES: ESCAPE, FALLBACK IMAGE, LIGHTBOX, TOAST, CONFIRM
+       3. 共用工具與圖片優雅降級（onerror 水彩提示）
        ========================================================================= */
-    function esc(str) {
-      return String(str ?? '')
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;')
-        .replace(/'/g, '&#39;');
+    function escapeHtml(str) {
+      return String(str ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
     }
 
-    function handleImgError(img, src, caption) {
-      if (!img || !img.parentElement) return;
-      img.parentElement.innerHTML = `
+    function handleImgFallback(imgEl, filenameHint, titleHint) {
+      if (!imgEl || !imgEl.parentElement) return;
+      imgEl.parentElement.innerHTML = `
         <div class="w-full h-full watercolor-fallback flex flex-col items-center justify-center p-4 text-center">
-          <span class="text-2xl mb-1 opacity-75">🎨</span>
-          <p class="font-serifTC text-xs font-bold text-ink">${esc(caption || '九州秋日風景')}</p>
-          <p class="text-[10px] text-sepia mt-1 font-mono bg-ivory/80 px-2 py-0.5 rounded-full border border-borderWarm">${esc(src)}</p>
+          <span class="text-2xl mb-1.5 opacity-80">🖼️</span>
+          <p class="font-serifTC text-xs sm:text-sm font-bold text-navy">${escapeHtml(titleHint || "實景照片預覽區")}</p>
+          <p class="text-[11px] text-sepia mt-1 font-mono bg-ivory/80 px-2.5 py-0.5 rounded-full border border-borderWarm">${escapeHtml(filenameHint)}</p>
+          <p class="text-[10px] text-sepia/80 mt-1.5">上傳至 GitHub 同資料夾後即自動顯示</p>
         </div>
       `;
     }
 
-    function renderPhoto(src, caption, aspectClass = 'aspect-[16/10]', badge = '') {
+    function renderImageBox(src, alt, aspectClass = "aspect-[16/10]", badgeText = "") {
+      const safeSrc = escapeHtml(src);
+      const safeAlt = escapeHtml(alt);
       return `
-        <div onclick="openLightbox('${esc(src)}', '${esc(caption)}')" class="relative rounded-xl overflow-hidden border border-borderWarm/80 ${aspectClass} bg-paperDeep shadow-soft cursor-zoom-in group">
+        <div class="relative rounded-xl overflow-hidden border border-borderWarm/80 ${aspectClass} bg-paperDeep shadow-soft">
           <img
-            src="${esc(src)}"
-            alt="${esc(caption)}"
+            src="${safeSrc}"
+            alt="${safeAlt}"
             loading="lazy"
-            class="w-full h-full object-cover group-hover:scale-[1.03] transition duration-500"
-            onerror="handleImgError(this, '${esc(src)}', '${esc(caption)}')"
+            class="w-full h-full object-cover"
+            onerror="handleImgFallback(this, '${safeSrc}', '${safeAlt}')"
           />
           ${
-            badge
-              ? `<span class="absolute bottom-2 left-2 px-2.5 py-1 rounded-full bg-ivory/90 backdrop-blur-sm border border-borderWarm text-[11px] font-serifTC font-bold text-ink shadow-sm">${esc(badge)}</span>`
-              : ''
+            badgeText
+              ? `<span class="absolute bottom-2 left-2 px-2.5 py-1 rounded-full bg-ivory/90 backdrop-blur-sm border border-borderWarm text-[11px] font-serifTC font-bold text-navy shadow-sm">${escapeHtml(badgeText)}</span>`
+              : ""
           }
         </div>
       `;
     }
 
-    function openLightbox(src, caption) {
-      document.getElementById('lightboxImg').src = src;
-      document.getElementById('lightboxCaption').textContent = caption;
-      document.getElementById('lightboxModal').classList.remove('hidden');
-    }
-
-    function closeLightbox() {
-      document.getElementById('lightboxModal').classList.add('hidden');
-    }
-
     function showToast(msg) {
-      const el = document.getElementById('toast');
-      document.getElementById('toastText').textContent = msg;
-      el.classList.remove('opacity-0', 'translate-y-2');
-      el.classList.add('opacity-100', 'translate-y-0');
-      clearTimeout(window.__tTimer);
-      window.__tTimer = setTimeout(() => {
-        el.classList.remove('opacity-100', 'translate-y-0');
-        el.classList.add('opacity-0', 'translate-y-2');
-      }, 2400);
+      const box = document.getElementById("toastBox");
+      const txt = document.getElementById("toastText");
+      txt.textContent = msg;
+      box.classList.remove("opacity-0", "translate-y-2");
+      box.classList.add("opacity-100", "translate-y-0");
+      clearTimeout(window.__toastTimer);
+      window.__toastTimer = setTimeout(() => {
+        box.classList.remove("opacity-100", "translate-y-0");
+        box.classList.add("opacity-0", "translate-y-2");
+      }, 2600);
     }
 
-    function openConfirm(title, msg, onYes) {
-      document.getElementById('confirmTitle').textContent = title;
-      document.getElementById('confirmMsg').textContent = msg;
-      confirmHandler = onYes;
-      document.getElementById('confirmModal').classList.remove('hidden');
+    function openConfirmModal(title, message, onConfirm) {
+      document.getElementById("confirmTitle").textContent = title;
+      document.getElementById("confirmMessage").textContent = message;
+      confirmCallback = onConfirm;
+      document.getElementById("confirmModal").classList.remove("hidden");
     }
 
-    function resolveConfirm(yes) {
-      document.getElementById('confirmModal').classList.add('hidden');
-      if (yes && typeof confirmHandler === 'function') confirmHandler();
-      confirmHandler = null;
+    function closeConfirmModal(confirmed) {
+      document.getElementById("confirmModal").classList.add("hidden");
+      if (confirmed && typeof confirmCallback === "function") confirmCallback();
+      confirmCallback = null;
     }
 
-    function dividerSVG() {
+    function botanicalDivider() {
       return `
         <div class="flex items-center justify-center gap-3 my-4 text-gold/80">
           <span class="h-px w-12 sm:w-20 bg-borderWarm"></span>
-          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3">
             <path d="M12 20V6M12 12C9 12 6.5 10 6 7C9 7 11.5 9 12 12ZM12 9C15 9 17.5 7 18 4C15 4 12.5 6 12 9Z" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
           <span class="h-px w-12 sm:w-20 bg-borderWarm"></span>
@@ -672,588 +1112,1039 @@
       `;
     }
 
-    /* =========================================================================
-       5. NAVIGATION
-       ========================================================================= */
-    function switchTab(tab) {
-      activeTab = tab;
-      updateNavUI();
-      renderApp();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    function selectDay(dayNum) {
-      activeDay = dayNum;
-      renderItinerary();
-    }
-
-    function updateNavUI() {
-      document.querySelectorAll('.desktop-tab').forEach((btn) => {
-        const on = btn.dataset.tab === activeTab;
-        btn.className = on
-          ? 'desktop-tab px-4 py-1.5 rounded-full bg-ink text-ivory font-medium shadow-sm transition'
-          : 'desktop-tab px-4 py-1.5 rounded-full text-sepia hover:text-ink hover:bg-gold/15 transition';
-      });
-      document.querySelectorAll('.mobile-tab').forEach((btn) => {
-        const on = btn.dataset.mtab === activeTab;
-        btn.className = on
-          ? 'mobile-tab flex flex-col items-center gap-0.5 py-1.5 rounded-xl bg-gold/20 text-ink font-bold transition'
-          : 'mobile-tab flex flex-col items-center gap-0.5 py-1.5 rounded-xl text-sepia transition';
-      });
-    }
-
-    function renderApp() {
-      if (activeTab === 'itinerary') renderItinerary();
-      else if (activeTab === 'restaurants') renderRestaurants();
-      else if (activeTab === 'budget') renderBudget();
-      else if (activeTab === 'weather') renderWeather();
+    function getStopIcon(type) {
+      const icons = {
+        plane: "✈️", car: "🚐", boat: "🚣", leaf: "🍁", hotel: "🏨",
+        walk: "🌿", food: "🍲", bag: "🛍️", sparkle: "✨", water: "💧",
+        camera: "📷", mountain: "⛰️", train: "🚂", torii: "⛩️", bus: "🚌"
+      };
+      return icons[type] || "📍";
     }
 
     /* =========================================================================
-       6. TAB 1: ITINERARY (HERO + DAY 1–6)
+       4. 路由與導覽切換
        ========================================================================= */
-    function renderItinerary() {
-      const d = ITINERARY_DAYS.find((x) => x.day === activeDay) || ITINERARY_DAYS[0];
+    function navigateTo(view, dayNum = currentDay) {
+      currentView = view;
+      if (view === "day") currentDay = dayNum;
+      updateNavStyles();
+      renderCurrentView();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function updateNavStyles() {
+      document.querySelectorAll(".nav-pill").forEach((btn) => {
+        const active = btn.dataset.nav === currentView;
+        btn.className = active
+          ? "nav-pill px-3.5 py-1.5 rounded-full bg-navy text-ivory font-medium shadow-sm transition"
+          : "nav-pill px-3.5 py-1.5 rounded-full text-sepia hover:text-navy hover:bg-gold/15 transition";
+      });
+
+      document.querySelectorAll(".mnav-btn").forEach((btn) => {
+        const active = btn.dataset.mnav === currentView;
+        btn.className = active
+          ? "mnav-btn flex flex-col items-center gap-0.5 py-1 rounded-xl text-navy font-bold bg-gold/20"
+          : "mnav-btn flex flex-col items-center gap-0.5 py-1 rounded-xl text-sepia";
+      });
+
+      const subNav = document.getElementById("daySubNav");
+      if (currentView === "day") {
+        subNav.classList.remove("hidden");
+        document.getElementById("daySubNavButtons").innerHTML = DEFAULT_TRIP_DATA.days
+          .map((d) => {
+            const isActive = d.day === currentDay;
+            return `
+              <button onclick="navigateTo('day', ${d.day})" class="shrink-0 px-3.5 py-1.5 rounded-full text-xs border transition ${
+                isActive
+                  ? "bg-navy text-ivory border-navy font-medium shadow-sm"
+                  : "bg-paper text-sepia border-borderWarm hover:border-gold hover:text-navy"
+              }">
+                DAY ${d.day}｜${d.date.split(" ")[0]}
+              </button>
+            `;
+          })
+          .join("");
+      } else {
+        subNav.classList.add("hidden");
+      }
+    }
+
+    function renderCurrentView() {
+      if (currentView === "home") renderHome();
+      else if (currentView === "day") renderDay(currentDay);
+      else if (currentView === "restaurants") renderRestaurants();
+      else if (currentView === "budget") renderBudget();
+      else if (currentView === "weather") renderWeather();
+    }
+
+    /* =========================================================================
+       5. 視圖一：首頁 (Home)
+       ========================================================================= */
+    function renderCountdownHTML() {
+      const now = new Date();
+      const dep = new Date(DEFAULT_TRIP_DATA.meta.departureISO);
+      const end = new Date(DEFAULT_TRIP_DATA.meta.tripEndISO);
+      const diffMs = dep - now;
+
+      if (diffMs > 0) {
+        const days = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diffMs / (1000 * 60 * 60)) % 24);
+        return `
+          <div class="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-paper border border-gold/60 shadow-soft text-xs sm:text-sm">
+            <span class="text-sepia">距離九州出發還有</span>
+            <span class="font-editorial text-xl sm:text-2xl font-bold text-terracotta">${days}</span>
+            <span class="text-sepia">天</span>
+            <span class="font-editorial text-lg font-bold text-navy">${hours}</span>
+            <span class="text-sepia">小時</span>
+          </div>
+        `;
+      } else if (now <= end) {
+        const dayIndex = Math.min(6, Math.max(1, Math.floor((now - dep) / (1000 * 60 * 60 * 24)) + 1));
+        return `
+          <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-sage/15 border border-sage/40 text-sage text-xs sm:text-sm font-medium">
+            🍁 旅程進行中・目前為 DAY ${dayIndex}
+          </div>
+        `;
+      }
+      return `
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gold/15 border border-gold/50 text-sepia text-xs sm:text-sm">
+          ✨ 2026 九州秋日家族慢旅・美好回憶珍藏
+        </div>
+      `;
+    }
+
+    function toggleConflict(id) {
+      appState.resolvedConflicts[id] = !appState.resolvedConflicts[id];
+      saveState();
+      renderHome();
+    }
+
+    function renderHome() {
+      const meta = DEFAULT_TRIP_DATA.meta;
+      const html = `
+        <div class="space-y-6 view-animate">
+          <div class="editorial-card editorial-frame rounded-3xl p-5 sm:p-8 shadow-journal text-center overflow-hidden">
+            <p class="font-editorial text-xs sm:text-sm tracking-[0.26em] text-gold uppercase">Bespoke Family Itinerary</p>
+            <h1 class="font-editorial text-3xl sm:text-5xl font-bold tracking-[0.06em] text-navy mt-2">
+              ${escapeHtml(meta.title)}
+            </h1>
+            <p class="font-serifTC text-base sm:text-xl text-sepia mt-1.5 tracking-[0.16em]">
+              ${escapeHtml(meta.subtitle)}
+            </p>
+            <p class="font-editorial text-sm sm:text-base text-navy/80 tracking-[0.14em] mt-2">
+              ${escapeHtml(meta.datesText)}
+            </p>
+
+            <div class="mt-4">${renderCountdownHTML()}</div>
+            ${botanicalDivider()}
+
+            ${renderImageBox(meta.heroImage, meta.heroCaption, "aspect-[16/10] sm:aspect-[21/9]", meta.heroCaption)}
+
+            <p class="max-w-2xl mx-auto text-sm text-sepia leading-7 mt-5 font-serifTC">
+              ${escapeHtml(meta.intro)}
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div class="editorial-card rounded-2xl p-5 shadow-soft">
+              <p class="text-[11px] tracking-[0.2em] text-gold font-editorial uppercase">FLIGHTS</p>
+              <h3 class="font-serifTC font-bold text-navy mt-1 mb-2.5">✈️ 航班資訊（中華航空）</h3>
+              <div class="space-y-2 text-xs text-sepia leading-relaxed">
+                <p class="p-2.5 rounded-xl bg-paper border border-borderWarm/70">${escapeHtml(meta.flights.outbound)}</p>
+                <p class="p-2.5 rounded-xl bg-paper border border-borderWarm/70">${escapeHtml(meta.flights.inbound)}</p>
+              </div>
+            </div>
+
+            <div class="editorial-card rounded-2xl p-5 shadow-soft">
+              <p class="text-[11px] tracking-[0.2em] text-gold font-editorial uppercase">STAYS</p>
+              <h3 class="font-serifTC font-bold text-navy mt-1 mb-2.5">🏨 精選三處旅宿</h3>
+              <ul class="space-y-2 text-xs">
+                ${meta.staysSummary
+                  .map(
+                    (s) => `
+                  <li class="flex items-start justify-between gap-2 pb-1.5 border-b border-borderWarm/50 last:border-0">
+                    <div>
+                      <p class="font-medium text-navy">${escapeHtml(s.name)}</p>
+                      <p class="text-[11px] text-sepia">${escapeHtml(s.nights)}</p>
+                    </div>
+                    <span class="shrink-0 px-2 py-0.5 rounded-full bg-gold/15 text-sepia text-[10px]">${escapeHtml(s.city)}</span>
+                  </li>
+                `
+                  )
+                  .join("")}
+              </ul>
+            </div>
+
+            <div class="editorial-card rounded-2xl p-5 shadow-soft flex flex-col justify-between">
+              <div>
+                <p class="text-[11px] tracking-[0.2em] text-gold font-editorial uppercase">MOBILITY & PARTY</p>
+                <h3 class="font-serifTC font-bold text-navy mt-1 mb-2.5">🚐 交通方式與旅伴</h3>
+                <p class="text-xs text-sepia leading-relaxed">${escapeHtml(meta.transportSummary)}</p>
+              </div>
+              <div class="mt-4 pt-3 border-t border-borderWarm/60 flex items-center justify-between text-xs">
+                <span class="text-sepia">三人同行：${appState.travelers.map(escapeHtml).join("・")}</span>
+                <button onclick="navigateTo('budget')" class="text-navy font-medium underline underline-offset-4 hover:text-terracotta">
+                  前往記帳 →
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="editorial-card rounded-2xl p-5 sm:p-6 border-l-4 border-l-terracotta shadow-soft">
+            <h2 class="font-serifTC text-base sm:text-lg font-bold text-navy">📌 行程待確認清單</h2>
+            <p class="text-xs text-sepia mt-0.5 mb-3">出發前確認以下兩項 Day 1 彈性安排，決定後可直接勾選完成（自動儲存）。</p>
+            <div class="space-y-2.5">
+              ${DEFAULT_TRIP_DATA.conflicts
+                .map((c) => {
+                  const done = !!appState.resolvedConflicts[c.id];
+                  return `
+                  <label class="flex items-start gap-3 p-3.5 rounded-xl border transition cursor-pointer ${
+                    done ? "bg-sage/10 border-sage/30 opacity-75" : "bg-paper border-borderWarm hover:border-gold"
+                  }">
+                    <input type="checkbox" ${done ? "checked" : ""} onchange="toggleConflict('${c.id}')" class="mt-1 w-4 h-4 accent-navy rounded" />
+                    <div class="flex-1">
+                      <div class="flex flex-wrap items-center gap-2">
+                        <span class="px-2 py-0.5 rounded-full text-[10px] font-medium ${
+                          done ? "bg-sage/20 text-sage" : "bg-terracotta/15 text-terracotta"
+                        }">${done ? "已確認" : escapeHtml(c.tag)}</span>
+                        <span class="text-sm font-serifTC font-bold text-navy ${done ? "line-through" : ""}">${escapeHtml(c.title)}</span>
+                      </div>
+                      <p class="text-xs text-sepia mt-1 leading-relaxed">${escapeHtml(c.detail)}</p>
+                    </div>
+                  </label>
+                `;
+                })
+                .join("")}
+            </div>
+          </div>
+
+          <section>
+            <div class="flex items-end justify-between mb-3.5">
+              <div>
+                <p class="font-editorial text-xs tracking-[0.22em] text-gold uppercase">SIX CHAPTERS</p>
+                <h2 class="font-serifTC text-xl font-bold text-navy">六日行程快速導覽</h2>
+              </div>
+              <span class="text-xs text-sepia">點擊卡片進入詳細時間軸</span>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              ${DEFAULT_TRIP_DATA.days
+                .map(
+                  (d) => `
+                <button onclick="navigateTo('day', ${d.day})" class="editorial-card rounded-2xl p-4 sm:p-5 text-left shadow-soft hover:shadow-journal hover:-translate-y-0.5 transition group">
+                  <div class="flex items-center justify-between">
+                    <span class="font-editorial text-2xl font-bold text-navy group-hover:text-terracotta transition">DAY ${d.day}</span>
+                    <span class="text-xs px-2.5 py-1 rounded-full bg-paper border border-borderWarm text-sepia">${escapeHtml(d.date)}</span>
+                  </div>
+                  <h3 class="font-serifTC font-bold text-navy text-base mt-2">${escapeHtml(d.title)}</h3>
+                  <p class="text-xs text-sepia mt-1 line-clamp-2">${escapeHtml(d.shortRoute)}</p>
+                  <div class="mt-3 pt-2.5 border-t border-borderWarm/60 flex items-center justify-between text-[11px] text-sepia">
+                    <span>${escapeHtml(d.transport)}</span>
+                    <span class="text-navy font-medium group-hover:translate-x-0.5 transition">查看詳情 →</span>
+                  </div>
+                </button>
+              `
+                )
+                .join("")}
+            </div>
+          </section>
+        </div>
+      `;
+
+      document.getElementById("appMain").innerHTML = html;
+    }
+
+    /* =========================================================================
+       6. 視圖二：每日行程 (Daily Itinerary)
+       ========================================================================= */
+    function buildDayRouteUrl(waypoints) {
+      if (!waypoints || waypoints.length < 2) return "https://www.google.com/maps";
+      const origin = encodeURIComponent(waypoints[0]);
+      const dest = encodeURIComponent(waypoints[waypoints.length - 1]);
+      const mids = waypoints.slice(1, -1).map(encodeURIComponent).join("|");
+      return `https://www.google.com/maps/dir/?api=1&origin=${origin}&destination=${dest}${mids ? `&waypoints=${mids}` : ""}&travelmode=driving`;
+    }
+
+    function saveDailyMemo(dayNum, value) {
+      appState.dailyMemos[`day-${dayNum}`] = value;
+      saveState();
+    }
+
+    function renderDay(dayNum) {
+      const d = DEFAULT_TRIP_DATA.days.find((item) => item.day === dayNum) || DEFAULT_TRIP_DATA.days[0];
+      const routeUrl = buildDayRouteUrl(d.routeWaypoints);
+      const memoVal = appState.dailyMemos[`day-${d.day}`] || "";
 
       const html = `
-        <div class="space-y-6 fade-in">
-          <!-- Hero Cover Card -->
-          <section class="journal-card rounded-3xl p-5 sm:p-7 shadow-journal text-center">
-            <p class="font-editorial text-xs sm:text-sm tracking-[0.26em] text-gold uppercase">${esc(HERO_DATA.enTitle)}</p>
-            <h1 class="font-serifTC text-2xl sm:text-4xl font-bold text-ink mt-1.5 tracking-wider">${esc(HERO_DATA.title)}</h1>
-            <p class="font-editorial text-sm sm:text-base text-sepia tracking-[0.14em] mt-1">${esc(HERO_DATA.dates)}</p>
-            ${dividerSVG()}
-            ${renderPhoto(HERO_DATA.image, HERO_DATA.caption, 'aspect-[16/10] sm:aspect-[21/9]', HERO_DATA.caption)}
-            <p class="max-w-2xl mx-auto text-xs sm:text-sm text-sepia leading-7 mt-4 font-serifTC">${esc(HERO_DATA.summary)}</p>
-          </section>
-
-          <!-- Day 1–6 Switcher -->
-          <div class="sticky top-[61px] z-30 bg-paper/95 backdrop-blur-md py-2 -mx-4 px-4 border-y border-borderWarm/70">
-            <div class="flex items-center gap-2 overflow-x-auto no-scrollbar">
-              ${ITINERARY_DAYS.map((item) => {
-                const isOn = item.day === activeDay;
-                return `
-                  <button onclick="selectDay(${item.day})" class="shrink-0 px-3.5 py-1.5 rounded-full text-xs border transition ${
-                    isOn
-                      ? 'bg-ink text-ivory border-ink font-medium shadow-sm'
-                      : 'bg-ivory text-sepia border-borderWarm hover:border-gold hover:text-ink'
-                  }">
-                    DAY ${item.day}｜${esc(item.date.split(' ')[0])}
-                  </button>
-                `;
-              }).join('')}
+        <div class="space-y-6 view-animate">
+          <div class="editorial-card editorial-frame rounded-3xl p-5 sm:p-7 shadow-journal">
+            <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-3">
+              <div>
+                <p class="font-editorial text-xs tracking-[0.26em] text-gold uppercase">${escapeHtml(d.chapter)}</p>
+                <div class="flex items-baseline gap-3 mt-1">
+                  <h1 class="font-editorial text-4xl sm:text-5xl font-bold text-navy">DAY ${d.day}</h1>
+                  <span class="font-serifTC text-base sm:text-lg text-sepia">${escapeHtml(d.date)}</span>
+                </div>
+                <h2 class="font-serifTC text-xl sm:text-2xl font-bold text-navy mt-1.5">${escapeHtml(d.title)}</h2>
+                <p class="font-editorial italic text-sm text-sepia mt-0.5">${escapeHtml(d.enSubtitle)}</p>
+              </div>
+              <div class="flex flex-wrap gap-2">
+                <span class="px-3 py-1.5 rounded-full bg-paper border border-borderWarm text-xs text-sepia">🚐 ${escapeHtml(d.transport)}</span>
+                <a href="${routeUrl}" target="_blank" rel="noopener" class="px-3.5 py-1.5 rounded-full bg-navy text-ivory text-xs font-medium hover:bg-navy/90 transition shadow-sm">
+                  🗺️ 開啟當日行車路線
+                </a>
+              </div>
             </div>
+            <p class="mt-4 pt-3 border-t border-borderWarm/60 text-xs sm:text-sm text-sepia">
+              <strong class="text-navy font-serifTC">當日路線：</strong>${escapeHtml(d.shortRoute)}
+            </p>
           </div>
 
-          <!-- Active Day Header -->
-          <section class="journal-card rounded-2xl p-5 sm:p-6 shadow-soft">
-            <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2">
-              <div>
-                <p class="font-editorial text-xs tracking-[0.22em] text-gold uppercase">CHAPTER ${d.day}</p>
-                <div class="flex items-baseline gap-2.5 mt-0.5">
-                  <h2 class="font-editorial text-3xl sm:text-4xl font-bold text-ink">DAY ${d.day}</h2>
-                  <span class="font-serifTC text-sm sm:text-base text-sepia">${esc(d.date)}</span>
-                </div>
-                <h3 class="font-serifTC text-lg sm:text-xl font-bold text-ink mt-1">${esc(d.title)}</h3>
-                <p class="font-editorial italic text-sm text-sepia">${esc(d.enSubtitle)}</p>
-              </div>
-              <span class="self-start sm:self-auto px-3 py-1 rounded-full bg-paperDeep border border-borderWarm text-xs text-sepia">
-                🚐 ${esc(d.transport)}
-              </span>
-            </div>
-            <p class="mt-3 pt-3 border-t border-borderWarm/60 text-xs sm:text-sm text-sepia">
-              <strong class="text-ink font-serifTC">當日動線：</strong>${esc(d.route)}
-            </p>
-            <div class="mt-3 p-3 rounded-xl bg-moss/10 border border-moss/25 text-xs text-ink/90 leading-relaxed">
-              <strong class="text-moss">🌿 貼心慢旅提示：</strong>${esc(d.tips)}
-            </div>
-          </section>
-
-          <!-- Timeline Cards -->
-          <div class="relative pl-5 sm:pl-7 space-y-4 before:content-[''] before:absolute before:left-[9px] sm:before:left-[13px] before:top-3 before:bottom-3 before:w-[2px] before:bg-borderWarm">
+          <div class="relative pl-5 sm:pl-7 space-y-5 before:content-[''] before:absolute before:left-[9px] sm:before:left-[13px] before:top-3 before:bottom-3 before:w-[2px] before:bg-borderWarm">
             ${d.stops
               .map((stop) => {
-                const hasPhoto = !!stop.photo;
-                const hasDual = Array.isArray(stop.dualPhotos) && stop.dualPhotos.length === 2;
-                return `
-                  <article class="relative">
-                    <span class="absolute -left-[22px] sm:-left-[28px] top-5 w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-ivory border-2 border-gold flex items-center justify-center text-[11px] shadow-sm">
-                      ${stop.icon}
-                    </span>
+                const hasSinglePhoto = !stop.hidePhoto && !!stop.photo;
+                const hasMultiPhotos = !stop.hidePhoto && Array.isArray(stop.dualPhotos) && stop.dualPhotos.length >= 2;
+                const multiGridCols = hasMultiPhotos && stop.dualPhotos.length === 3 ? "sm:grid-cols-3" : "sm:grid-cols-2";
 
-                    <div class="journal-card rounded-2xl p-4 sm:p-5 shadow-soft">
-                      <div class="${hasPhoto ? 'grid grid-cols-1 lg:grid-cols-12 gap-4 items-start' : ''}">
-                        <div class="${hasPhoto ? 'lg:col-span-7' : 'w-full'}">
-                          <span class="font-editorial text-sm sm:text-base font-bold text-maple tracking-wider">${esc(stop.time)}</span>
-                          <h4 class="font-serifTC text-base sm:text-lg font-bold text-ink mt-1">${esc(stop.name)}</h4>
-                          <p class="text-xs sm:text-sm text-ink/85 mt-2 leading-relaxed whitespace-pre-line">${esc(stop.desc)}</p>
+                return `
+                <article class="relative">
+                  <span class="absolute -left-[22px] sm:-left-[28px] top-5 w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-ivory border-2 border-gold flex items-center justify-center text-[11px] shadow-sm">
+                    ${getStopIcon(stop.icon)}
+                  </span>
+
+                  ${
+                    stop.driveFromPrev
+                      ? `<div class="mb-2 inline-flex items-center px-3 py-1 rounded-full bg-gold/15 border border-gold/40 text-[11px] text-sepia">${escapeHtml(stop.driveFromPrev)}</div>`
+                      : ""
+                  }
+
+                  <div class="editorial-card rounded-2xl p-4 sm:p-5 shadow-soft">
+                    <div class="${hasSinglePhoto ? "grid grid-cols-1 lg:grid-cols-12 gap-4 items-start" : ""}">
+                      <div class="${hasSinglePhoto ? "lg:col-span-7" : "w-full"} flex flex-col justify-between">
+                        <div>
+                          <div class="flex flex-wrap items-center gap-2">
+                            <span class="font-editorial text-base font-bold text-terracotta tracking-wider">${escapeHtml(stop.time)}</span>
+                            ${(stop.tags || [])
+                              .map(
+                                (t) => `
+                              <span class="px-2 py-0.5 rounded-full text-[10px] font-medium ${
+                                t.includes("待確認") || t.includes("不可預約")
+                                  ? "bg-terracotta/15 text-terracotta"
+                                  : t.includes("已預訂") || t.includes("已預約") || t.includes("感謝祭")
+                                  ? "bg-sage/20 text-sage"
+                                  : "bg-paper border border-borderWarm text-sepia"
+                              }">${escapeHtml(t)}</span>
+                            `
+                              )
+                              .join("")}
+                          </div>
+
+                          <h3 class="font-serifTC text-base sm:text-lg font-bold text-navy mt-1.5">${escapeHtml(stop.name)}</h3>
+
+                          <div class="mt-1.5 flex flex-wrap gap-x-4 gap-y-1 text-[11px] text-sepia">
+                            <span>⏱ 停留：${escapeHtml(stop.stay)}</span>
+                            <span>📍 ${escapeHtml(stop.address)}</span>
+                          </div>
+
+                          <p class="text-xs sm:text-sm text-navy/90 mt-2.5 leading-relaxed whitespace-pre-line">${escapeHtml(stop.desc)}</p>
 
                           ${
-                            hasDual
+                            stop.highlightBox
                               ? `
-                            <div class="mt-3.5 grid grid-cols-2 gap-3">
-                              ${stop.dualPhotos
-                                .map((p) => renderPhoto(p.src, p.label, 'aspect-[4/3] sm:aspect-[16/10]', p.label))
-                                .join('')}
+                            <div class="mt-3 p-3.5 rounded-xl bg-gold/15 border border-gold/50 text-xs sm:text-sm">
+                              <p class="font-serifTC font-bold text-navy">${escapeHtml(stop.highlightBox.title)}</p>
+                              <p class="text-sepia mt-1 leading-relaxed">${escapeHtml(stop.highlightBox.text)}</p>
                             </div>
                           `
-                              : ''
+                              : ""
                           }
 
-                          <div class="mt-3.5 pt-3 border-t border-borderWarm/50">
-                            <a href="${stop.mapUrl}" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-ink text-ivory text-xs font-medium hover:bg-ink/90 transition">
-                              📍 Google Maps 導航
-                            </a>
-                          </div>
+                          ${
+                            hasMultiPhotos
+                              ? `
+                            <div class="mt-4 grid grid-cols-1 ${multiGridCols} gap-3">
+                              ${stop.dualPhotos
+                                .map((p) => renderImageBox(p.src, p.label, "aspect-[16/10]", p.label))
+                                .join("")}
+                            </div>
+                          `
+                              : ""
+                          }
                         </div>
 
-                        ${
-                          hasPhoto
-                            ? `<div class="lg:col-span-5">${renderPhoto(stop.photo, stop.photoCaption || stop.name, 'aspect-[16/10]')}</div>`
-                            : ''
-                        }
+                        <div class="mt-4 pt-3 border-t border-borderWarm/50 flex flex-wrap gap-2">
+                          <a href="${stop.mapUrl}" target="_blank" rel="noopener" class="px-3 py-1.5 rounded-xl bg-navy text-ivory text-xs font-medium hover:bg-navy/90 transition">
+                            📍 Google Maps 導航
+                          </a>
+                          ${
+                            stop.extraLink
+                              ? `<a href="${stop.extraLink.url}" target="_blank" rel="noopener" class="px-3 py-1.5 rounded-xl border border-gold text-navy text-xs hover:bg-gold/15 transition">🔗 ${escapeHtml(stop.extraLink.label)}</a>`
+                              : ""
+                          }
+                        </div>
                       </div>
+
+                      ${
+                        hasSinglePhoto
+                          ? `
+                        <div class="lg:col-span-5">
+                          ${renderImageBox(stop.photo, stop.name, "aspect-[16/10]")}
+                        </div>
+                      `
+                          : ""
+                      }
                     </div>
-                  </article>
-                `;
+                  </div>
+                </article>
+              `;
               })
-              .join('')}
+              .join("")}
           </div>
 
-          <!-- Tonight's Stay -->
-          <section class="journal-card rounded-2xl p-5 shadow-soft flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-            <div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="editorial-card rounded-2xl p-5 shadow-soft">
               <p class="font-editorial text-xs tracking-[0.2em] text-gold uppercase">TONIGHT'S STAY</p>
-              <h4 class="font-serifTC text-base font-bold text-ink mt-0.5">🏨 ${esc(d.stay.name)}</h4>
-              <p class="text-xs sm:text-sm text-sepia mt-1 leading-relaxed">${esc(d.stay.note)}</p>
+              <h3 class="font-serifTC text-base font-bold text-navy mt-1">🏨 ${escapeHtml(d.accommodation.name)}</h3>
+              <p class="text-xs text-sepia mt-1">📍 ${escapeHtml(d.accommodation.address)}</p>
+              <p class="text-xs sm:text-sm text-navy/90 mt-2.5 leading-relaxed">${escapeHtml(d.accommodation.note)}</p>
+              <a href="${d.accommodation.mapUrl}" target="_blank" rel="noopener" class="inline-block mt-3 px-3.5 py-1.5 rounded-xl border border-navy text-navy text-xs font-medium hover:bg-navy hover:text-ivory transition">
+                開啟住宿地圖 →
+              </a>
             </div>
-            <a href="${d.stay.mapUrl}" target="_blank" rel="noopener" class="shrink-0 self-start sm:self-center px-3.5 py-2 rounded-xl border border-ink text-ink text-xs font-medium hover:bg-ink hover:text-ivory transition">
-              查看飯店位置 →
-            </a>
-          </section>
 
-          <!-- Prev / Next Day -->
-          <div class="flex items-center justify-between pt-1">
+            <div class="editorial-card rounded-2xl p-5 shadow-soft">
+              <p class="font-editorial text-xs tracking-[0.2em] text-gold uppercase">NOTES & TIPS</p>
+              <h3 class="font-serifTC text-base font-bold text-navy mt-1">📝 當日注意事項</h3>
+              <ul class="mt-2.5 space-y-2 text-xs sm:text-sm text-sepia list-disc pl-4 leading-relaxed">
+                ${d.notes.map((n) => `<li>${escapeHtml(n)}</li>`).join("")}
+              </ul>
+            </div>
+          </div>
+
+          <div class="editorial-card rounded-2xl p-5 shadow-soft">
+            <div class="flex items-center justify-between mb-2">
+              <h3 class="font-serifTC text-sm sm:text-base font-bold text-navy">✍️ 我的 DAY ${d.day} 專屬備忘錄</h3>
+              <span class="text-[11px] text-sage">輸入即自動儲存</span>
+            </div>
+            <textarea
+              rows="3"
+              oninput="saveDailyMemo(${d.day}, this.value)"
+              placeholder="記錄包車司機聯絡方式、餐廳訂位代號、家人臨時想買的伴手禮..."
+              class="w-full p-3 rounded-xl bg-paper border border-borderWarm text-xs sm:text-sm text-navy focus:outline-none focus:border-navy"
+            >${escapeHtml(memoVal)}</textarea>
+          </div>
+
+          <div class="flex items-center justify-between pt-2">
             ${
               d.day > 1
-                ? `<button onclick="selectDay(${d.day - 1}); window.scrollTo({top: 260, behavior: 'smooth'})" class="px-4 py-2 rounded-full border border-borderWarm bg-ivory text-xs text-ink hover:border-gold transition">← DAY ${d.day - 1}</button>`
-                : '<span></span>'
+                ? `<button onclick="navigateTo('day', ${d.day - 1})" class="px-4 py-2 rounded-full border border-borderWarm bg-ivory text-xs sm:text-sm text-navy hover:border-gold transition">← DAY ${d.day - 1}</button>`
+                : `<span></span>`
             }
             ${
               d.day < 6
-                ? `<button onclick="selectDay(${d.day + 1}); window.scrollTo({top: 260, behavior: 'smooth'})" class="px-4 py-2 rounded-full bg-ink text-ivory text-xs font-medium hover:bg-ink/90 transition">DAY ${d.day + 1} →</button>`
-                : `<span class="text-xs text-sepia font-serifTC">✨ 祝旅途平安愉快</span>`
+                ? `<button onclick="navigateTo('day', ${d.day + 1})" class="px-4 py-2 rounded-full bg-navy text-ivory text-xs sm:text-sm font-medium hover:bg-navy/90 transition">DAY ${d.day + 1} →</button>`
+                : `<button onclick="navigateTo('home')" class="px-4 py-2 rounded-full bg-gold text-ivory text-xs sm:text-sm font-medium">回到首頁 🏡</button>`
             }
           </div>
         </div>
       `;
 
-      document.getElementById('app').innerHTML = html;
+      document.getElementById("appMain").innerHTML = html;
     }
 
     /* =========================================================================
-       7. TAB 2: RESTAURANTS DIRECTORY
+       7. 視圖三：餐廳專區 (Region + Category + Search，純文字卡片)
        ========================================================================= */
-    const REGION_LIST = ['全部', '福岡', '由布院', '熊本'];
-    const CUISINE_LIST = [
-      '全部',
-      '水炊鍋・壽喜燒',
-      '拉麵',
-      '燒鳥・居酒屋',
-      '鐵板燒・和食・海鮮',
-      '天婦羅',
-      '甜點・咖啡・伴手禮'
+    const REGIONS = ["全部", "福岡", "由布院・阿蘇", "熊本・高千穗"];
+    const CUISINES = [
+      "全部",
+      "水炊鍋・壽喜燒",
+      "天婦羅",
+      "燒鳥・居酒屋",
+      "拉麵",
+      "鐵板燒・和食・海鮮",
+      "甜點・咖啡・伴手禮",
+      "超市・百貨採買"
     ];
 
-    function setRestRegion(r) {
-      restRegion = r;
+    function getAllRestaurants() {
+      const defaults = DEFAULT_TRIP_DATA.restaurants.filter(
+        (r) => !appState.hiddenDefaultRestaurants.includes(r.id)
+      );
+      return [...defaults, ...appState.customRestaurants];
+    }
+
+    function selectRegion(region) {
+      selectedRegion = region;
       renderRestaurants();
     }
 
-    function setRestCuisine(c) {
-      restCuisine = c;
+    function selectCuisine(cuisine) {
+      selectedCuisine = cuisine;
       renderRestaurants();
     }
 
-    function onRestSearch(val) {
-      restSearch = val;
-      renderRestaurantCardsOnly();
+    function updateRestaurantSearch(val) {
+      restaurantSearchQuery = val;
+      renderRestaurantGridOnly();
     }
 
-    function getFilteredRestaurants() {
-      const q = restSearch.trim().toLowerCase();
-      return RESTAURANTS.filter((r) => {
-        const mReg = restRegion === '全部' || r.region === restRegion;
-        const mCui = restCuisine === '全部' || r.cuisine === restCuisine;
-        const mQ =
-          !q ||
-          r.name.toLowerCase().includes(q) ||
-          r.note.toLowerCase().includes(q) ||
-          r.cuisine.toLowerCase().includes(q) ||
-          r.region.toLowerCase().includes(q);
-        return mReg && mCui && mQ;
+    function openRestaurantModal(restId = null) {
+      const form = document.getElementById("restaurantForm");
+      form.reset();
+      document.getElementById("restId").value = "";
+      document.getElementById("restModalTitle").textContent = "新增私房餐廳";
+
+      if (restId) {
+        const r = getAllRestaurants().find((item) => item.id === restId);
+        if (r) {
+          document.getElementById("restModalTitle").textContent = "編輯餐廳資訊";
+          document.getElementById("restId").value = r.id;
+          document.getElementById("restName").value = r.name || "";
+          document.getElementById("restRegion").value = r.region || "福岡";
+          document.getElementById("restCuisine").value = r.cuisine || "鐵板燒・和食・海鮮";
+          document.getElementById("restPrice").value = r.price || "";
+          document.getElementById("restRating").value = r.rating || "";
+          document.getElementById("restHours").value = r.hours || "";
+          document.getElementById("restClosed").value = r.closed || "";
+          document.getElementById("restDishes").value = r.dishes || "";
+          document.getElementById("restTravel").value = r.travelTime || "";
+          document.getElementById("restMapUrl").value = r.mapUrl || "";
+        }
+      }
+      document.getElementById("restaurantModal").classList.remove("hidden");
+    }
+
+    function closeRestaurantModal() {
+      document.getElementById("restaurantModal").classList.add("hidden");
+    }
+
+    function saveRestaurantForm(e) {
+      e.preventDefault();
+      const id = document.getElementById("restId").value;
+      const payload = {
+        id: id || `custom-r-${Date.now()}`,
+        name: document.getElementById("restName").value.trim(),
+        region: document.getElementById("restRegion").value,
+        cuisine: document.getElementById("restCuisine").value,
+        rating: document.getElementById("restRating").value.trim(),
+        price: document.getElementById("restPrice").value.trim() || "待確認",
+        hours: document.getElementById("restHours").value.trim() || "待確認",
+        closed: document.getElementById("restClosed").value.trim() || "待確認",
+        dishes: document.getElementById("restDishes").value.trim() || "待確認",
+        travelTime: document.getElementById("restTravel").value.trim() || "待確認",
+        mapUrl:
+          document.getElementById("restMapUrl").value.trim() ||
+          `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(document.getElementById("restName").value.trim())}`,
+        isDefault: false
+      };
+
+      const isEditingDefault = DEFAULT_TRIP_DATA.restaurants.some((r) => r.id === id);
+      if (isEditingDefault) {
+        if (!appState.hiddenDefaultRestaurants.includes(id)) {
+          appState.hiddenDefaultRestaurants.push(id);
+        }
+        payload.id = `edited-${id}-${Date.now()}`;
+        appState.customRestaurants.unshift(payload);
+      } else {
+        const idx = appState.customRestaurants.findIndex((r) => r.id === id);
+        if (idx >= 0) appState.customRestaurants[idx] = payload;
+        else appState.customRestaurants.unshift(payload);
+      }
+
+      saveState();
+      closeRestaurantModal();
+      renderRestaurants();
+      showToast("🍽️ 餐廳已儲存");
+    }
+
+    function deleteRestaurant(id, isDefault) {
+      openConfirmModal("移除餐廳", "確定要從餐廳清單移除這家店嗎？", () => {
+        if (isDefault) {
+          if (!appState.hiddenDefaultRestaurants.includes(id)) {
+            appState.hiddenDefaultRestaurants.push(id);
+          }
+        } else {
+          appState.customRestaurants = appState.customRestaurants.filter((r) => r.id !== id);
+        }
+        saveState();
+        renderRestaurants();
+        showToast("已移除餐廳");
       });
     }
 
-    function buildRestaurantCards(list) {
-      if (!list.length) {
-        return `<div class="col-span-full journal-card rounded-2xl p-8 text-center text-sm text-sepia">沒有符合條件的餐廳，請試試其他分類或關鍵字。</div>`;
+    function getFilteredRestaurants() {
+      const q = restaurantSearchQuery.trim().toLowerCase();
+      return getAllRestaurants().filter((r) => {
+        const matchRegion = selectedRegion === "全部" || r.region === selectedRegion;
+        const matchCuisine = selectedCuisine === "全部" || (r.cuisine || "鐵板燒・和食・海鮮") === selectedCuisine;
+        const matchQuery =
+          !q ||
+          (r.name || "").toLowerCase().includes(q) ||
+          (r.dishes || "").toLowerCase().includes(q) ||
+          (r.travelTime || "").toLowerCase().includes(q) ||
+          (r.cuisine || "").toLowerCase().includes(q);
+        return matchRegion && matchCuisine && matchQuery;
+      });
+    }
+
+    function buildRestaurantCardsHTML(list) {
+      if (list.length === 0) {
+        return `
+          <div class="col-span-full editorial-card rounded-2xl p-8 text-center text-sm text-sepia">
+            此篩選條件下目前沒有符合的餐廳，試試切換其他類型或清除搜尋關鍵字。
+          </div>
+        `;
       }
       return list
         .map(
           (r) => `
-          <div class="journal-card rounded-2xl p-4 sm:p-5 shadow-soft flex flex-col justify-between">
+          <div class="editorial-card rounded-2xl p-4 sm:p-5 shadow-soft flex flex-col justify-between">
             <div>
               <div class="flex items-start justify-between gap-2">
-                <h3 class="font-serifTC text-base font-bold text-ink leading-snug">${esc(r.name)}</h3>
-                <span class="shrink-0 px-2 py-0.5 rounded-full bg-gold/20 text-ink text-[11px] font-medium">${esc(r.rating)}</span>
+                <h3 class="font-serifTC text-base sm:text-lg font-bold text-navy leading-snug">${escapeHtml(r.name)}</h3>
+                ${
+                  r.rating
+                    ? `<span class="shrink-0 px-2 py-0.5 rounded-full bg-gold/20 text-navy text-[11px] font-medium">${escapeHtml(r.rating)}</span>`
+                    : ""
+                }
               </div>
+
               <div class="flex flex-wrap gap-1.5 mt-2">
-                <span class="px-2 py-0.5 rounded-full bg-paperDeep border border-borderWarm text-[10px] text-sepia">${esc(r.region)}</span>
-                <span class="px-2 py-0.5 rounded-full bg-moss/15 text-moss text-[10px] font-medium">${esc(r.cuisine)}</span>
-                <span class="px-2 py-0.5 rounded-full bg-paperDeep text-sepia text-[10px]">${esc(r.price)}</span>
+                <span class="px-2 py-0.5 rounded-full bg-paper border border-borderWarm text-[10px] text-sepia">${escapeHtml(r.region)}</span>
+                <span class="px-2 py-0.5 rounded-full bg-sage/15 text-sage text-[10px] font-medium">${escapeHtml(r.cuisine || "美食")}</span>
               </div>
-              <p class="text-xs text-sepia mt-2.5 leading-relaxed">${esc(r.note)}</p>
+
+              <div class="mt-3 space-y-1.5 text-xs text-sepia leading-relaxed">
+                <p><strong class="text-navy">✨ 特色與筆記：</strong>${escapeHtml(r.dishes)}</p>
+                <p><strong class="text-navy">💴 價格區間：</strong>${escapeHtml(r.price)}</p>
+                <p><strong class="text-navy">🚗 位置 / 交通：</strong>${escapeHtml(r.travelTime)}</p>
+                <p><strong class="text-navy">⏰ 營業 / 公休：</strong>${escapeHtml(r.hours)}｜${escapeHtml(r.closed)}</p>
+              </div>
             </div>
-            <div class="mt-4 pt-3 border-t border-borderWarm/50">
-              <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(r.query)}" target="_blank" rel="noopener" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-xl bg-ink text-ivory text-xs font-medium hover:bg-ink/90 transition">
-                📍 Google Maps 搜尋
+
+            <div class="mt-4 pt-3 border-t border-borderWarm/50 flex items-center justify-between gap-2">
+              <a href="${r.mapUrl}" target="_blank" rel="noopener" class="px-3.5 py-1.5 rounded-xl bg-navy text-ivory text-xs font-medium hover:bg-navy/90 transition">
+                📍 Google Maps
               </a>
+              <div class="flex gap-1.5">
+                <button onclick="openRestaurantModal('${r.id}')" class="px-2.5 py-1.5 rounded-xl border border-borderWarm text-xs text-sepia hover:text-navy">編輯</button>
+                <button onclick="deleteRestaurant('${r.id}', ${!!r.isDefault})" class="px-2.5 py-1.5 rounded-xl border border-borderWarm text-xs text-terracotta hover:bg-terracotta/10">移除</button>
+              </div>
             </div>
           </div>
         `
         )
-        .join('');
+        .join("");
     }
 
-    function renderRestaurantCardsOnly() {
+    function renderRestaurantGridOnly() {
       const list = getFilteredRestaurants();
-      const countEl = document.getElementById('restCount');
-      const gridEl = document.getElementById('restGrid');
-      if (countEl) countEl.textContent = `共顯示 ${list.length} 間餐廳`;
-      if (gridEl) gridEl.innerHTML = buildRestaurantCards(list);
+      const grid = document.getElementById("restaurantGridContainer");
+      const countEl = document.getElementById("restaurantCountLabel");
+      if (countEl) countEl.textContent = `共顯示 ${list.length} 間`;
+      if (grid) grid.innerHTML = buildRestaurantCardsHTML(list);
     }
 
     function renderRestaurants() {
-      const list = getFilteredRestaurants();
+      const allList = getAllRestaurants();
+      const filtered = getFilteredRestaurants();
+
       const html = `
-        <div class="space-y-5 fade-in">
-          <section class="journal-card rounded-3xl p-5 sm:p-6 shadow-journal">
-            <p class="font-editorial text-xs tracking-[0.24em] text-gold uppercase">CULINARY GUIDE</p>
-            <h1 class="font-serifTC text-2xl sm:text-3xl font-bold text-ink mt-1">九州精選餐廳指南</h1>
-            <p class="text-xs sm:text-sm text-sepia mt-1">收錄福岡、由布院與熊本精選名店（共 ${RESTAURANTS.length} 間），支援地區篩選、料理分類與關鍵字秒搜。</p>
-          </section>
+        <div class="space-y-5 view-animate">
+          <div class="editorial-card rounded-3xl p-5 sm:p-7 shadow-journal">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div>
+                <p class="font-editorial text-xs tracking-[0.24em] text-gold uppercase">CULINARY MEMORIES</p>
+                <h1 class="font-serifTC text-2xl sm:text-3xl font-bold text-navy mt-1">味蕾・九州餐廳指南</h1>
+                <p class="text-xs sm:text-sm text-sepia mt-1">已依地區與料理類型完成分類去重（共收錄 ${allList.length} 間），支援關鍵字秒搜。</p>
+              </div>
+              <button onclick="openRestaurantModal()" class="shrink-0 px-4 py-2.5 rounded-full bg-navy text-ivory text-xs sm:text-sm font-medium hover:bg-navy/90 transition shadow-sm">
+                ＋ 新增餐廳
+              </button>
+            </div>
+
+            <div class="mt-4 pt-4 border-t border-borderWarm/60 flex flex-wrap items-center gap-2 text-xs">
+              <span class="text-sepia">原始 Google Maps 清單：</span>
+              <a href="https://maps.app.goo.gl/wCXfxPg9Jb3Qd3mm9" target="_blank" rel="noopener" class="px-3.5 py-1.5 rounded-full border border-gold bg-paper text-navy font-medium hover:bg-gold/15 transition">
+                📍 福岡清單 ↗
+              </a>
+              <a href="https://maps.app.goo.gl/R8UqYcA1uFnW1WtGA" target="_blank" rel="noopener" class="px-3.5 py-1.5 rounded-full border border-gold bg-paper text-navy font-medium hover:bg-gold/15 transition">
+                📍 熊本清單 ↗
+              </a>
+            </div>
+          </div>
 
           <div class="space-y-3">
             <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
-              <div class="flex items-center gap-2 overflow-x-auto no-scrollbar">
-                ${REGION_LIST.map(
+              <div class="flex items-center gap-2 overflow-x-auto no-scrollbar pb-0.5">
+                ${REGIONS.map(
                   (reg) => `
-                  <button onclick="setRestRegion('${reg}')" class="shrink-0 px-4 py-1.5 rounded-full text-xs sm:text-sm border transition ${
-                    restRegion === reg
-                      ? 'bg-ink text-ivory border-ink font-medium shadow-sm'
-                      : 'bg-ivory text-sepia border-borderWarm hover:border-gold hover:text-ink'
-                  }">${esc(reg)}</button>
+                  <button onclick="selectRegion('${reg}')" class="shrink-0 px-4 py-1.5 rounded-full text-xs sm:text-sm border transition ${
+                    selectedRegion === reg
+                      ? "bg-navy text-ivory border-navy font-medium shadow-sm"
+                      : "bg-ivory text-sepia border-borderWarm hover:border-gold hover:text-navy"
+                  }">
+                    ${escapeHtml(reg)}
+                  </button>
                 `
-                ).join('')}
+                ).join("")}
               </div>
 
-              <input
-                type="text"
-                value="${esc(restSearch)}"
-                oninput="onRestSearch(this.value)"
-                placeholder="🔍 搜尋店名、拉麵、豬排、壽喜燒..."
-                class="sm:w-64 px-3.5 py-1.5 rounded-full bg-ivory border border-borderWarm text-xs text-ink focus:outline-none focus:border-ink"
-              />
+              <div class="relative sm:w-64">
+                <input
+                  type="text"
+                  value="${escapeHtml(restaurantSearchQuery)}"
+                  oninput="updateRestaurantSearch(this.value)"
+                  placeholder="🔍 搜尋店名、拉麵、天婦羅、大濠..."
+                  class="w-full px-3.5 py-1.5 rounded-full bg-ivory border border-borderWarm text-xs text-navy focus:outline-none focus:border-navy"
+                />
+              </div>
             </div>
 
             <div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar pb-1">
-              ${CUISINE_LIST.map(
+              ${CUISINES.map(
                 (cui) => `
-                <button onclick="setRestCuisine('${cui}')" class="shrink-0 px-3 py-1 rounded-full text-[11px] sm:text-xs border transition ${
-                  restCuisine === cui
-                    ? 'bg-gold text-ivory border-gold font-medium shadow-sm'
-                    : 'bg-paperDeep text-sepia border-borderWarm hover:border-gold hover:text-ink'
-                }">${esc(cui)}</button>
+                <button onclick="selectCuisine('${cui}')" class="shrink-0 px-3 py-1 rounded-full text-[11px] sm:text-xs border transition ${
+                  selectedCuisine === cui
+                    ? "bg-gold text-ivory border-gold font-medium shadow-sm"
+                    : "bg-paper text-sepia border-borderWarm/80 hover:border-gold hover:text-navy"
+                }">
+                  ${escapeHtml(cui)}
+                </button>
               `
-              ).join('')}
+              ).join("")}
             </div>
 
-            <p id="restCount" class="text-xs text-sepia px-1">共顯示 ${list.length} 間餐廳</p>
+            <div class="flex items-center justify-between text-xs text-sepia px-1">
+              <span id="restaurantCountLabel">共顯示 ${filtered.length} 間</span>
+              <span class="text-[11px]">※ 營業時間以 Google Maps 即時資訊為準</span>
+            </div>
           </div>
 
-          <div id="restGrid" class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            ${buildRestaurantCards(list)}
+          <div id="restaurantGridContainer" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            ${buildRestaurantCardsHTML(filtered)}
           </div>
         </div>
       `;
-      document.getElementById('app').innerHTML = html;
+
+      document.getElementById("appMain").innerHTML = html;
     }
 
     /* =========================================================================
-       8. TAB 3: 3-PERSON BUDGET TRACKER (JPY/TWD + JSON BACKUP)
+       8. 視圖四：旅行預算 (Budget Manager)
        ========================================================================= */
-    const BUDGET_CATS = ['餐飲', '交通包車', '住宿', '景點門票', '購物伴手禮'];
-    const PAYERS = ['我', '爸爸', '媽媽'];
+    const CATEGORIES = ["餐飲", "購物", "景點門票", "其他支出"];
+    const DAY_OPTIONS = [
+      "行前預付",
+      "Day 1 (11/23)",
+      "Day 2 (11/24)",
+      "Day 3 (11/25)",
+      "Day 4 (11/26)",
+      "Day 5 (11/27)",
+      "Day 6 (11/28)"
+    ];
 
-    function toTWD(amt, cur) {
-      const n = Number(amt) || 0;
-      return cur === 'JPY' ? Math.round(n * budgetState.rate) : Math.round(n);
+    function toTWD(amount, currency) {
+      const val = Number(amount) || 0;
+      return currency === "JPY" ? Math.round(val * appState.exchangeRate) : Math.round(val);
     }
 
-    function updateRate(val) {
-      const n = parseFloat(val);
-      if (n > 0 && n < 5) {
-        budgetState.rate = n;
-        saveBudgetState();
+    function updateExchangeRate(val) {
+      const num = parseFloat(val);
+      if (num > 0 && num < 10) {
+        appState.exchangeRate = num;
+        saveState();
         renderBudget();
       }
     }
 
-    function addBudgetItem(e) {
+    function updateTravelerName(idx, val) {
+      const clean = val.trim() || `旅伴 ${idx + 1}`;
+      const oldName = appState.travelers[idx];
+      appState.travelers[idx] = clean;
+      appState.expenses.forEach((exp) => {
+        if (exp.payer === oldName) exp.payer = clean;
+      });
+      saveState();
+      renderBudget();
+    }
+
+    function saveExpenseForm(e) {
       e.preventDefault();
-      const name = document.getElementById('bName').value.trim();
-      const amount = parseFloat(document.getElementById('bAmount').value);
+      const name = document.getElementById("expName").value.trim();
+      const amount = parseFloat(document.getElementById("expAmount").value);
       if (!name || isNaN(amount) || amount <= 0) {
-        showToast('請輸入正確的項目名稱與金額');
+        showToast("請輸入正確的項目名稱與金額");
         return;
       }
-      budgetState.items.unshift({
-        id: 'b-' + Date.now(),
-        day: document.getElementById('bDay').value,
-        category: document.getElementById('bCat').value,
+
+      const payload = {
+        id: editingExpenseId || `exp-${Date.now()}`,
+        day: document.getElementById("expDay").value,
         name,
+        category: document.getElementById("expCategory").value,
         amount,
-        currency: document.getElementById('bCur').value,
-        payer: document.getElementById('bPayer').value
-      });
-      saveBudgetState();
-      renderBudget();
-      showToast('💴 已新增一筆支出');
-    }
-
-    function removeBudgetItem(id) {
-      openConfirm('刪除支出', '確定要刪除這筆支出紀錄嗎？', () => {
-        budgetState.items = budgetState.items.filter((x) => x.id !== id);
-        saveBudgetState();
-        renderBudget();
-        showToast('已刪除支出');
-      });
-    }
-
-    function exportBudgetJSON() {
-      const blob = new Blob([JSON.stringify(budgetState, null, 2)], { type: 'application/json' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = 'kyushu-budget-backup.json';
-      a.click();
-      URL.revokeObjectURL(url);
-      showToast('⬇️ 記帳備份檔已匯出');
-    }
-
-    function importBudgetJSON(e) {
-      const file = e.target.files && e.target.files[0];
-      if (!file) return;
-      const reader = new FileReader();
-      reader.onload = (ev) => {
-        try {
-          const parsed = JSON.parse(ev.target.result);
-          if (parsed && Array.isArray(parsed.items)) {
-            budgetState = { rate: Number(parsed.rate) || 0.215, items: parsed.items };
-            saveBudgetState();
-            renderBudget();
-            showToast('✅ 記帳備份已還原');
-          } else {
-            showToast('⚠️ 檔案格式不符');
-          }
-        } catch {
-          showToast('⚠️ 無法解析 JSON 檔案');
-        }
+        currency: document.getElementById("expCurrency").value,
+        payer: document.getElementById("expPayer").value,
+        note: document.getElementById("expNote").value.trim()
       };
-      reader.readAsText(file);
+
+      if (editingExpenseId) {
+        const idx = appState.expenses.findIndex((x) => x.id === editingExpenseId);
+        if (idx >= 0) appState.expenses[idx] = payload;
+        editingExpenseId = null;
+        showToast("✏️ 已更新支出紀錄");
+      } else {
+        appState.expenses.unshift(payload);
+        showToast("💴 已新增支出紀錄");
+      }
+
+      saveState();
+      renderBudget();
+    }
+
+    function editExpense(id) {
+      editingExpenseId = id;
+      renderBudget();
+      document.getElementById("budgetFormSection")?.scrollIntoView({ behavior: "smooth" });
+    }
+
+    function cancelEditExpense() {
+      editingExpenseId = null;
+      renderBudget();
+    }
+
+    function deleteExpense(id) {
+      openConfirmModal("刪除支出", "確定要刪除這筆支出紀錄嗎？", () => {
+        appState.expenses = appState.expenses.filter((x) => x.id !== id);
+        if (editingExpenseId === id) editingExpenseId = null;
+        saveState();
+        renderBudget();
+        showToast("已刪除支出紀錄");
+      });
     }
 
     function renderBudget() {
       let totalTWD = 0;
-      let sumJPY = 0;
-      let sumTWD = 0;
-      const catTotals = {};
-      BUDGET_CATS.forEach((c) => (catTotals[c] = 0));
+      let totalJPYRaw = 0;
+      let totalTWDRaw = 0;
+      const byCategory = { "餐飲": 0, "購物": 0, "景點門票": 0, "其他支出": 0 };
+      const byPayer = {};
+      appState.travelers.forEach((t) => (byPayer[t] = 0));
 
-      budgetState.items.forEach((item) => {
-        const twd = toTWD(item.amount, item.currency);
+      appState.expenses.forEach((exp) => {
+        const twd = toTWD(exp.amount, exp.currency);
         totalTWD += twd;
-        if (item.currency === 'JPY') sumJPY += Number(item.amount) || 0;
-        else sumTWD += Number(item.amount) || 0;
-        catTotals[item.category] = (catTotals[item.category] || 0) + twd;
+        if (exp.currency === "JPY") totalJPYRaw += Number(exp.amount) || 0;
+        else totalTWDRaw += Number(exp.amount) || 0;
+        byCategory[exp.category] = (byCategory[exp.category] || 0) + twd;
+        byPayer[exp.payer] = (byPayer[exp.payer] || 0) + twd;
       });
 
-      const perPerson = Math.round(totalTWD / 3);
+      const perPersonAvg = Math.round(totalTWD / Math.max(1, appState.travelers.length));
+      const editingItem = editingExpenseId
+        ? appState.expenses.find((x) => x.id === editingExpenseId)
+        : null;
 
       const html = `
-        <div class="space-y-6 fade-in">
-          <section class="journal-card rounded-3xl p-5 sm:p-6 shadow-journal">
+        <div class="space-y-6 view-animate">
+          <div class="editorial-card rounded-3xl p-5 sm:p-7 shadow-journal">
             <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               <div>
-                <p class="font-editorial text-xs tracking-[0.24em] text-gold uppercase">FAMILY LEDGER</p>
-                <h1 class="font-serifTC text-2xl sm:text-3xl font-bold text-ink mt-1">三人旅費記帳本</h1>
-                <p class="text-xs sm:text-sm text-sepia mt-1">日幣 / 台幣雙幣別自動換算，資料自動儲存於本機並支援 JSON 備份還原。</p>
+                <p class="font-editorial text-xs tracking-[0.24em] text-gold uppercase">TRAVEL LEDGER</p>
+                <h1 class="font-serifTC text-2xl sm:text-3xl font-bold text-navy mt-1">三人同行・旅行預算記帳</h1>
+                <p class="text-xs sm:text-sm text-sepia mt-1">支援日幣 / 台幣雙幣別記帳、自動換算台幣與三人付款統計。</p>
               </div>
-              <div class="flex items-center gap-2 bg-paperDeep px-3.5 py-2 rounded-2xl border border-borderWarm self-start">
-                <span class="text-xs text-sepia">1 JPY =</span>
-                <input type="number" step="0.001" min="0.01" max="5" value="${budgetState.rate}" onchange="updateRate(this.value)" class="w-20 px-2 py-1 rounded-lg bg-ivory border border-gold text-sm font-bold text-ink text-center" />
+              <div class="flex items-center gap-2 bg-paper px-3.5 py-2 rounded-2xl border border-borderWarm">
+                <span class="text-xs text-sepia">日幣匯率 1 JPY =</span>
+                <input
+                  type="number"
+                  step="0.001"
+                  min="0.01"
+                  max="5"
+                  value="${appState.exchangeRate}"
+                  onchange="updateExchangeRate(this.value)"
+                  class="w-20 px-2 py-1 rounded-lg bg-ivory border border-gold text-sm font-bold text-navy text-center"
+                />
                 <span class="text-xs text-sepia">TWD</span>
               </div>
             </div>
 
-            <!-- Summary Cards -->
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-5">
-              <div class="p-4 rounded-2xl bg-ink text-ivory">
-                <p class="text-[11px] opacity-80">折合台幣總計</p>
+              <div class="p-4 rounded-2xl bg-navy text-ivory">
+                <p class="text-[11px] opacity-80">折合台幣總花費</p>
                 <p class="font-editorial text-3xl font-bold mt-1">NT$ ${totalTWD.toLocaleString()}</p>
-                <p class="text-[11px] opacity-75 mt-1">三人平均每人 NT$ ${perPerson.toLocaleString()}</p>
+                <p class="text-[11px] opacity-75 mt-1">平均每人約 NT$ ${perPersonAvg.toLocaleString()}</p>
               </div>
-              <div class="p-4 rounded-2xl bg-paperDeep border border-borderWarm">
-                <p class="text-[11px] text-sepia">原始幣別累積</p>
-                <p class="text-sm font-bold text-ink mt-1.5">🇯🇵 ¥ ${Math.round(sumJPY).toLocaleString()}</p>
-                <p class="text-sm font-bold text-ink mt-1">🇹🇼 NT$ ${Math.round(sumTWD).toLocaleString()}</p>
+              <div class="p-4 rounded-2xl bg-paper border border-borderWarm">
+                <p class="text-[11px] text-sepia">各幣別原始累積</p>
+                <p class="text-sm font-bold text-navy mt-1.5">🇯🇵 ¥ ${Math.round(totalJPYRaw).toLocaleString()}</p>
+                <p class="text-sm font-bold text-navy mt-1">🇹🇼 NT$ ${Math.round(totalTWDRaw).toLocaleString()}</p>
               </div>
-              <div class="p-4 rounded-2xl bg-paperDeep border border-borderWarm flex flex-col justify-between gap-2">
-                <p class="text-[11px] text-sepia">備份與跨裝置還原</p>
-                <div class="flex gap-2">
-                  <button onclick="exportBudgetJSON()" class="flex-1 py-2 px-2.5 rounded-xl bg-ivory border border-borderWarm text-xs text-ink font-medium hover:border-gold transition">⬇️ 匯出 JSON</button>
-                  <label class="flex-1 py-2 px-2.5 rounded-xl bg-ivory border border-borderWarm text-xs text-ink font-medium text-center cursor-pointer hover:border-gold transition">
-                    ⬆️ 匯入還原
-                    <input type="file" accept=".json" onchange="importBudgetJSON(event)" class="hidden" />
-                  </label>
+              <div class="p-4 rounded-2xl bg-paper border border-borderWarm">
+                <p class="text-[11px] text-sepia mb-1.5">三人付款統計（可修改名字）</p>
+                <div class="space-y-1.5 text-xs">
+                  ${appState.travelers
+                    .map(
+                      (t, idx) => `
+                    <div class="flex items-center justify-between gap-2">
+                      <input
+                        type="text"
+                        value="${escapeHtml(t)}"
+                        onchange="updateTravelerName(${idx}, this.value)"
+                        class="w-20 px-1.5 py-0.5 rounded bg-ivory border border-borderWarm text-navy font-medium"
+                      />
+                      <span class="font-bold text-navy">NT$ ${(byPayer[t] || 0).toLocaleString()}</span>
+                    </div>
+                  `
+                    )
+                    .join("")}
                 </div>
               </div>
             </div>
 
-            <!-- Category Breakdown -->
-            <div class="grid grid-cols-2 sm:grid-cols-5 gap-2.5 mt-4">
-              ${BUDGET_CATS.map((cat) => {
-                const val = catTotals[cat] || 0;
-                const pct = totalTWD > 0 ? Math.round((val / totalTWD) * 100) : 0;
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 mt-4">
+              ${CATEGORIES.map((cat) => {
+                const amt = byCategory[cat] || 0;
+                const pct = totalTWD > 0 ? Math.round((amt / totalTWD) * 100) : 0;
                 return `
                   <div class="p-3 rounded-xl bg-ivory border border-borderWarm/70">
-                    <div class="flex justify-between text-[11px]">
+                    <div class="flex justify-between text-xs">
                       <span class="text-sepia">${cat}</span>
-                      <span class="text-ink font-medium">${pct}%</span>
+                      <span class="text-navy font-medium">${pct}%</span>
                     </div>
-                    <p class="text-xs sm:text-sm font-bold text-ink mt-1">NT$ ${val.toLocaleString()}</p>
-                    <div class="w-full h-1.5 bg-paperDeep rounded-full mt-1.5 overflow-hidden">
-                      <div class="h-full bg-maple/80 rounded-full" style="width:${pct}%"></div>
+                    <p class="text-sm font-bold text-navy mt-1">NT$ ${amt.toLocaleString()}</p>
+                    <div class="w-full h-1.5 bg-paper rounded-full mt-1.5 overflow-hidden">
+                      <div class="h-full bg-gold rounded-full" style="width: ${pct}%"></div>
                     </div>
                   </div>
                 `;
-              }).join('')}
+              }).join("")}
             </div>
-          </section>
+          </div>
 
-          <!-- Add Expense Form -->
-          <section class="journal-card rounded-2xl p-5 shadow-soft">
-            <h2 class="font-serifTC text-base font-bold text-ink mb-3">＋ 新增支出</h2>
-            <form onsubmit="addBudgetItem(event)" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-3 text-xs sm:text-sm">
+          <section id="budgetFormSection" class="editorial-card rounded-2xl p-5 shadow-soft">
+            <h2 class="font-serifTC text-base font-bold text-navy mb-3">
+              ${editingItem ? "✏️ 編輯支出項目" : "＋ 新增一筆支出"}
+            </h2>
+            <form onsubmit="saveExpenseForm(event)" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-3 text-sm">
               <div class="lg:col-span-2">
-                <input id="bName" required type="text" placeholder="項目名稱（如：勝烈亭炸豬排）" class="w-full px-3 py-2 rounded-xl bg-paperDeep border border-borderWarm focus:outline-none focus:border-ink" />
+                <label class="block text-xs text-sepia mb-1">項目名稱 *</label>
+                <input id="expName" required type="text" value="${escapeHtml(editingItem?.name || "")}" placeholder="例如：元祖本吉屋鰻魚飯" class="w-full px-3 py-2 rounded-xl bg-paper border border-borderWarm" />
               </div>
-              <select id="bCat" class="px-3 py-2 rounded-xl bg-paperDeep border border-borderWarm">
-                ${BUDGET_CATS.map((c) => `<option value="${c}">${c}</option>`).join('')}
-              </select>
-              <select id="bDay" class="px-3 py-2 rounded-xl bg-paperDeep border border-borderWarm">
-                <option value="行前預付">行前預付</option>
-                <option value="Day 1">Day 1 (11/23)</option>
-                <option value="Day 2">Day 2 (11/24)</option>
-                <option value="Day 3">Day 3 (11/25)</option>
-                <option value="Day 4">Day 4 (11/26)</option>
-                <option value="Day 5">Day 5 (11/27)</option>
-                <option value="Day 6">Day 6 (11/28)</option>
-              </select>
-              <div class="flex gap-1.5">
-                <input id="bAmount" required type="number" step="any" min="1" placeholder="金額" class="w-full px-2.5 py-2 rounded-xl bg-paperDeep border border-borderWarm" />
-                <select id="bCur" class="px-2 py-2 rounded-xl bg-paperDeep border border-borderWarm text-xs">
-                  <option value="JPY">JPY</option>
-                  <option value="TWD">TWD</option>
+              <div>
+                <label class="block text-xs text-sepia mb-1">分類</label>
+                <select id="expCategory" class="w-full px-3 py-2 rounded-xl bg-paper border border-borderWarm">
+                  ${CATEGORIES.map((c) => `<option value="${c}" ${editingItem?.category === c ? "selected" : ""}>${c}</option>`).join("")}
                 </select>
               </div>
-              <div class="flex gap-2">
-                <select id="bPayer" class="px-2.5 py-2 rounded-xl bg-paperDeep border border-borderWarm">
-                  ${PAYERS.map((p) => `<option value="${p}">${p}</option>`).join('')}
+              <div>
+                <label class="block text-xs text-sepia mb-1">日期</label>
+                <select id="expDay" class="w-full px-3 py-2 rounded-xl bg-paper border border-borderWarm">
+                  ${DAY_OPTIONS.map((d) => `<option value="${d}" ${editingItem?.day === d ? "selected" : ""}>${d}</option>`).join("")}
                 </select>
-                <button type="submit" class="flex-1 px-4 py-2 rounded-xl bg-ink text-ivory font-medium hover:bg-ink/90 transition">加入</button>
+              </div>
+              <div>
+                <label class="block text-xs text-sepia mb-1">金額與幣別 *</label>
+                <div class="flex gap-1.5">
+                  <input id="expAmount" required type="number" step="any" min="1" value="${editingItem?.amount || ""}" placeholder="金額" class="w-full px-2.5 py-2 rounded-xl bg-paper border border-borderWarm" />
+                  <select id="expCurrency" class="px-2 py-2 rounded-xl bg-paper border border-borderWarm text-xs">
+                    <option value="JPY" ${!editingItem || editingItem.currency === "JPY" ? "selected" : ""}>JPY</option>
+                    <option value="TWD" ${editingItem?.currency === "TWD" ? "selected" : ""}>TWD</option>
+                  </select>
+                </div>
+              </div>
+              <div>
+                <label class="block text-xs text-sepia mb-1">付款人</label>
+                <select id="expPayer" class="w-full px-3 py-2 rounded-xl bg-paper border border-borderWarm">
+                  ${appState.travelers.map((t) => `<option value="${escapeHtml(t)}" ${editingItem?.payer === t ? "selected" : ""}>${escapeHtml(t)}</option>`).join("")}
+                </select>
+              </div>
+              <div class="sm:col-span-2 lg:col-span-4">
+                <input id="expNote" type="text" value="${escapeHtml(editingItem?.note || "")}" placeholder="備註（選填，例如：刷卡、現金、人數）" class="w-full px-3 py-2 rounded-xl bg-paper border border-borderWarm text-xs" />
+              </div>
+              <div class="sm:col-span-2 lg:col-span-2 flex justify-end gap-2">
+                ${editingItem ? `<button type="button" onclick="cancelEditExpense()" class="px-4 py-2 rounded-xl border border-borderWarm text-xs text-sepia">取消編輯</button>` : ""}
+                <button type="submit" class="w-full sm:w-auto px-5 py-2 rounded-xl bg-navy text-ivory text-xs sm:text-sm font-medium hover:bg-navy/90 transition">
+                  ${editingItem ? "儲存修改" : "加入記帳"}
+                </button>
               </div>
             </form>
           </section>
 
-          <!-- Expense List -->
-          <section class="journal-card rounded-2xl p-5 shadow-soft">
-            <h2 class="font-serifTC text-base font-bold text-ink mb-3">支出明細（共 ${budgetState.items.length} 筆）</h2>
+          <section class="editorial-card rounded-2xl p-5 shadow-soft">
+            <h2 class="font-serifTC text-base font-bold text-navy mb-3">支出明細（共 ${appState.expenses.length} 筆）</h2>
             ${
-              budgetState.items.length === 0
-                ? `<p class="text-xs text-sepia py-6 text-center">尚無支出紀錄，請從上方新增第一筆花費。</p>`
+              appState.expenses.length === 0
+                ? `<p class="text-xs text-sepia py-6 text-center">目前尚無支出紀錄，請從上方新增第一筆花費。</p>`
                 : `
               <div class="divide-y divide-borderWarm/60">
-                ${budgetState.items
-                  .map((item) => {
-                    const twd = toTWD(item.amount, item.currency);
+                ${appState.expenses
+                  .map((exp) => {
+                    const twd = toTWD(exp.amount, exp.currency);
                     return `
-                      <div class="py-3 flex items-center justify-between gap-3">
-                        <div>
-                          <div class="flex flex-wrap items-center gap-1.5 text-[10px]">
-                            <span class="px-2 py-0.5 rounded-full bg-gold/20 text-ink">${esc(item.category)}</span>
-                            <span class="text-sepia">${esc(item.day)}</span>
-                            <span class="px-2 py-0.5 rounded-full bg-paperDeep border border-borderWarm text-sepia">付款：${esc(item.payer)}</span>
-                          </div>
-                          <p class="font-serifTC font-bold text-ink text-sm mt-1">${esc(item.name)}</p>
+                    <div class="py-3 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                      <div>
+                        <div class="flex flex-wrap items-center gap-1.5">
+                          <span class="px-2 py-0.5 rounded-full bg-gold/15 text-sepia text-[10px]">${escapeHtml(exp.category)}</span>
+                          <span class="text-[11px] text-sepia">${escapeHtml(exp.day)}</span>
+                          <span class="text-[11px] px-2 py-0.5 rounded-full bg-paper border border-borderWarm text-navy">付款：${escapeHtml(exp.payer)}</span>
                         </div>
-                        <div class="flex items-center gap-3">
-                          <div class="text-right">
-                            <p class="text-sm font-bold text-ink">
-                              ${item.currency === 'JPY' ? `¥ ${Number(item.amount).toLocaleString()}` : `NT$ ${Number(item.amount).toLocaleString()}`}
-                            </p>
-                            ${item.currency === 'JPY' ? `<p class="text-[11px] text-sepia">≈ NT$ ${twd.toLocaleString()}</p>` : ''}
-                          </div>
-                          <button onclick="removeBudgetItem('${item.id}')" class="px-2.5 py-1 rounded-lg border border-borderWarm text-xs text-maple hover:bg-maple/10">刪</button>
+                        <p class="font-serifTC font-bold text-navy text-sm mt-1">${escapeHtml(exp.name)}</p>
+                        ${exp.note ? `<p class="text-xs text-sepia mt-0.5">${escapeHtml(exp.note)}</p>` : ""}
+                      </div>
+                      <div class="flex items-center justify-between sm:justify-end gap-3">
+                        <div class="text-right">
+                          <p class="text-sm font-bold text-navy">
+                            ${exp.currency === "JPY" ? `¥ ${Number(exp.amount).toLocaleString()}` : `NT$ ${Number(exp.amount).toLocaleString()}`}
+                          </p>
+                          ${exp.currency === "JPY" ? `<p class="text-[11px] text-sepia">≈ NT$ ${twd.toLocaleString()}</p>` : ""}
+                        </div>
+                        <div class="flex gap-1">
+                          <button onclick="editExpense('${exp.id}')" class="px-2.5 py-1 rounded-lg border border-borderWarm text-xs text-sepia hover:text-navy">改</button>
+                          <button onclick="deleteExpense('${exp.id}')" class="px-2.5 py-1 rounded-lg border border-borderWarm text-xs text-terracotta hover:bg-terracotta/10">刪</button>
                         </div>
                       </div>
-                    `;
+                    </div>
+                  `;
                   })
-                  .join('')}
+                  .join("")}
               </div>
             `
             }
           </section>
         </div>
       `;
-      document.getElementById('app').innerHTML = html;
+
+      document.getElementById("appMain").innerHTML = html;
     }
 
     /* =========================================================================
-       9. TAB 4: LIVE WEATHER (OPEN-METEO API)
+       9. 視圖五：即時天氣 (Open-Meteo + JMA / tenki.jp)
        ========================================================================= */
-    function codeToWeather(code) {
-      if (code === 0) return { icon: '☀️', text: '晴朗' };
-      if ([1, 2, 3].includes(code)) return { icon: '⛅', text: '多雲時晴' };
-      if ([45, 48].includes(code)) return { icon: '🌫️', text: '有霧' };
-      if ([51, 53, 55, 61, 63, 65, 80, 81, 82].includes(code)) return { icon: '🌧️', text: '有雨' };
-      if ([71, 73, 75, 85, 86].includes(code)) return { icon: '❄️', text: '降雪' };
-      if ([95, 96, 99].includes(code)) return { icon: '⛈️', text: '雷陣雨' };
-      return { icon: '🌤️', text: '多雲' };
+    function weatherCodeToDesc(code) {
+      if (code === 0) return { icon: "☀️", text: "晴朗" };
+      if ([1, 2, 3].includes(code)) return { icon: "⛅", text: "多雲時晴" };
+      if ([45, 48].includes(code)) return { icon: "🌫️", text: "有霧" };
+      if ([51, 53, 55, 61, 63, 65, 80, 81, 82].includes(code)) return { icon: "🌧️", text: "有雨" };
+      if ([71, 73, 75, 77, 85, 86].includes(code)) return { icon: "❄️", text: "降雪" };
+      if ([95, 96, 99].includes(code)) return { icon: "⛈️", text: "雷陣雨" };
+      return { icon: "🌤️", text: "多雲" };
     }
 
-    async function fetchWeather(force = false) {
+    async function fetchAllKyushuWeather(force = false) {
       if (weatherCache && !force) return weatherCache;
       const results = await Promise.all(
-        WEATHER_CITIES.map(async (c) => {
+        DEFAULT_TRIP_DATA.weatherCities.map(async (c) => {
           try {
             const url = `https://api.open-meteo.com/v1/forecast?latitude=${c.lat}&longitude=${c.lon}&current=temperature_2m,weather_code&daily=temperature_2m_max,temperature_2m_min,precipitation_probability_max&timezone=Asia%2FTokyo&forecast_days=3`;
             const res = await fetch(url);
-            if (!res.ok) throw new Error('Network');
+            if (!res.ok) throw new Error("API error");
             const data = await res.json();
             return { ...c, ok: true, data };
-          } catch {
+          } catch (e) {
             return { ...c, ok: false };
           }
         })
@@ -1262,82 +2153,139 @@
       return results;
     }
 
-    async function renderWeather(force = false) {
-      document.getElementById('app').innerHTML = `
-        <div class="space-y-6 fade-in">
-          <section class="journal-card rounded-3xl p-5 sm:p-6 shadow-journal flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+    async function renderWeather(forceRefresh = false) {
+      document.getElementById("appMain").innerHTML = `
+        <div class="space-y-6 view-animate">
+          <div class="editorial-card rounded-3xl p-5 sm:p-7 shadow-journal flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div>
-              <p class="font-editorial text-xs tracking-[0.24em] text-gold uppercase">LIVE WEATHER</p>
-              <h1 class="font-serifTC text-2xl sm:text-3xl font-bold text-ink mt-1">九州五大區域・即時天氣</h1>
-              <p class="text-xs sm:text-sm text-sepia mt-1">即時串接 Open-Meteo 氣象資料，掌握平地與阿蘇、由布院山區溫差。</p>
+              <p class="font-editorial text-xs tracking-[0.24em] text-gold uppercase">KYUSHU WEATHER</p>
+              <h1 class="font-serifTC text-2xl sm:text-3xl font-bold text-navy mt-1">九州五大區域・即時天氣</h1>
+              <p class="text-xs sm:text-sm text-sepia mt-1">串接 Open-Meteo 即時氣象資料，並提供日本氣象廳與 tenki.jp 官方警報查詢連結。</p>
             </div>
-            <button onclick="renderWeather(true)" class="self-start sm:self-auto px-4 py-2 rounded-full border border-borderWarm bg-paperDeep text-xs text-ink hover:border-gold transition">
-              🔄 重新整理
+            <button onclick="renderWeather(true)" class="shrink-0 px-4 py-2 rounded-full border border-borderWarm bg-paper text-xs text-navy hover:border-gold transition">
+              🔄 重新整理即時天氣
             </button>
-          </section>
-
-          <div id="weatherCards" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            <div class="col-span-full text-center py-10 text-sm text-sepia">正在讀取九州即時天氣...</div>
           </div>
-
-          <section class="journal-card rounded-2xl p-5 shadow-soft">
-            <h2 class="font-serifTC text-base font-bold text-ink mb-2">🧥 11 月底九州深秋穿搭建議</h2>
-            <ul class="text-xs sm:text-sm text-sepia space-y-1.5 list-disc pl-4 leading-relaxed">
-              <li><strong class="text-ink">洋蔥式穿搭：</strong>福岡與熊本市區白天約 14–18°C，室內與包車內暖氣足，內層建議好穿脫的發熱衣或薄針織衫。</li>
-              <li><strong class="text-ink">山區防風保暖：</strong>由布院清晨（金鱗湖）、阿蘇大觀峰與高千穗峽谷氣溫可能降至 4–8°C 且風勢較強，務必備妥防風羽絨外套、圍巾與毛帽。</li>
-              <li><strong class="text-ink">好走防滑鞋：</strong>神社石階與峽谷步道早晨易有露水，建議穿著鞋底防滑的健走鞋或慢跑鞋。</li>
-            </ul>
-          </section>
+          <div id="weatherGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div class="col-span-full text-center py-10 text-sm text-sepia">正在載入九州即時氣象資料...</div>
+          </div>
+          <div class="editorial-card rounded-2xl p-5 shadow-soft">
+            <h2 class="font-serifTC text-base font-bold text-navy mb-2">🔗 官方天氣與警報查詢連結</h2>
+            <p class="text-xs text-sepia mb-3">出發前與行車途中，建議搭配日本氣象廳確認山區（阿蘇、由布院、高千穗）降雨與濃霧警報：</p>
+            <div class="flex flex-wrap gap-2 text-xs">
+              <a href="https://www.jma.go.jp/bosai/warning/" target="_blank" rel="noopener" class="px-3.5 py-2 rounded-xl bg-navy text-ivory">日本氣象廳・防災警報</a>
+              <a href="https://tenki.jp/forecast/9/43/" target="_blank" rel="noopener" class="px-3.5 py-2 rounded-xl border border-borderWarm bg-paper text-navy">tenki.jp 福岡・柳川</a>
+              <a href="https://tenki.jp/forecast/9/47/" target="_blank" rel="noopener" class="px-3.5 py-2 rounded-xl border border-borderWarm bg-paper text-navy">tenki.jp 大分（由布院）</a>
+              <a href="https://tenki.jp/forecast/9/46/" target="_blank" rel="noopener" class="px-3.5 py-2 rounded-xl border border-borderWarm bg-paper text-navy">tenki.jp 熊本（阿蘇）</a>
+              <a href="https://tenki.jp/forecast/9/48/" target="_blank" rel="noopener" class="px-3.5 py-2 rounded-xl border border-borderWarm bg-paper text-navy">tenki.jp 宮崎（高千穗）</a>
+            </div>
+          </div>
         </div>
       `;
 
-      const dataList = await fetchWeather(force);
-      const container = document.getElementById('weatherCards');
-      if (!container) return;
+      const list = await fetchAllKyushuWeather(forceRefresh);
+      const grid = document.getElementById("weatherGrid");
+      if (!grid) return;
 
-      container.innerHTML = dataList
+      grid.innerHTML = list
         .map((c) => {
           if (!c.ok) {
             return `
-              <div class="journal-card rounded-2xl p-5 shadow-soft">
-                <h3 class="font-serifTC text-base font-bold text-ink">${esc(c.name)}</h3>
-                <p class="text-xs text-sepia">${esc(c.sub)}</p>
-                <p class="text-xs text-maple mt-3">暫時無法連線取得即時氣象，請稍後再試。</p>
+              <div class="editorial-card rounded-2xl p-5 shadow-soft">
+                <h3 class="font-serifTC text-lg font-bold text-navy">${escapeHtml(c.name)}</h3>
+                <p class="text-xs text-sepia">${escapeHtml(c.sub)}</p>
+                <p class="text-xs text-terracotta mt-3">目前無法連線取得即時資料，請使用下方日本氣象廳或 tenki.jp 查詢。</p>
               </div>
             `;
           }
           const cur = c.data.current;
-          const d = c.data.daily;
-          const w = codeToWeather(cur.weather_code);
+          const daily = c.data.daily;
+          const desc = weatherCodeToDesc(cur.weather_code);
+          const rainProb = daily.precipitation_probability_max?.[0] ?? "—";
           return `
-            <div class="journal-card rounded-2xl p-5 shadow-soft">
+            <div class="editorial-card rounded-2xl p-5 shadow-soft">
               <div class="flex items-start justify-between">
                 <div>
-                  <h3 class="font-serifTC text-lg font-bold text-ink">${esc(c.name)}</h3>
-                  <p class="text-xs text-sepia">${esc(c.sub)}</p>
+                  <h3 class="font-serifTC text-lg font-bold text-navy">${escapeHtml(c.name)}</h3>
+                  <p class="text-xs text-sepia">${escapeHtml(c.sub)}</p>
                 </div>
-                <span class="text-3xl">${w.icon}</span>
+                <span class="text-3xl">${desc.icon}</span>
               </div>
-              <div class="mt-3 flex items-baseline gap-2">
-                <span class="font-editorial text-4xl font-bold text-ink">${Math.round(cur.temperature_2m)}°C</span>
-                <span class="text-xs text-sepia">${w.text}</span>
+              <div class="mt-4 flex items-baseline gap-2">
+                <span class="font-editorial text-4xl font-bold text-navy">${Math.round(cur.temperature_2m)}°C</span>
+                <span class="text-xs text-sepia">${desc.text}</span>
               </div>
               <div class="mt-3 pt-3 border-t border-borderWarm/60 flex items-center justify-between text-xs text-sepia">
-                <span>高/低溫：${Math.round(d.temperature_2m_max[0])}° / ${Math.round(d.temperature_2m_min[0])}°</span>
-                <span>💧 降雨機率 ${d.precipitation_probability_max?.[0] ?? '—'}%</span>
+                <span>今日高/低：${Math.round(daily.temperature_2m_max[0])}° / ${Math.round(daily.temperature_2m_min[0])}°</span>
+                <span>💧 降雨機率 ${rainProb}%</span>
               </div>
             </div>
           `;
         })
-        .join('');
+        .join("");
     }
 
     /* =========================================================================
-       10. INIT
+       10. 備份與還原
        ========================================================================= */
-    window.addEventListener('DOMContentLoaded', () => {
-      updateNavUI();
-      renderApp();
+    function openBackupModal() {
+      document.getElementById("backupModal").classList.remove("hidden");
+    }
+
+    function closeBackupModal() {
+      document.getElementById("backupModal").classList.add("hidden");
+    }
+
+    function exportBackupJSON() {
+      const blob = new Blob([JSON.stringify(appState, null, 2)], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "kyushu-travel-journal-backup.json";
+      a.click();
+      URL.revokeObjectURL(url);
+      showToast("⬇️ 備份檔已下載");
+    }
+
+    function importBackupJSON(e) {
+      const file = e.target.files && e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = (ev) => {
+        try {
+          const parsed = JSON.parse(ev.target.result);
+          appState = { ...createInitialState(), ...parsed };
+          saveState();
+          closeBackupModal();
+          renderCurrentView();
+          showToast("✅ 備份資料已成功還原");
+        } catch (err) {
+          showToast("⚠️ 備份檔格式不正確，請確認檔案");
+        }
+      };
+      reader.readAsText(file);
+    }
+
+    function confirmResetAll() {
+      closeBackupModal();
+      openConfirmModal(
+        "重置所有資料",
+        "這會清除您自行新增的支出、備忘錄與餐廳，並還原為初始預設行程，確定要重置嗎？",
+        () => {
+          localStorage.removeItem(STORAGE_KEY);
+          appState = createInitialState();
+          renderCurrentView();
+          showToast("已重置為預設旅遊手冊");
+        }
+      );
+    }
+
+    /* =========================================================================
+       11. 初始化啟動
+       ========================================================================= */
+    window.addEventListener("DOMContentLoaded", () => {
+      updateNavStyles();
+      renderHome();
     });
   </script>
 </body>
